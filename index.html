@@ -1,421 +1,345 @@
-<!-- =============================
-     FILE: index.html (single page)
-     Notes:
-       • Fully responsive (mobile → desktop), compact sizes
-       • One-page sections: Home, About, Education, Skills, Projects, Resume, Contact
-       • Fast + lightweight: no frameworks, tiny JS, lazy images, reduced motion support
-       • Smooth, rich but subtle animations on scroll; swipeable Projects; sticky nav
-       • Dark/Light mode with localStorage persistence (toggle FAB)
-   ============================= -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Abhinand Babu | Portfolio</title>
-  <meta name="description" content="Abhinand Babu — B.Tech CSE, Web Developer. Projects, skills, education, and contact." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <style>
-    /* =========================
-       DESIGN TOKENS & THEME
-       ========================= */
-    :root{
-      --header-h:56px;        /* compact header */
-      --radius:14px;
-      --accent:#5b9dff;       /* blue */
-      --accent-2:#00e3ff;     /* cyan */
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Abhinand Babu | Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+:root{
+  --header-h:56px;
+  --radius:14px;
+  --accent:#5b9dff;
+  --accent-2:#00e3ff;
+  --bg:#0a0c12; --bg-soft:#0f1320; --text:#eaf0ff; --muted:#9aa3b2;
+  --bg-light:#f6f8fc; --bg-soft-light:#ffffff; --text-light:#0b1220; --muted-light:#4b5563;
+  --shadow-1:0 10px 24px rgba(0,0,0,.35);
+  --shadow-2:0 18px 44px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:var(--header-h)}
+body{margin:0;font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body::before{content:"";position:fixed;inset:0;z-index:-1;opacity:.14;pointer-events:none;background: linear-gradient(135deg, #0a0f2c, #0f1e48, #112d60); center/cover no-repeat;transition:filter .3s ease,opacity .3s ease}
+body.light{background:var(--bg-light); color:var(--text-light)}
+body.light p{color:var(--muted-light)}
+body.light::before{filter:invert(1) hue-rotate(180deg); opacity:.18}
 
-      /* Dark theme (default) */
-      --bg:#0a0c12;
-      --bg-soft:#0f1320;
-      --text:#eaf0ff;
-      --muted:#9aa3b2;
+.container{width:min(1100px,92vw);margin-inline:auto}
+h1{font-size:clamp(1.4rem,3.5vw,2rem);line-height:1.15;margin:0 0 .35rem 0}
+h2{font-size:clamp(1.1rem,3vw,1.5rem);margin:.25rem 0 .25rem}
+p{color:var(--muted);font-size:clamp(.92rem,2.2vw,.98rem);line-height:1.55;margin:.25rem 0}
 
-      /* Light theme */
-      --bg-light:#f6f8fc;
-      --bg-soft-light:#ffffff;
-      --text-light:#0b1220;
-      --muted-light:#4b5563;
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:8px 14px;border-radius:12px;border:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;font-weight:700;text-decoration:none;box-shadow:0 8px 22px rgba(0,140,255,.25);transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.glass{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);box-shadow:var(--shadow-1)}
+.neon{position:relative}
+.neon::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:conic-gradient(from 180deg at 50% 50%,#5b9dff,#00e3ff,#7aa9ff,#5b9dff);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.45}
 
-      --shadow-1:0 10px 24px rgba(0,0,0,.35);
-      --shadow-2:0 18px 44px rgba(0,0,0,.45);
-    }
+header{position:sticky;top:0;z-index:100;backdrop-filter:blur(8px);height:var(--header-h);display:flex;align-items:center}
+.nav-wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:8px}
+.brand h2{font-size:1rem;color:var(--accent);letter-spacing:.3px;margin:0}
+nav a{color:inherit;text-decoration:none;font-size:.95rem;padding:8px 10px;border-radius:10px;white-space:nowrap}
+nav a:hover{background:rgba(255,255,255,.06)}
+nav a.active{color:var(--accent);font-weight:600}
+.menu-toggle{display:none;background:none;border:0;color:inherit;font-size:1.2rem;padding:6px}
+@media (max-width:768px){
+  .menu-toggle{display:inline-flex}
+  nav{position:fixed;top:var(--header-h);left:0;right:0;transform:translateY(-8px) scale(.98);opacity:0;pointer-events:none;transition:transform .2s,opacity .2s}
+  nav.show{transform:none;opacity:1;pointer-events:auto}
+  nav .sheet{margin:0 8px;padding:8px;background:rgba(15,20,35,.9);border:1px solid rgba(255,255,255,.14);border-radius:12px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+  body.light nav .sheet{background:rgba(255,255,255,.9);border-color:rgba(0,0,0,.08)}
+}
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth;scroll-padding-top:var(--header-h)}
-    body{margin:0;font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+main{display:block}
+section.page{min-height:100svh;display:grid;place-items:center;padding:44px 0;scroll-margin-top:var(--header-h)}
+.section-inner{width:min(1100px,92vw);margin-inline:auto;text-align:center;display:grid;gap:12px}
 
-    /* global decorative layer (very light) */
-    body::before{content:"";position:fixed;inset:0;z-index:-1;opacity:.14;pointer-events:none;background:url('assets/bg.jpg') center/cover no-repeat;transition:filter .3s ease,opacity .3s ease}
+/* HOME */
+#home .grid{display:grid;grid-template-columns:1fr 1.1fr;align-items:center;gap:clamp(12px,3vw,24px)}
+#home .lead{font-size:clamp(.98rem,2.4vw,1.05rem)}
+.hero-media{justify-self:center}
+.hero-media img{width:min(340px,68vw);height:auto;border-radius:16px;border:1px solid rgba(255,255,255,.12);box-shadow:var(--shadow-2)}
+@media (max-width:900px){#home .grid{grid-template-columns:1fr;text-align:center}}
 
-    /* Light mode */
-    body.light{background:var(--bg-light); color:var(--text-light)}
-    body.light p{color:var(--muted-light)}
-    body.light::before{filter:invert(1) hue-rotate(180deg); opacity:.18}
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:6px}
+.about-card{padding:14px}
+.about-chip{display:inline-flex;align-items:center;gap:.4rem;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.14)}
 
-    .container{width:min(1100px,92vw);margin-inline:auto}
-    h1{font-size:clamp(1.4rem,3.5vw,2rem);line-height:1.15;margin:0 0 .35rem 0}
-    h2{font-size:clamp(1.1rem,3vw,1.5rem);margin:.25rem 0 .25rem}
-    p{color:var(--muted);font-size:clamp(.92rem,2.2vw,.98rem);line-height:1.55;margin:.25rem 0}
+/* EDUCATION */
+.edu-tl{display:grid;gap:10px;margin-top:6px}
+.edu-row{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center}
+.edu-icon{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,rgba(91,157,255,.25),rgba(0,227,255,.25));border:1px solid rgba(255,255,255,.16)}
+.meter{height:12px;border-radius:10px;background:rgba(255,255,255,.08);overflow:hidden;border:1px solid rgba(255,255,255,.1);margin-top:4px}
+.meter>span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:0;transition:width .8s ease}
 
-    /* Utility */
-    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:8px 14px;border-radius:12px;border:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;font-weight:700;text-decoration:none;box-shadow:0 8px 22px rgba(0,140,255,.25);transition:transform .2s}
-    .btn:hover{transform:translateY(-2px)}
-    .glass{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);box-shadow:var(--shadow-1)}
-    .neon{position:relative}
-    .neon::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:conic-gradient(from 180deg at 50% 50%,#5b9dff,#00e3ff,#7aa9ff,#5b9dff);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.45}
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:6px}
+.skill{padding:14px;transition:transform .2s}
+.skill:hover{transform:translateY(-4px)}
+.skill i{font-size:1.5rem;margin-bottom:4px;background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.skill-bar{height:10px;border-radius:10px;background:rgba(255,255,255,.08);margin-top:6px;overflow:hidden}
+.skill-bar>span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:0;transition:width .8s ease}
 
-    /* =========================
-       HEADER / NAV
-       ========================= */
-    header{position:sticky;top:0;z-index:100;backdrop-filter:blur(8px);height:var(--header-h);display:flex;align-items:center}
-    .nav-wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .brand{display:flex;align-items:center;gap:8px}
-    .brand h2{font-size:1rem;color:var(--accent);letter-spacing:.3px;margin:0}
+/* PROJECTS */
+.carousel{position:relative;max-width:980px;margin-inline:auto;overflow:hidden}
+.track{display:flex;will-change:transform;transition:transform .4s ease}
+.slide{min-width:100%;flex-shrink:0;display:grid;gap:8px;justify-items:center;padding:10px}
+.card{width:min(88vw,720px)}
+.media{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.12);box-shadow:var(--shadow-1)}
+.nav-btn{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:rgba(15,22,35,.9);color:#fff;display:grid;place-items:center;cursor:pointer}
+.nav-btn.prev{left:8px}.nav-btn.next{right:8px}
+@media (max-width:640px){.nav-btn{display:none}}
+@media (max-width:420px){.slide{padding:0}}
 
-    nav a{color:inherit;text-decoration:none;font-size:.95rem;padding:8px 10px;border-radius:10px;white-space:nowrap}
-    nav a:hover{background:rgba(255,255,255,.06)}
-    nav a.active{color:var(--accent);font-weight:600}
+/* RESUME */
+.resume-wrap{display:grid;gap:8px;justify-items:center}
+.resume-frame{width:min(920px,94vw);height:min(70vh,700px);border:1px solid rgba(255,255,255,.12);border-radius:12px;box-shadow:var(--shadow-1)}
+.resume-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
 
-    .menu-toggle{display:none;background:none;border:0;color:inherit;font-size:1.2rem;padding:6px}
-    
-    @media (max-width:768px){
-      .menu-toggle{display:inline-flex}
-      nav{position:fixed;top:var(--header-h);left:0;right:0;transform:translateY(-8px) scale(.98);opacity:0;pointer-events:none;transition:transform .2s,opacity .2s}
-      nav.show{transform:none;opacity:1;pointer-events:auto}
-      nav .sheet{margin:0 8px;padding:8px;background:rgba(15,20,35,.9);border:1px solid rgba(255,255,255,.14);border-radius:12px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
-      body.light nav .sheet{background:rgba(255,255,255,.9);border-color:rgba(0,0,0,.08)}
-    }
+/* CONTACT */
+.socials{display:flex;gap:12px;justify-content:center}
+.socials a{font-size:1.1rem;color:var(--muted)}
+.socials a:hover{color:var(--accent)}
 
-    /* =========================
-       SECTIONS LAYOUT
-       ========================= */
-    main{display:block}
-    section.page{min-height:100svh;display:grid;place-items:center;padding:44px 0}
-    .section-inner{width:min(1100px,92vw);margin-inline:auto;text-align:center;display:grid;gap:12px}
+/* FOOTER */
+footer{display:flex;align-items:center;justify-content:center;gap:16px;height:50px;color:var(--muted);border-top:1px solid rgba(255,255,255,.06)}
 
-    /* HOME */
-    #home .grid{display:grid;grid-template-columns:1fr 1.1fr;align-items:center;gap:clamp(12px,3vw,24px)}
-    #home .lead{font-size:clamp(.98rem,2.4vw,1.05rem)}
-    .hero-media{justify-self:center}
-    .hero-media img{width:min(340px,68vw);height:auto;border-radius:16px;border:1px solid rgba(255,255,255,.12);box-shadow:var(--shadow-2)}
-    @media (max-width:900px){#home .grid{grid-template-columns:1fr;text-align:center}}
-
-    /* ABOUT – compact, mobile-first cards */
-    .about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:6px}
-    .about-card{padding:14px}
-    .about-chip{display:inline-flex;align-items:center;gap:.4rem;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.14)}
-
-    /* EDUCATION */
-    .edu-tl{display:grid;gap:10px;margin-top:6px}
-    .edu-row{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center}
-    .edu-icon{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,rgba(91,157,255,.25),rgba(0,227,255,.25));border:1px solid rgba(255,255,255,.16)}
-    .meter{height:8px;border-radius:10px;background:rgba(255,255,255,.08);overflow:hidden;border:1px solid rgba(255,255,255,.1);margin-top:4px}
-    .meter>span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:0}
-    .in-view .meter>span{width:var(--w)}
-
-    /* SKILLS */
-    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:6px}
-    .skill{padding:14px;transition:transform .2s}
-    .skill:hover{transform:translateY(-4px)}
-    .skill i{font-size:1.5rem;margin-bottom:4px;background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
-
-    /* PROJECTS – swipeable */
-    .carousel{position:relative;max-width:980px;margin-inline:auto;overflow:hidden}
-    .track{display:flex;will-change:transform;transition:transform .4s ease}
-    .slide{min-width:100%;flex-shrink:0;display:grid;gap:8px;justify-items:center;padding:10px}
-    .card{width:min(88vw,720px)}
-    .media{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.12);box-shadow:var(--shadow-1)}
-    .nav-btn{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:rgba(15,22,35,.9);color:#fff;display:grid;place-items:center;cursor:pointer}
-    .nav-btn.prev{left:8px}.nav-btn.next{right:8px}
-    @media (max-width:640px){.nav-btn{display:none}}
-
-    /* RESUME */
-    .resume-wrap{display:grid;gap:8px}
-    .resume-frame{width:min(920px,94vw);height:min(70vh,700px);border:1px solid rgba(255,255,255,.12);border-radius:12px;box-shadow:var(--shadow-1)}
-    .resume-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-
-    /* CONTACT */
-    .socials{display:flex;gap:12px;justify-content:center}
-    .socials a{font-size:1.1rem;color:var(--muted)}
-    .socials a:hover{color:var(--accent)}
-
-    /* FOOTER */
-    footer{display:flex;align-items:center;justify-content:center;gap:16px;height:50px;color:var(--muted);border-top:1px solid rgba(255,255,255,.06)}
-
-    /* Reveal on scroll */
-    .reveal{opacity:0;transform:translateY(16px)}
-    .reveal.show{animation:fadeUp .6s ease forwards}
-    @keyframes fadeUp{to{opacity:1;transform:none}}
-
-    /* Accessibility: reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      html{scroll-behavior:auto}
-      *, .reveal.show{animation-duration:.001ms !important;transition-duration:.001ms !important}
-    }
-
-    /* Mobile fine‑tuning */
-    @media (max-width:420px){
-      .about-grid{grid-template-columns:1fr 1fr}
-      .skills-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-    }
-  </style>
+/* Reveal */
+.reveal{opacity:0;transform:translateY(16px)}
+.reveal.show{animation:fadeUp .8s ease forwards}
+@keyframes fadeUp{to{opacity:1;transform:none}}
+</style>
 </head>
 <body>
-  <a class="skip-link" href="#main" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">Skip to content</a>
+<a class="skip-link" href="#main" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">Skip to content</a>
 
-  <!-- HEADER -->
-  <header>
-    <div class="container nav-wrap">
-      <div class="brand"><i class="fa-solid fa-bolt" style="color:var(--accent)"></i><h2>Abhinand</h2></div>
-      <button class="menu-toggle" id="menuToggle" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
-      <nav id="nav" aria-label="Primary">
-        <div class="sheet">
-          <a href="#home" class="active">Home</a>
-          <a href="#about">About</a>
-          <a href="#education">Education</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#resume">Resume</a>
-          <a href="#contact">Contact</a>
+<header>
+  <div class="container nav-wrap">
+    <div class="brand"><i class="fa-solid fa-bolt" style="color:var(--accent)"></i><h2>Abhinand</h2></div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+    <nav id="nav" aria-label="Primary">
+      <div class="sheet">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<button id="themeFab" class="btn" style="position:fixed;right:14px;bottom:14px;width:44px;height:44px;justify-content:center;border-radius:50%;padding:0;z-index:120" aria-label="Toggle theme"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+
+<main id="main">
+  <!-- HOME -->
+  <section class="page" id="home">
+    <div class="section-inner">
+      <div class="grid">
+        <div class="hero-media glass neon reveal"><img src="assets/bg.jpg" alt="Profile art"></div>
+        <div class="home-txt reveal">
+          <h1>Hi, I'm <span style="background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent">Abhinand</span></h1>
+          <p class="lead">B.Tech CSE graduate & Web Developer focused on fast, modern apps with clean architecture.</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+            <a class="btn" href="#skills"><i class="fa-solid fa-wand-magic-sparkles"></i><span>Explore</span></a>
+            <a class="btn" href="#projects"><i class="fa-solid fa-diagram-project"></i><span>Projects</span></a>
+          </div>
         </div>
-      </nav>
+      </div>
     </div>
-  </header>
+  </section>
 
-  <!-- Theme toggle FAB (persists) -->
-  <button id="themeFab" class="btn" style="position:fixed;right:14px;bottom:14px;width:44px;height:44px;justify-content:center;border-radius:50%;padding:0;z-index:120" aria-label="Toggle theme"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+  <!-- ABOUT -->
+  <section class="page" id="about">
+    <div class="section-inner">
+      <h1 class="reveal">About</h1>
+      <p class="reveal">I build reliable software and delightful web experiences. I care about performance, DX, and micro‑interactions.</p>
+      <div class="about-grid">
+        <div class="about-card glass neon reveal"><div class="about-chip"><i class="fa-solid fa-graduation-cap"></i><span>B.Tech CSE</span></div><p style="margin-top:6px">Strong CS fundamentals & SWE practices.</p></div>
+        <div class="about-card glass neon reveal"><div class="about-chip"><i class="fa-solid fa-bolt"></i><span>Strengths</span></div><p style="margin-top:6px">Problem solving, clean code, systems thinking.</p></div>
+        <div class="about-card glass neon reveal"><div class="about-chip"><i class="fa-solid fa-heart"></i><span>Passion</span></div><p style="margin-top:6px">Scalable full‑stack apps & great UX.</p></div>
+        <div class="about-card glass neon reveal"><div class="about-chip"><i class="fa-solid fa-bullseye"></i><span>Goal</span></div><p style="margin-top:6px">Ship impact at scale as a full‑stack dev.</p></div>
+      </div>
+    </div>
+  </section>
 
-  <main id="main">
-    <!-- HOME -->
-    <section class="page" id="home">
-      <div class="section-inner">
-        <div class="grid">
-          <div class="hero-media glass neon reveal" aria-hidden="true"><img src="assets/bg.jpg" alt="Profile art" loading="eager" decoding="async"></div>
-          <div class="home-txt reveal">
-            <h1>Hi, I'm <span style="background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent">Abhinand</span></h1>
-            <p class="lead">B.Tech CSE graduate & Web Developer focused on fast, modern apps with clean architecture.</p>
-            <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
-              <a class="btn" href="#skills"><i class="fa-solid fa-wand-magic-sparkles"></i><span>Explore</span></a>
-              <a class="btn" href="#projects"><i class="fa-solid fa-diagram-project"></i><span>Projects</span></a>
+  <!-- EDUCATION -->
+  <section class="page" id="education">
+    <div class="section-inner">
+      <h1 class="reveal">Education</h1>
+      <div class="glass neon reveal" style="padding:12px">
+        <div class="edu-tl">
+          <div class="edu-row">
+            <div class="edu-icon"><i class="fa-solid fa-building-columns"></i></div>
+            <div>
+              <h2>B.Tech in Computer Science & Engineering</h2>
+              <p>University College of Engineering, Thodupuzha</p>
+              <div class="meter"><span style="width:70%"></span></div>
+              <p style="margin-top:4px;font-size:.9rem">2021 – 2025 • GPA 6.99</p>
+            </div>
+          </div>
+          <div class="edu-row">
+            <div class="edu-icon"><i class="fa-solid fa-school"></i></div>
+            <div>
+              <h2>Higher Secondary Education</h2>
+              <p>St Sebastian's HSS, Vazhithala</p>
+              <div class="meter"><span style="width:94%"></span></div>
+              <p style="margin-top:4px;font-size:.9rem">2019 – 2021 • 94%</p>
+            </div>
+          </div>
+          <div class="edu-row">
+            <div class="edu-icon"><i class="fa-solid fa-book"></i></div>
+            <div>
+              <h2>Secondary Education</h2>
+              <p>Bappuji Public School, Vazhithala</p>
+              <div class="meter"><span style="width:80%"></span></div>
+              <p style="margin-top:4px;font-size:.9rem">2018 – 2019 • 80%</p>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ABOUT (compact & mobile-friendly) -->
-    <section class="page" id="about">
-      <div class="section-inner">
-        <h1 class="reveal">About</h1>
-        <p class="reveal">I build reliable software and delightful web experiences. I care about performance, DX, and micro‑interactions.</p>
-        <div class="about-grid">
-          <div class="about-card glass neon reveal">
-            <div class="about-chip"><i class="fa-solid fa-graduation-cap"></i><span>B.Tech CSE</span></div>
-            <p style="margin-top:6px">Strong CS fundamentals & SWE practices.</p>
-          </div>
-          <div class="about-card glass neon reveal">
-            <div class="about-chip"><i class="fa-solid fa-bolt"></i><span>Strengths</span></div>
-            <p style="margin-top:6px">Problem solving, clean code, systems thinking.</p>
-          </div>
-          <div class="about-card glass neon reveal">
-            <div class="about-chip"><i class="fa-solid fa-heart"></i><span>Passion</span></div>
-            <p style="margin-top:6px">Scalable full‑stack apps & great UX.</p>
-          </div>
-          <div class="about-card glass neon reveal">
-            <div class="about-chip"><i class="fa-solid fa-bullseye"></i><span>Goal</span></div>
-            <p style="margin-top:6px">Ship impact at scale as a full‑stack dev.</p>
-          </div>
+  <!-- SKILLS -->
+  <section class="page" id="skills">
+    <div class="section-inner">
+      <h1 class="reveal">Skills & Tools</h1>
+      <p class="reveal">A focused stack for building fast, maintainable products.</p>
+      <div class="skills-grid">
+        <div class="skill glass neon reveal">
+          <i class="fa-brands fa-python"></i>
+          <h2>Python</h2>
+          <p>Scripting, APIs, automation</p>
+          <div class="skill-bar"><span style="width:100%"></span></div>
+        </div>
+        <div class="skill glass neon reveal">
+          <i class="fa-solid fa-server"></i>
+          <h2>Django</h2>
+          <p>Robust backends, ORM</p>
+          <div class="skill-bar"><span style="width:90%"></span></div>
+        </div>
+        <div class="skill glass neon reveal">
+          <i class="fa-brands fa-js"></i>
+          <h2>JavaScript</h2>
+          <p>Interactive UIs</p>
+          <div class="skill-bar"><span style="width:85%"></span></div>
+        </div>
+        <div class="skill glass neon reveal">
+          <i class="fa-brands fa-react"></i>
+          <h2>React</h2>
+          <p>SPA, hooks</p>
+          <div class="skill-bar"><span style="width:80%"></span></div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- EDUCATION -->
-    <section class="page" id="education">
-      <div class="section-inner">
-        <h1 class="reveal">Education</h1>
-        <div class="glass neon reveal" style="padding:12px">
-          <div class="edu-tl" id="eduTl">
-            <div class="edu-row">
-              <div class="edu-icon"><i class="fa-solid fa-building-columns"></i></div>
-              <div>
-                <h2>B.Tech in Computer Science & Engineering</h2>
-                <p>University College of Engineering, Thodupuzha</p>
-                <div class="meter" style="--w:70%"><span></span></div>
-                <p style="margin-top:4px;font-size:.9rem">2021 – 2025 • GPA 6.99</p>
-              </div>
-            </div>
-            <div class="edu-row">
-              <div class="edu-icon"><i class="fa-solid fa-school"></i></div>
-              <div>
-                <h2>Higher Secondary Education</h2>
-                <p>St Sebastian's HSS, Vazhithala</p>
-                <div class="meter" style="--w:94%"><span></span></div>
-                <p style="margin-top:4px;font-size:.9rem">2019 – 2021 • 94%</p>
-              </div>
-            </div>
-            <div class="edu-row">
-              <div class="edu-icon"><i class="fa-solid fa-book"></i></div>
-              <div>
-                <h2>Secondary Education</h2>
-                <p>Bappuji Public School, Vazhithala</p>
-                <div class="meter" style="--w:80%"><span></span></div>
-                <p style="margin-top:4px;font-size:.9rem">2018 – 2019 • 80%</p>
-              </div>
-            </div>
-          </div>
+  <!-- PROJECTS -->
+  <section class="page" id="projects">
+    <div class="section-inner">
+      <h1 class="reveal">Projects</h1>
+      <div class="carousel reveal">
+        <button class="nav-btn prev" id="prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="track" id="projTrack">
+          <article class="slide">
+            <div class="card glass neon"><img class="media" src="assets/bg.jpg" alt="Scrapsy"></div>
+            <h2>Scrapsy</h2>
+            <a href="#" class="btn">View Details</a>
+          </article>
+          <article class="slide">
+            <div class="card glass neon"><img class="media" src="assets/WhatsApp Image 2025-02-24 at 17.59.03_40ff22d3.jpg" alt="Portfolio"></div>
+            <h2>Portfolio</h2>
+            <a href="#" class="btn">View Details</a>
+          </article>
+          <article class="slide">
+            <div class="card glass neon"><img class="media" src="images/project3.png" alt="ML Trash Detection"></div>
+            <h2>ML Trash Detection</h2>
+            <a href="#" class="btn">View Details</a>
+          </article>
+        </div>
+        <button class="nav-btn next" id="nextBtn"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUME -->
+  <section class="page" id="resume">
+    <div class="section-inner">
+      <h1 class="reveal">My Resume</h1>
+      <p class="reveal">Preview or download my resume below.</p>
+      <div class="resume-wrap reveal">
+        <iframe class="resume-frame" src="assets/Resume.pdf" title="Resume preview"></iframe>
+        <div class="resume-actions">
+          <a href="assets/Resume.pdf" download class="btn"><i class="fa-solid fa-download"></i><span>Download</span></a>
+          <a href="assets/Resume.pdf" target="_blank" rel="noopener" class="btn"><i class="fa-solid fa-eye"></i><span>Open in New Tab</span></a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- SKILLS -->
-    <section class="page" id="skills">
-      <div class="section-inner">
-        <h1 class="reveal">Skills & Tools</h1>
-        <p class="reveal">A focused stack for building fast, maintainable products.</p>
-        <div class="skills-grid">
-          <div class="skill glass neon reveal"><i class="fa-brands fa-python"></i><h2>Python</h2><p>Scripting, APIs, automation</p></div>
-          <div class="skill glass neon reveal"><i class="fa-solid fa-server"></i><h2>Django</h2><p>Robust backends, ORM</p></div>
-          <div class="skill glass neon reveal"><i class="fa-brands fa-js"></i><h2>JavaScript</h2><p>Interactive UIs</p></div>
-          <div class="skill glass neon reveal"><i class="fa-brands fa-react"></i><h2>React</h2><p>SPA, hooks</p></div>
-          <div class="skill glass neon reveal"><i class="fa-brands fa-html5"></i><h2>HTML5</h2><p>Semantic markup</p></div>
-          <div class="skill glass neon reveal"><i class="fa-brands fa-css3-alt"></i><h2>CSS</h2><p>Responsive layouts</p></div>
-          <div class="skill glass neon reveal"><i class="fa-solid fa-database"></i><h2>SQL</h2><p>Schema & queries</p></div>
-          <div class="skill glass neon reveal"><i class="fa-solid fa-robot"></i><h2>ML</h2><p>Classifiers & inference</p></div>
-        </div>
+  <!-- CONTACT -->
+  <section class="page" id="contact">
+    <div class="section-inner">
+      <h1 class="reveal">Contact</h1>
+      <p class="reveal">Email: <a href="mailto:abhinandbabu2502@gmail.com">abhinandbabu2502@gmail.com</a></p>
+      <div class="socials reveal">
+        <a href="https://github.com/Abhinand2502" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/abhinand-babu-153b66324" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
       </div>
-    </section>
+    </div>
+  </section>
+</main>
 
-    <!-- PROJECTS -->
-    <section class="page" id="projects">
-      <div class="section-inner">
-        <h1 class="reveal">Projects</h1>
-        <div class="carousel reveal">
-          <button class="nav-btn prev" id="prevBtn" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
-          <div class="track" id="projTrack">
-            <article class="slide" aria-label="Scrapsy project">
-              <div class="card glass neon"><img class="media" src="assets/bg.jpg" alt="Scrapsy" loading="lazy" decoding="async"></div>
-              <h2>Scrapsy</h2>
-              <a href="#" class="btn">View Details</a>
-            </article>
-            <article class="slide" aria-label="Portfolio project">
-              <div class="card glass neon"><img class="media" src="assets/WhatsApp Image 2025-02-24 at 17.59.03_40ff22d3.jpg" alt="Portfolio" loading="lazy" decoding="async"></div>
-              <h2>Portfolio</h2>
-              <a href="#" class="btn">View Details</a>
-            </article>
-            <article class="slide" aria-label="ML Trash Detection project">
-              <div class="card glass neon"><img class="media" src="images/project3.png" alt="ML Trash Detection" loading="lazy" decoding="async"></div>
-              <h2>ML Trash Detection</h2>
-              <a href="#" class="btn">View Details</a>
-            </article>
-          </div>
-          <button class="nav-btn next" id="nextBtn" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
-      </div>
-    </section>
+<footer>© <span id="yr"></span> Abhinand</footer>
 
-    <!-- RESUME -->
-    <section class="page" id="resume">
-      <div class="section-inner">
-        <h1 class="reveal">My Resume</h1>
-        <p class="reveal">Preview or download my resume below.</p>
-        <div class="resume-wrap reveal">
-          <iframe class="resume-frame" src="assets/Resume.pdf" title="Resume preview" loading="lazy"></iframe>
-          <div class="resume-actions">
-            <a href="assets/Resume.pdf" download class="btn"><i class="fa-solid fa-download"></i><span>Download</span></a>
-            <a href="assets/Resume.pdf" target="_blank" rel="noopener" class="btn"><i class="fa-solid fa-eye"></i><span>Open in New Tab</span></a>
-          </div>
-        </div>
-      </div>
-    </section>
+<script>
+const $ = (s,sc=document)=> sc.querySelector(s);
+const $$ = (s,sc=document)=> [...sc.querySelectorAll(s)];
 
-    <!-- CONTACT -->
-    <section class="page" id="contact">
-      <div class="section-inner">
-        <h1 class="reveal">Contact</h1>
-        <p class="reveal">Email: <a href="mailto:abhinandbabu2502@gmail.com">abhinandbabu2502@gmail.com</a></p>
-        <div class="socials reveal">
-          <a href="https://github.com/Abhinand2502" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/abhinand-babu-153b66324" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-          <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        </div>
-      </div>
-    </section>
-  </main>
+// Mobile menu
+const nav = $('#nav'); const menuToggle = $('#menuToggle');
+menuToggle?.addEventListener('click',()=>nav.classList.toggle('show'));
+document.addEventListener('click',e=>{if(window.innerWidth<=768){if(!nav.contains(e.target)&&!menuToggle.contains(e.target)) nav.classList.remove('show')}})
+$$('#nav a[href^="#"]').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('show')));
 
-  <footer>
-    <div>© <span id="yr"></span> Abhinand</div>
-  </footer>
+// Active link
+const sections = $$('#main section.page'); const navLinks = $$('#nav a');
+const ioActive = new IntersectionObserver((entries)=>{entries.forEach(({isIntersecting,target})=>{if(isIntersecting){const id='#'+target.id;navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')===id));}})}, {threshold:.55});
+sections.forEach(s=>ioActive.observe(s));
 
-  <script>
-    // ---------- Helpers
-    const $ = (s,sc=document)=> sc.querySelector(s);
-    const $$ = (s,sc=document)=> [...sc.querySelectorAll(s)];
+// Reveal
+const revealables = $$('.reveal');
+const ioReveal = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');ioReveal.unobserve(e.target);}})}, {threshold:.12});
+revealables.forEach(el=>ioReveal.observe(el));
 
-    // ---------- Mobile menu
-    const nav = $('#nav');
-    const menuToggle = $('#menuToggle');
-    menuToggle?.addEventListener('click',()=>{ nav.classList.toggle('show'); });
-    document.addEventListener('click',(e)=>{
-      if(window.innerWidth<=768){
-        if(!nav.contains(e.target) && !menuToggle.contains(e.target)) nav.classList.remove('show');
-      }
-    });
-    // Close menu on in-page nav click
-    $$('#nav a[href^="#"]').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('show')));
+// Theme toggle
+const fab = $('#themeFab'); const ICON_MOON='fa-moon', ICON_SUN='fa-sun';
+function applyTheme(mode){document.body.classList.toggle('light',mode==='light');localStorage.setItem('theme',mode);const ic=fab.querySelector('i');ic.classList.toggle(ICON_MOON,mode!=='light');ic.classList.toggle(ICON_SUN,mode==='light');}
+applyTheme(localStorage.getItem('theme')||'dark');
+fab.addEventListener('click',()=>applyTheme(document.body.classList.contains('light')?'dark':'light'));
 
-    // ---------- Active link highlight
-    const sections = $$('#main section.page');
-    const navLinks = $$('#nav a');
-    const ioActive = new IntersectionObserver((entries)=>{
-      entries.forEach(({isIntersecting,target})=>{
-        if(isIntersecting){
-          const id = '#' + target.id;
-          navLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href')===id));
-        }
-      })
-    },{threshold:.55});
-    sections.forEach(s=>ioActive.observe(s));
+// Projects carousel
+(function(){
+  const track = $('#projTrack'); if(!track) return;
+  const slides = $$('.slide',track); let idx=0; const max=slides.length;
+  const update=()=>track.style.transform=`translateX(-${idx*100}%)`;
+  $('#nextBtn')?.addEventListener('click',()=>{idx=(idx+1)%max;update()});
+  $('#prevBtn')?.addEventListener('click',()=>{idx=(idx-1+max)%max;update()});
+  let sx=null; track.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
+  track.addEventListener('touchend',e=>{if(sx===null)return;const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>40){idx=d<0?Math.min(idx+1,max-1):Math.max(idx-1,0);update()} sx=null},{passive:true});
+})();
 
-    // ---------- Reveal-on-scroll
-    const revealables = $$('.reveal');
-    const ioReveal = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); ioReveal.unobserve(e.target); } });
-    },{threshold:.12});
-    revealables.forEach(el=>ioReveal.observe(el));
-
-    // ---------- Theme toggle + persistence
-    const fab = $('#themeFab');
-    const ICON_MOON='fa-moon', ICON_SUN='fa-sun';
-    function applyTheme(mode){
-      document.body.classList.toggle('light', mode==='light');
-      localStorage.setItem('theme', mode);
-      const ic = fab.querySelector('i');
-      ic.classList.toggle(ICON_MOON, mode!=='light');
-      ic.classList.toggle(ICON_SUN, mode==='light');
-    }
-    applyTheme(localStorage.getItem('theme')||'dark');
-    fab.addEventListener('click',()=>{
-      applyTheme(document.body.classList.contains('light')?'dark':'light');
-    });
-
-    // ---------- Projects carousel (click + swipe)
-    (function(){
-      const track = $('#projTrack');
-      if(!track) return;
-      const slides = $$('.slide', track); let idx = 0; const max = slides.length;
-      const update = ()=> track.style.transform = `translateX(-${idx*100}%)`;
-      $('#nextBtn')?.addEventListener('click',()=>{ idx = (idx+1)%max; update(); });
-      $('#prevBtn')?.addEventListener('click',()=>{ idx = (idx-1+max)%max; update(); });
-      let sx=null; track.addEventListener('touchstart',e=>{ sx = e.touches[0].clientX },{passive:true});
-      track.addEventListener('touchend',e=>{ if(sx===null) return; const d=e.changedTouches[0].clientX - sx; if(Math.abs(d)>40){ idx = d<0? Math.min(idx+1,max-1): Math.max(idx-1,0); update(); } sx=null; },{passive:true});
-    })();
-
-    // ---------- Misc
-    $('#yr').textContent = new Date().getFullYear();
-  </script>
+// Year
+$('#yr').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>

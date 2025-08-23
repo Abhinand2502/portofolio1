@@ -49,23 +49,50 @@
     /*********
      HEADER
     **********/
-    header{
-      position:fixed;inset:0 0 auto 0;height:60px;z-index:100;
-      display:flex;align-items:center;justify-content:space-between;
-      padding:0 20px;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);
-    }
-    header h2{color:var(--accent);letter-spacing:.5px}
-    header nav{
-      display:flex;
-      gap:12px;
-    }
-    header nav a{
-      color:inherit;text-decoration:none;font-size:.95rem;position:relative;
-      transition:color .25s;
-    }
-    header nav a:hover{color:var(--accent)}
-    header nav a.active{color:var(--accent);font-weight:600}
-    .toggle-theme{cursor:pointer;font-size:1.2rem;color:var(--accent)}
+    header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 60px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* center nav */
+  padding: 0 20px;
+  background: rgba(0, 0, 0, .6);
+  backdrop-filter: blur(10px);
+}
+
+/* remove site name, just keep nav centered */
+header nav {
+  display: flex;
+  gap: 20px;
+}
+
+/* center nav links */
+header nav a {
+  color: inherit;
+  text-decoration: none;
+  font-size: 1rem;
+  position: relative;
+  transition: color .25s;
+}
+header nav a:hover {
+  color: var(--accent);
+}
+header nav a.active {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* theme toggle pinned to right */
+.toggle-theme {
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--accent);
+}
+
 
     /* Mobile header fix */
     @media(max-width:768px){
@@ -146,72 +173,72 @@
 </head>
 <body>
   <!-- HEADER -->
-  <header id="header">
-    <h2>ABHINAND</h2>
-    <nav id="nav">
-      <a class="active">Home</a>
-      <a>About</a>
-      <a>Skills</a>
-      <a>Education</a>
-      <a>Projects</a>
-      <a>Resume</a>
-      <a>Contact</a>
-    </nav>
-    <i id="themeToggle" class="fa-solid fa-moon toggle-theme"></i>
-  </header>
+<header id="header">
+  <nav id="nav">
+    <a class="active">Home</a>
+    <a>About</a>
+    <a>Skills</a>
+    <a>Projects</a>
+    <a>Resume</a>
+    <a>Contact</a>
+  </nav>
+  <i id="themeToggle" class="fa-solid fa-moon toggle-theme"></i>
+</header>
 
-  <!-- SCROLL-SNAP PAGES -->
-  <div class="pages" id="pages">
-    <!-- PAGE 1: HOME -->
-    <section class="page" id="home">
-      <div class="home-container">
-        <div class="home-image">
-          <img src="assets/bg.jpg" alt="Abhinand Profile">
-        </div>
-        <div class="home-text">
-          <h1>Hi, I'm <span class="highlight">Abhinand</span></h1>
-          <p>I'm a <strong>B.Tech CSE graduate</strong> and a <strong>Web Developer</strong> passionate about building smooth, modern, animated web apps.</p>
-          <button class="btn" onclick="goTo(1)">Scroll Down</button>
-        </div>
+
+<!-- SCROLL-SNAP PAGES -->
+<div class="pages" id="pages">
+  <!-- PAGE 1: HOME -->
+  <section class="page" id="home">
+    <div class="home-container">
+      <div class="home-image">
+        <img src="assets/bg.jpg" alt="Abhinand Profile">
       </div>
-    </section>
+      <div class="home-text">
+        <h1>Hi, I'm <span class="highlight">Abhinand</span></h1>
+        <p>I'm a <strong>B.Tech CSE graduate</strong> and a <strong>Web Developer</strong> passionate about building smooth, modern, animated web apps.</p>
+        <button class="btn" onclick="goTo(1)">Scroll Down</button>
+      </div>
+    </div>
+  </section>
 
-    <!-- PAGE 2: ABOUT -->
-    <section class="page" id="about">
-      <h1 class="fade-up">About Me</h1>
-      <p class="fade-up">B.Tech CSE graduate passionate about full-stack development.</p>
-    </section>
+  <!-- PAGE 2: ABOUT -->
+  <section class="page" id="about">
+    <h1 class="fade-up">About Me</h1>
+    <p class="fade-up">B.Tech CSE graduate passionate about full-stack development.</p>
+    
+    <!-- Added Education here -->
+    <div class="fade-up" style="margin-top:25px;">
+      <h2>Education</h2>
+      <p>B.Tech CSE, University College of Engineering, Thodupuzha</p>
+    </div>
+  </section>
 
-    <!-- PAGE 3: SKILLS -->
-    <section class="page" id="skills">
-      <h1 class="fade-up">Skills</h1>
-      <p class="fade-up">Python, Django, JavaScript, HTML/CSS, SQL</p>
-    </section>
+  <!-- PAGE 3: SKILLS -->
+  <section class="page" id="skills">
+    <h1 class="fade-up">Skills</h1>
+    <p class="fade-up">Python, Django, JavaScript, HTML/CSS, SQL</p>
+  </section>
 
-    <!-- PAGE 4: EDUCATION -->
-    <section class="page" id="education">
-      <h1 class="fade-up">Education</h1>
-      <p class="fade-up">B.Tech CSE, University College of Engineering, Thodupuzha</p>
-    </section>
+  <!-- PAGE 4: PROJECTS -->
+  <section class="page" id="projects">
+    <h1 class="fade-up">Projects</h1>
+    <p class="fade-up">Scrapsy, AI-AssistCart, Portfolio v2</p>
+  </section>
 
-    <!-- PAGE 5: PROJECTS -->
-    <section class="page" id="projects">
-      <h1 class="fade-up">Projects</h1>
-      <p class="fade-up">Scrapsy, AI-AssistCart, Portfolio v2</p>
-    </section>
+  <!-- PAGE 5: RESUME -->
+  <section class="page" id="resume">
+    <h1 class="fade-up">Resume</h1>
+    <a class="btn fade-up" href="assets/ABHINAND_Babu_Resume.pdf" download>Download Resume</a>
+  </section>
 
-    <!-- PAGE 6: RESUME -->
-    <section class="page" id="resume">
-      <h1 class="fade-up">Resume</h1>
-      <a class="btn fade-up" href="assets/ABHINAND_Babu_Resume.pdf" download>Download Resume</a>
-    </section>
+  <!-- PAGE 6: CONTACT -->
+  <section class="page" id="contact">
+    <h1 class="fade-up">Contact Me</h1>
+    <p class="fade-up">Email: abhinandbabu2502@gmail.com</p>
+  </section>
+</div>
 
-    <!-- PAGE 7: CONTACT -->
-    <section class="page" id="contact">
-      <h1 class="fade-up">Contact Me</h1>
-      <p class="fade-up">Email: abhinandbabu2502@gmail.com</p>
-    </section>
-  </div>
 
   <!-- FOOTER -->
   <footer>

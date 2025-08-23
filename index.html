@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Abhinand Babu | Portfolio</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-
   <style>
     :root{
       --bg-dark:#000;
@@ -23,12 +22,10 @@
       font-family:"Poppins",sans-serif;
       background:var(--bg-dark);
       color:var(--text-dark);
-      overflow:hidden;
       transition:background .4s,color .4s;
     }
     body.light{background:var(--bg-light);color:var(--text-light);}
     body.light p{color:var(--muted-light);}
-
     h1{font-size:2.5rem;margin-bottom:16px;}
     p{color:var(--muted-dark);max-width:640px;}
     .btn{
@@ -63,27 +60,28 @@
     footer a{color:var(--muted-dark);font-size:1.1rem;transition:color .25s}
     footer a:hover{color:var(--accent)}
 
-    /********* PAGES (scroll-snap) *********/
+    /********* PAGES *********/
     .pages{
       height:100vh;width:100%;
-      overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth;
-      -webkit-overflow-scrolling:touch;overscroll-behavior:contain;
+      overflow-y:scroll;
+      scroll-snap-type:y mandatory;
+      scroll-behavior:smooth;
+      -webkit-overflow-scrolling:touch;
       scrollbar-width:none;
     }
     .pages::-webkit-scrollbar{display:none}
     .page{
       height:100vh;width:100%;
       display:flex;flex-direction:column;align-items:center;justify-content:center;
-      padding:20px;scroll-snap-align:start;text-align:center;
+      padding:80px 20px 60px; /* space for header+footer */
+      scroll-snap-align:start;text-align:center;
     }
-
     #home,#skills,#projects,#contact{background:var(--bg-dark)}
     #about,#resume{background:var(--bg-alt-dark)}
     body.light #home, body.light #skills, body.light #projects, body.light #contact{background:var(--bg-light)}
     body.light #about, body.light #resume{background:var(--bg-alt-light)}
 
     /********* HOME *********/
-    #home{padding:60px 20px;}
     .home-container{
       display:flex;align-items:center;justify-content:center;
       gap:50px;max-width:1100px;width:100%;flex-wrap:wrap;
@@ -102,27 +100,23 @@
     .fade-up{opacity:0;transform:translateY(24px);}
     .fade-up.show{animation:fadeUp 800ms ease forwards;}
     @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
-
     .fade-left{opacity:0;transform:translateX(-32px);}
     .fade-left.show{animation:fadeLeft 800ms ease forwards;}
     @keyframes fadeLeft{to{opacity:1;transform:translateX(0)}}
 
-    /********* THEME TOGGLE (FAB) *********/
+    /********* THEME TOGGLE *********/
     .theme-fab{
-      position:fixed;right:16px;bottom:80px;
+      position:fixed;top:70px;right:16px;
       width:48px;height:48px;border-radius:50%;
       display:flex;align-items:center;justify-content:center;
       background:var(--accent);color:#fff;border:none;
       box-shadow:0 8px 24px rgba(0,0,0,.35);
-      cursor:grab;z-index:120;
-      touch-action:none;
+      cursor:pointer;z-index:120;
     }
-    .theme-fab:active{cursor:grabbing;}
     .theme-fab i{pointer-events:none;}
   </style>
 </head>
 <body>
-
   <!-- HEADER -->
   <header id="header">
     <nav id="nav">
@@ -135,28 +129,26 @@
     </nav>
   </header>
 
-  <!-- Movable Theme Toggle -->
+  <!-- Theme Toggle -->
   <button id="themeFab" class="theme-fab" aria-label="Toggle theme">
     <i class="fa-solid fa-moon"></i>
   </button>
 
-  <!-- SCROLL-SNAP PAGES -->
+  <!-- SCROLL PAGES -->
   <div class="pages" id="pages">
-    <!-- HOME -->
     <section class="page" id="home">
       <div class="home-container">
         <div class="home-image">
           <img src="assets/bg.jpg" alt="Abhinand Profile" class="fade-left">
         </div>
         <div class="home-text">
-          <h1 class="fade-up">Hi, I'm <span class="highlight" style="color:var(--accent)">Abhinand</span></h1>
+          <h1 class="fade-up">Hi, I'm <span style="color:var(--accent)">Abhinand</span></h1>
           <p class="fade-up">I'm a <strong>B.Tech CSE graduate</strong> and a <strong>Web Developer</strong> passionate about building smooth, modern, animated web apps.</p>
           <button class="btn fade-up" onclick="goTo(1)">Scroll Down</button>
         </div>
       </div>
     </section>
 
-    <!-- ABOUT -->
     <section class="page" id="about">
       <h1 class="fade-up">About Me</h1>
       <p class="fade-up">B.Tech CSE graduate passionate about full-stack development.</p>
@@ -166,25 +158,21 @@
       </div>
     </section>
 
-    <!-- SKILLS -->
     <section class="page" id="skills">
       <h1 class="fade-up">Skills</h1>
       <p class="fade-up">Python, Django, JavaScript, HTML/CSS, SQL</p>
     </section>
 
-    <!-- PROJECTS -->
     <section class="page" id="projects">
       <h1 class="fade-up">Projects</h1>
       <p class="fade-up">Scrapsy, AI-AssistCart, Portfolio v2</p>
     </section>
 
-    <!-- RESUME -->
     <section class="page" id="resume">
       <h1 class="fade-up">Resume</h1>
       <a class="btn fade-up" href="assets/ABHINAND_Babu_Resume.pdf" download>Download Resume</a>
     </section>
 
-    <!-- CONTACT -->
     <section class="page" id="contact">
       <h1 class="fade-up">Contact Me</h1>
       <p class="fade-up">Email: abhinandbabu2502@gmail.com</p>
@@ -207,10 +195,10 @@
 
     function goTo(index){
       index = Math.max(0, Math.min(index, sections.length-1));
-      pages.scrollTo({ top: index * window.innerHeight, behavior: 'smooth' });
+      sections[index].scrollIntoView({behavior:"smooth"});
     }
 
-    // Highlight nav while scrolling
+    // Highlight nav on scroll
     const sectionObserver = new IntersectionObserver((entries)=>{
       entries.forEach(entry=>{
         if(entry.isIntersecting){
@@ -227,13 +215,6 @@
     // Nav clicks
     navLinks.forEach((a,i)=>a.addEventListener('click', ()=>goTo(i)));
 
-    // Keyboard
-    window.addEventListener('keydown', e=>{
-      if(e.key==='ArrowDown' || e.key==='PageDown') goTo(current+1);
-      if(e.key==='ArrowUp'   || e.key==='PageUp')   goTo(current-1);
-    });
-    window.addEventListener('resize', ()=>goTo(current));
-
     // Reveal animations
     const revealables = document.querySelectorAll('.fade-up, .fade-left');
     const revealObserver = new IntersectionObserver((entries)=>{
@@ -246,54 +227,15 @@
     },{ root: pages, threshold: 0.15 });
     revealables.forEach(el=>revealObserver.observe(el));
 
-    // Theme FAB
+    // Theme toggle
     const fab = document.getElementById('themeFab');
-    const saved = localStorage.getItem('fab-pos');
-    if(saved){
-      const {left, top} = JSON.parse(saved);
-      fab.style.left = left + 'px';
-      fab.style.top  = top  + 'px';
-      fab.style.right = 'auto'; fab.style.bottom = 'auto';
-    }
     function toggleTheme(){
       document.body.classList.toggle('light');
       const icon = fab.querySelector('i');
       icon.classList.toggle('fa-moon');
       icon.classList.toggle('fa-sun');
     }
-    let dragging=false,startX=0,startY=0,startLeft=0,startTop=0;
-    function clamp(v,min,max){return Math.max(min,Math.min(v,max));}
-    function onPointerDown(e){
-      dragging=false;
-      const rect=fab.getBoundingClientRect();
-      startLeft=rect.left; startTop=rect.top;
-      startX=e.clientX|| (e.touches&&e.touches[0].clientX);
-      startY=e.clientY|| (e.touches&&e.touches[0].clientY);
-      document.addEventListener('pointermove',onPointerMove);
-      document.addEventListener('pointerup',onPointerUp);
-    }
-    function onPointerMove(e){
-      const x=e.clientX||(e.touches&&e.touches[0].clientX);
-      const y=e.clientY||(e.touches&&e.touches[0].clientY);
-      const dx=x-startX, dy=y-startY;
-      if(Math.abs(dx)+Math.abs(dy)>4) dragging=true;
-      const w=fab.offsetWidth,h=fab.offsetHeight;
-      const maxL=window.innerWidth-w, maxT=window.innerHeight-h;
-      const nextL=clamp(startLeft+dx,0,maxL);
-      const nextT=clamp(startTop+dy,0,maxT);
-      fab.style.left=nextL+'px'; fab.style.top=nextT+'px';
-      fab.style.right='auto'; fab.style.bottom='auto';
-    }
-    function onPointerUp(e){
-      document.removeEventListener('pointermove',onPointerMove);
-      document.removeEventListener('pointerup',onPointerUp);
-      if(!dragging){toggleTheme();}
-      else{
-        const rect=fab.getBoundingClientRect();
-        localStorage.setItem('fab-pos',JSON.stringify({left:rect.left,top:rect.top}));
-      }
-    }
-    fab.addEventListener('pointerdown',onPointerDown);
+    fab.addEventListener('click', toggleTheme);
   </script>
 </body>
 </html>

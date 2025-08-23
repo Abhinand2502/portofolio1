@@ -7,9 +7,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
   <style>
-    /*********************************
-     GLOBAL THEME + LIGHT MODE TOGGLE
-    **********************************/
     :root{
       --bg-dark:#000;
       --bg-alt-dark:#111;
@@ -32,13 +29,8 @@
     body.light{background:var(--bg-light);color:var(--text-light);}
     body.light p{color:var(--muted-light);}
 
-    /* simple enter animations */
     h1{font-size:2.5rem;margin-bottom:16px;}
     p{color:var(--muted-dark);max-width:640px;}
-
-    .fade-up{opacity:0;transform:translateY(40px);animation:fadeUp 800ms ease forwards}
-    @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
-
     .btn{
       margin-top:22px;padding:12px 20px;border:0;border-radius:10px;
       background:var(--accent);color:#fff;font-weight:700;cursor:pointer;
@@ -46,199 +38,157 @@
     }
     .btn:hover{transform:scale(1.05)}
 
-    /*********
-     HEADER
-    **********/
-    header {
-  position: fixed;
-  inset: 0 0 auto 0;
-  height: 60px;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center; /* center nav */
-  padding: 0 20px;
-  background: rgba(0, 0, 0, .6);
-  backdrop-filter: blur(10px);
-}
-
-/* remove site name, just keep nav centered */
-header nav {
-  display: flex;
-  gap: 20px;
-}
-
-/* center nav links */
-header nav a {
-  color: inherit;
-  text-decoration: none;
-  font-size: 1rem;
-  position: relative;
-  transition: color .25s;
-}
-header nav a:hover {
-  color: var(--accent);
-}
-header nav a.active {
-  color: var(--accent);
-  font-weight: 600;
-}
-
-/* theme toggle pinned to right */
-.toggle-theme {
-  position: absolute;
-  right: 20px;
-  cursor: pointer;
-  font-size: 1.2rem;
-  color: var(--accent);
-}
-
-
-    /* Mobile header fix */
-    @media(max-width:768px){
-      header{flex-wrap:wrap;height:auto;padding:10px;}
-      header nav{flex-wrap:wrap;justify-content:center;width:100%;margin-top:6px;}
+    /********* HEADER (centered nav) *********/
+    header{
+      position:fixed;left:0;right:0;top:0;height:auto;z-index:100;
+      display:flex;justify-content:center;align-items:center;
+      padding:10px 20px;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);
     }
+    header nav{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;}
+    header nav a{
+      color:inherit;text-decoration:none;font-size:1rem;position:relative;
+      transition:color .25s;
+    }
+    header nav a:hover{color:var(--accent)}
+    header nav a.active{color:var(--accent);font-weight:600}
 
-    /*********
-     FOOTER
-    **********/
+    /********* FOOTER *********/
     footer{
-      position:fixed;inset:auto 0 0 0;height:50px;z-index:90;
+      position:fixed;left:0;right:0;bottom:0;height:50px;z-index:90;
       display:flex;align-items:center;justify-content:center;gap:20px;
       background:rgba(0,0,0,.6);backdrop-filter:blur(10px);
     }
     footer a{color:var(--muted-dark);font-size:1.1rem;transition:color .25s}
     footer a:hover{color:var(--accent)}
-    body.light footer a{color:var(--muted-light)}
 
-    /**************************************
-     FULLPAGE SCROLLER — CSS SCROLL-SNAP
-    ***************************************/
+    /********* PAGES (scroll-snap) *********/
     .pages{
       height:100vh;width:100%;
-      overflow-y:auto;
-      scroll-snap-type:y mandatory;
-      scroll-behavior:smooth;
-      -webkit-overflow-scrolling:touch;
-      overscroll-behavior:contain;
+      overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth;
+      -webkit-overflow-scrolling:touch;overscroll-behavior:contain;
       scrollbar-width:none;
     }
     .pages::-webkit-scrollbar{display:none}
-
     .page{
       height:100vh;width:100%;
       display:flex;flex-direction:column;align-items:center;justify-content:center;
-      padding:20px;
-      scroll-snap-align:start;
-      text-align:center;
+      padding:20px;scroll-snap-align:start;text-align:center;
     }
 
-    /* section backgrounds driven by theme vars */
     #home,#skills,#projects,#contact{background:var(--bg-dark)}
-    #about,#education,#resume{background:var(--bg-alt-dark)}
+    #about,#resume{background:var(--bg-alt-dark)}
     body.light #home, body.light #skills, body.light #projects, body.light #contact{background:var(--bg-light)}
-    body.light #about, body.light #education, body.light #resume{background:var(--bg-alt-light)}
+    body.light #about, body.light #resume{background:var(--bg-alt-light)}
 
-    /********************
-     HOME LAYOUT
-    *********************/
+    /********* HOME *********/
     #home{padding:60px 20px;}
     .home-container{
       display:flex;align-items:center;justify-content:center;
       gap:50px;max-width:1100px;width:100%;flex-wrap:wrap;
     }
     .home-image img{
-      width:300px;height:380px;object-fit:cover;
-      border-radius:20px;box-shadow:0 12px 30px rgba(0,0,0,.6);
-      opacity:0;transform:translateX(-50px);
-      animation:fadeInLeft 1s ease forwards;
-      transition:transform .4s ease;
+      width:300px;height:380px;object-fit:cover;border-radius:20px;
+      box-shadow:0 12px 30px rgba(0,0,0,.6);
     }
-    .home-image img:hover{transform:scale(1.05)}
     .home-text{max-width:550px;text-align:left;}
-    .home-text h1{animation:fadeUp 1s ease forwards;}
-    .home-text p{margin-top:15px;animation:fadeUp 1s ease .3s forwards;}
-    .home-text .btn{margin-top:25px;animation:fadeUp 1s ease .6s forwards;opacity:0;animation-fill-mode:forwards;}
-
-    @keyframes fadeInLeft{from{opacity:0;transform:translateX(-50px)}to{opacity:1;transform:translateX(0)}}
-    @keyframes fadeInRight{from{opacity:0;transform:translateX(50px)}to{opacity:1;transform:translateX(0)}}
-
-    /* Responsive Home */
     @media(max-width:768px){
       .home-container{flex-direction:column;text-align:center;gap:30px;}
       .home-text{text-align:center;}
     }
+
+    /********* REVEAL ANIMATIONS (fixed) *********/
+    .fade-up{opacity:0;transform:translateY(24px);}
+    .fade-up.show{animation:fadeUp 800ms ease forwards;}
+    @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+    /* optional variants (left/right) */
+    .fade-left{opacity:0;transform:translateX(-32px);}
+    .fade-left.show{animation:fadeLeft 800ms ease forwards;}
+    @keyframes fadeLeft{to{opacity:1;transform:translateX(0)}}
+
+    /********* DRAGGABLE THEME TOGGLE (FAB) *********/
+    .theme-fab{
+      position:fixed;right:16px;bottom:80px; /* above footer */
+      width:48px;height:48px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      background:var(--accent);color:#fff;border:none;
+      box-shadow:0 8px 24px rgba(0,0,0,.35);
+      cursor:grab;z-index:120;
+      touch-action:none; /* smooth touch drag */
+    }
+    .theme-fab:active{cursor:grabbing;}
+    .theme-fab i{pointer-events:none;}
   </style>
 </head>
 <body>
-  <!-- HEADER -->
-<header id="header">
-  <nav id="nav">
-    <a class="active">Home</a>
-    <a>About</a>
-    <a>Skills</a>
-    <a>Projects</a>
-    <a>Resume</a>
-    <a>Contact</a>
-  </nav>
-  <i id="themeToggle" class="fa-solid fa-moon toggle-theme"></i>
-</header>
 
+  <!-- HEADER (no toggle here; nav centered) -->
+  <header id="header">
+    <nav id="nav">
+      <a class="active">Home</a>
+      <a>About</a>
+      <a>Skills</a>
+      <a>Projects</a>
+      <a>Resume</a>
+      <a>Contact</a>
+    </nav>
+  </header>
 
-<!-- SCROLL-SNAP PAGES -->
-<div class="pages" id="pages">
-  <!-- PAGE 1: HOME -->
-  <section class="page" id="home">
-    <div class="home-container">
-      <div class="home-image">
-        <img src="assets/bg.jpg" alt="Abhinand Profile">
+  <!-- Movable Theme Toggle -->
+  <button id="themeFab" class="theme-fab" aria-label="Toggle theme">
+    <i class="fa-solid fa-moon"></i>
+  </button>
+
+  <!-- SCROLL-SNAP PAGES -->
+  <div class="pages" id="pages">
+    <!-- HOME -->
+    <section class="page" id="home">
+      <div class="home-container">
+        <div class="home-image">
+          <img src="assets/bg.jpg" alt="Abhinand Profile" class="fade-left">
+        </div>
+        <div class="home-text">
+          <h1 class="fade-up">Hi, I'm <span class="highlight" style="color:var(--accent)">Abhinand</span></h1>
+          <p class="fade-up">I'm a <strong>B.Tech CSE graduate</strong> and a <strong>Web Developer</strong> passionate about building smooth, modern, animated web apps.</p>
+          <button class="btn fade-up" onclick="goTo(1)">Scroll Down</button>
+        </div>
       </div>
-      <div class="home-text">
-        <h1>Hi, I'm <span class="highlight">Abhinand</span></h1>
-        <p>I'm a <strong>B.Tech CSE graduate</strong> and a <strong>Web Developer</strong> passionate about building smooth, modern, animated web apps.</p>
-        <button class="btn" onclick="goTo(1)">Scroll Down</button>
+    </section>
+
+    <!-- ABOUT (+ education moved here) -->
+    <section class="page" id="about">
+      <h1 class="fade-up">About Me</h1>
+      <p class="fade-up">B.Tech CSE graduate passionate about full-stack development.</p>
+      <div class="fade-up" style="margin-top:25px;">
+        <h2>Education</h2>
+        <p>B.Tech CSE, University College of Engineering, Thodupuzha</p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- PAGE 2: ABOUT -->
-  <section class="page" id="about">
-    <h1 class="fade-up">About Me</h1>
-    <p class="fade-up">B.Tech CSE graduate passionate about full-stack development.</p>
-    
-    <!-- Added Education here -->
-    <div class="fade-up" style="margin-top:25px;">
-      <h2>Education</h2>
-      <p>B.Tech CSE, University College of Engineering, Thodupuzha</p>
-    </div>
-  </section>
+    <!-- SKILLS -->
+    <section class="page" id="skills">
+      <h1 class="fade-up">Skills</h1>
+      <p class="fade-up">Python, Django, JavaScript, HTML/CSS, SQL</p>
+    </section>
 
-  <!-- PAGE 3: SKILLS -->
-  <section class="page" id="skills">
-    <h1 class="fade-up">Skills</h1>
-    <p class="fade-up">Python, Django, JavaScript, HTML/CSS, SQL</p>
-  </section>
+    <!-- PROJECTS -->
+    <section class="page" id="projects">
+      <h1 class="fade-up">Projects</h1>
+      <p class="fade-up">Scrapsy, AI-AssistCart, Portfolio v2</p>
+    </section>
 
-  <!-- PAGE 4: PROJECTS -->
-  <section class="page" id="projects">
-    <h1 class="fade-up">Projects</h1>
-    <p class="fade-up">Scrapsy, AI-AssistCart, Portfolio v2</p>
-  </section>
+    <!-- RESUME -->
+    <section class="page" id="resume">
+      <h1 class="fade-up">Resume</h1>
+      <a class="btn fade-up" href="assets/ABHINAND_Babu_Resume.pdf" download>Download Resume</a>
+    </section>
 
-  <!-- PAGE 5: RESUME -->
-  <section class="page" id="resume">
-    <h1 class="fade-up">Resume</h1>
-    <a class="btn fade-up" href="assets/ABHINAND_Babu_Resume.pdf" download>Download Resume</a>
-  </section>
-
-  <!-- PAGE 6: CONTACT -->
-  <section class="page" id="contact">
-    <h1 class="fade-up">Contact Me</h1>
-    <p class="fade-up">Email: abhinandbabu2502@gmail.com</p>
-  </section>
-</div>
-
+    <!-- CONTACT -->
+    <section class="page" id="contact">
+      <h1 class="fade-up">Contact Me</h1>
+      <p class="fade-up">Email: abhinandbabu2502@gmail.com</p>
+    </section>
+  </div>
 
   <!-- FOOTER -->
   <footer>
@@ -252,15 +202,15 @@ header nav a.active {
     const pages = document.getElementById('pages');
     const sections = [...document.querySelectorAll('.page')];
     const navLinks = [...document.querySelectorAll('#nav a')];
-    const themeToggle = document.getElementById('themeToggle');
-    let current = 0;
 
+    let current = 0;
     function goTo(index){
       index = Math.max(0, Math.min(index, sections.length-1));
       pages.scrollTo({ top: index * window.innerHeight, behavior: 'smooth' });
     }
 
-    const io = new IntersectionObserver((entries)=>{
+    // Highlight active nav while scrolling
+    const sectionObserver = new IntersectionObserver((entries)=>{
       entries.forEach(entry=>{
         if(entry.isIntersecting){
           const idx = sections.indexOf(entry.target);
@@ -271,21 +221,98 @@ header nav a.active {
         }
       });
     },{ root: pages, threshold: 0.6 });
-    sections.forEach(s=>io.observe(s));
+    sections.forEach(s=>sectionObserver.observe(s));
 
+    // Smooth nav clicks
     navLinks.forEach((a,i)=>a.addEventListener('click', ()=>goTo(i)));
-
     window.addEventListener('keydown', e=>{
       if(e.key==='ArrowDown' || e.key==='PageDown') goTo(current+1);
       if(e.key==='ArrowUp'   || e.key==='PageUp')   goTo(current-1);
     });
     window.addEventListener('resize', ()=>goTo(current));
 
-    themeToggle.addEventListener('click', ()=>{
+    /********* FIXED: Scroll-in reveal animations *********/
+    const revealables = document.querySelectorAll('.fade-up, .fade-left');
+    const revealObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+          revealObserver.unobserve(entry.target); // animate once
+        }
+      });
+    },{ root: pages, threshold: 0.15 });
+    revealables.forEach(el=>revealObserver.observe(el));
+
+    /********* Movable Theme FAB (drag + persist) *********/
+    const fab = document.getElementById('themeFab');
+
+    // restore saved position
+    const saved = localStorage.getItem('fab-pos');
+    if(saved){
+      const {left, top} = JSON.parse(saved);
+      fab.style.left = left + 'px';
+      fab.style.top  = top  + 'px';
+      fab.style.right = 'auto';
+      fab.style.bottom = 'auto';
+    }
+
+    // theme toggle
+    function toggleTheme(){
       document.body.classList.toggle('light');
-      themeToggle.classList.toggle('fa-moon');
-      themeToggle.classList.toggle('fa-sun');
-    });
+      const icon = fab.querySelector('i');
+      icon.classList.toggle('fa-moon');
+      icon.classList.toggle('fa-sun');
+    }
+
+    // click vs drag detection
+    let dragging = false, startX=0, startY=0, startLeft=0, startTop=0;
+
+    function clamp(val, min, max){ return Math.max(min, Math.min(val, max)); }
+
+    function onPointerDown(e){
+      dragging = false;
+      const rect = fab.getBoundingClientRect();
+      startLeft = rect.left;
+      startTop  = rect.top;
+      startX = e.clientX || (e.touches && e.touches[0].clientX);
+      startY = e.clientY || (e.touches && e.touches[0].clientY);
+      document.addEventListener('pointermove', onPointerMove);
+      document.addEventListener('pointerup', onPointerUp);
+      fab.setPointerCapture && fab.setPointerCapture(e.pointerId || 0);
+    }
+
+    function onPointerMove(e){
+      const x = e.clientX || (e.touches && e.touches[0].clientX);
+      const y = e.clientY || (e.touches && e.touches[0].clientY);
+      const dx = x - startX, dy = y - startY;
+      if(Math.abs(dx)+Math.abs(dy) > 4) dragging = true;
+
+      const w = fab.offsetWidth, h = fab.offsetHeight;
+      const maxL = window.innerWidth - w, maxT = window.innerHeight - h;
+
+      const nextL = clamp(startLeft + dx, 0, maxL);
+      const nextT = clamp(startTop + dy, 0, maxT);
+
+      fab.style.left = nextL + 'px';
+      fab.style.top  = nextT + 'px';
+      fab.style.right = 'auto';
+      fab.style.bottom = 'auto';
+    }
+
+    function onPointerUp(e){
+      document.removeEventListener('pointermove', onPointerMove);
+      document.removeEventListener('pointerup', onPointerUp);
+
+      if(!dragging){
+        toggleTheme();
+      }else{
+        const rect = fab.getBoundingClientRect();
+        localStorage.setItem('fab-pos', JSON.stringify({ left: rect.left, top: rect.top }));
+      }
+    }
+
+    fab.addEventListener('pointerdown', onPointerDown);
+
   </script>
 </body>
 </html>

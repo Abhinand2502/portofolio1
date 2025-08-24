@@ -43,6 +43,29 @@ nav a:hover{background:rgba(255,255,255,.08)}
 nav a.active{color:var(--accent);font-weight:600}
 #themeBtn{background:none;border:0;cursor:pointer;color:inherit;font-size:1.2rem}
 
+
+/* Mobile nav */
+.menu-toggle{display:none;background:none;border:0;font-size:1.5rem;color:inherit;cursor:pointer}
+@media(max-width:768px){
+  nav{
+    position:fixed;
+    top:var(--header-h);
+    left:0;
+    right:0;
+    background:rgba(10,12,20,.95);
+    backdrop-filter:blur(10px);
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+    padding:20px 0;
+    transform:translateY(-120%);
+    transition:.3s ease;
+  }
+  nav.show{transform:translateY(0)}
+  .menu-toggle{display:block}
+}
+
+
 .container{width:min(1100px,92vw);margin-inline:auto;text-align:center}
 .btn{display:inline-flex;align-items:center;gap:.5rem;padding:10px 18px;border-radius:14px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;font-weight:600;text-decoration:none;box-shadow:0 8px 20px rgba(0,140,255,.3);margin-top:12px}
 .btn:hover{transform:translateY(-2px)}
@@ -57,8 +80,11 @@ footer{padding:10px;text-align:center;font-size:.9rem;color:var(--muted)}
      #global HTML
      ========================= -->
 <header>
-  <div class="brand"><i class="fa-solid fa-bolt" style="color:var(--accent)"></i><h2>Abhinand</h2></div>
-  <nav>
+  <div class="brand">
+    <i class="fa-solid fa-bolt" style="color:var(--accent)"></i><h2>Abhinand</h2>
+  </div>
+  <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+  <nav id="navMenu">
     <a href="#home" class="active">Home</a>
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
@@ -69,6 +95,7 @@ footer{padding:10px;text-align:center;font-size:.9rem;color:var(--muted)}
   </nav>
   <button id="themeBtn"><i class="fa-solid fa-moon"></i></button>
 </header>
+
 
 <main>
 
@@ -253,6 +280,18 @@ document.querySelector(".prev").onclick=()=>{idx=(idx-1+slides.length)%slides.le
 let startX=null;
 track.addEventListener("touchstart",e=>startX=e.touches[0].clientX,{passive:true});
 track.addEventListener("touchend",e=>{if(startX===null)return;let dx=e.changedTouches[0].clientX-startX;if(Math.abs(dx)>40){idx=dx<0?Math.min(idx+1,slides.length-1):Math.max(idx-1,0);update();}startX=null;},{passive:true});
+
+
+
+// Mobile nav toggle
+const menuToggle=document.getElementById("menuToggle");
+const navMenu=document.getElementById("navMenu");
+menuToggle.addEventListener("click",()=>{
+  navMenu.classList.toggle("show");
+  menuToggle.innerHTML=navMenu.classList.contains("show")
+    ? '<i class="fa-solid fa-xmark"></i>'
+    : '<i class="fa-solid fa-bars"></i>';
+});
 
 document.getElementById("yr").textContent=new Date().getFullYear();
 </script>

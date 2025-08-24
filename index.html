@@ -9,6 +9,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 <style>
+
+/* =========================
+   #global
+   ========================= */
 :root{
   --header-h:60px;
   --accent:#00d9ff;
@@ -43,44 +47,15 @@ nav a.active{color:var(--accent);font-weight:600}
 .btn{display:inline-flex;align-items:center;gap:.5rem;padding:10px 18px;border-radius:14px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;font-weight:600;text-decoration:none;box-shadow:0 8px 20px rgba(0,140,255,.3);margin-top:12px}
 .btn:hover{transform:translateY(-2px)}
 
-/* HOME */
-#home img{width:150px;height:150px;border-radius:50%;object-fit:cover;box-shadow:var(--shadow);margin-bottom:12px}
-.socials a{margin:0 8px;font-size:1.2rem;color:var(--accent)}
-
-/* ABOUT */
-#about img{width:140px;height:140px;border-radius:50%;margin-bottom:14px;object-fit:cover}
-
-/* SKILLS */
-.skill{margin:10px 0;text-align:left}
-.skill span{display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:4px}
-.bar{height:10px;background:#333;border-radius:8px;overflow:hidden}
-.bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
-
-/* EDUCATION */
-.timeline{max-width:600px;text-align:left;margin:0 auto}
-.edu-item{margin:18px 0;padding:12px;border-left:3px solid var(--accent)}
-.edu-item h3{margin-bottom:4px;color:var(--accent)}
-
-/* PROJECTS */
-.carousel{position:relative;overflow:hidden;width:100%;max-width:900px;margin:auto}
-.track{display:flex;transition:transform .4s ease}
-.slide{min-width:100%;flex-shrink:0;padding:20px;text-align:center}
-.card{border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
-.card img{width:100%;height:auto;display:block;border-radius:12px}
-.nav-btn{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;background:rgba(0,0,0,.6);border:0;color:#fff;cursor:pointer;display:grid;place-items:center}
-.nav-btn.prev{left:10px}
-.nav-btn.next{right:10px}
-.slide h2{margin:10px 0}
-.slide .btn{margin:10px auto}
-
-/* Resume */
-.resume-frame{width:90%;max-width:800px;height:70vh;border:1px solid rgba(255,255,255,.2);border-radius:12px}
-
-/* Footer */
 footer{padding:10px;text-align:center;font-size:.9rem;color:var(--muted)}
+
 </style>
 </head>
 <body>
+
+<!-- =========================
+     #global HTML
+     ========================= -->
 <header>
   <div class="brand"><i class="fa-solid fa-bolt" style="color:var(--accent)"></i><h2>Abhinand</h2></div>
   <nav>
@@ -96,90 +71,160 @@ footer{padding:10px;text-align:center;font-size:.9rem;color:var(--muted)}
 </header>
 
 <main>
-  <!-- HOME -->
-  <section id="home">
-    <img src="assets/bg.jpg" alt="Profile">
-    <h1>Abhinand Babu</h1>
-    <p>🎓 B.Tech Graduate | 💻 Developer</p>
-    <div class="socials">
-      <a href="mailto:abhinandbabu2502@gmail.com"><i class="fa-solid fa-envelope"></i></a>
-      <a href="https://github.com/Abhinand2502"><i class="fa-brands fa-github"></i></a>
-      <a href="https://linkedin.com/in/abhinand-babu-153b66324"><i class="fa-brands fa-linkedin"></i></a>
-      <a href="https://instagram.com/_abhinand_babu"><i class="fa-brands fa-instagram"></i></a>
+
+<!-- =========================
+     #home
+     ========================= -->
+<section id="home">
+  <img src="assets/bg.jpg" alt="Profile">
+  <h1>Abhinand Babu</h1>
+  <p>🎓 B.Tech Graduate | 💻 Developer</p>
+  <div class="socials">
+    <a href="mailto:abhinandbabu2502@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    <a href="https://github.com/Abhinand2502"><i class="fa-brands fa-github"></i></a>
+    <a href="https://linkedin.com/in/abhinand-babu-153b66324"><i class="fa-brands fa-linkedin"></i></a>
+    <a href="https://instagram.com/_abhinand_babu"><i class="fa-brands fa-instagram"></i></a>
+  </div>
+</section>
+
+<style>
+/* HOME */
+#home img{width:150px;height:150px;border-radius:50%;object-fit:cover;box-shadow:var(--shadow);margin-bottom:12px}
+#home .socials a{margin:0 8px;font-size:1.2rem;color:var(--accent)}
+</style>
+
+
+<!-- =========================
+     #about
+     ========================= -->
+<section id="about">
+  <img src="assets/bg.jpg" alt="Profile">
+  <h1>About Me</h1>
+  <p>B.Tech Graduate in CSE. Passionate about software development, web technologies, and problem-solving.</p>
+  <p><strong>Key Strengths:</strong> Problem-solving mindset, quick learner, strong analytical skills.</p>
+  <p><strong>Passion:</strong> Building scalable web applications and learning modern technologies.</p>
+  <p><strong>Career Goal:</strong> Grow as a full-stack developer and contribute to impactful tech projects.</p>
+</section>
+
+<style>
+/* ABOUT */
+#about img{width:140px;height:140px;border-radius:50%;margin-bottom:14px;object-fit:cover}
+</style>
+
+
+<!-- =========================
+     #skills
+     ========================= -->
+<section id="skills">
+  <h1>Skills</h1>
+  <div class="container">
+    <div class="skill"><span>Python <b>80%</b></span><div class="bar"><div class="bar-fill" style="width:80%"></div></div></div>
+    <div class="skill"><span>Django <b>75%</b></span><div class="bar"><div class="bar-fill" style="width:75%"></div></div></div>
+    <div class="skill"><span>HTML <b>90%</b></span><div class="bar"><div class="bar-fill" style="width:90%"></div></div></div>
+    <div class="skill"><span>CSS <b>85%</b></span><div class="bar"><div class="bar-fill" style="width:85%"></div></div></div>
+    <div class="skill"><span>JavaScript <b>70%</b></span><div class="bar"><div class="bar-fill" style="width:70%"></div></div></div>
+    <div class="skill"><span>React <b>65%</b></span><div class="bar"><div class="bar-fill" style="width:65%"></div></div></div>
+    <div class="skill"><span>SQL <b>75%</b></span><div class="bar"><div class="bar-fill" style="width:75%"></div></div></div>
+    <div class="skill"><span>Machine Learning <b>60%</b></span><div class="bar"><div class="bar-fill" style="width:60%"></div></div></div>
+  </div>
+</section>
+
+<style>
+/* SKILLS */
+.skill{margin:10px 0;text-align:left}
+.skill span{display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:4px}
+.bar{height:10px;background:#333;border-radius:8px;overflow:hidden}
+.bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+</style>
+
+
+<!-- =========================
+     #education
+     ========================= -->
+<section id="education">
+  <h1>Education</h1>
+  <div class="timeline">
+    <div class="edu-item"><h3>B.Tech CSE</h3><p>University College of Engineering, Thodupuzha (2021–2025) — GPA 6.99</p></div>
+    <div class="edu-item"><h3>Higher Secondary</h3><p>St Sebastian's HSS, Vazhithala (2019–2021) — 94%</p></div>
+    <div class="edu-item"><h3>Secondary</h3><p>Bappuji Public School, Vazhithala (2018–2019) — 80%</p></div>
+  </div>
+</section>
+
+<style>
+/* EDUCATION */
+.timeline{max-width:600px;text-align:left;margin:0 auto}
+.edu-item{margin:18px 0;padding:12px;border-left:3px solid var(--accent)}
+.edu-item h3{margin-bottom:4px;color:var(--accent)}
+</style>
+
+
+<!-- =========================
+     #projects
+     ========================= -->
+<section id="projects">
+  <h1>Projects</h1>
+  <div class="carousel">
+    <button class="nav-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
+    <div class="track" id="projTrack">
+      <div class="slide"><div class="card"><img src="assets/bg.jpg" alt="AI Chatbot"></div><h2>AI-Chatbot</h2><a href="project1.html" class="btn">View Details</a></div>
+      <div class="slide"><div class="card"><img src="assets/bg.jpg" alt="DetexAI"></div><h2>DetexAI</h2><a href="project2.html" class="btn">View Details</a></div>
+      <div class="slide"><div class="card"><img src="assets/bg.jpg" alt="AI-AssistCart"></div><h2>AI-AssistCart</h2><a href="project3.html" class="btn">View Details</a></div>
+      <div class="slide"><div class="card"><img src="assets/bg.jpg" alt="TicTacToe"></div><h2>Tic-Tac-Toe</h2><a href="project4.html" class="btn">View Details</a></div>
+      <div class="slide"><div class="card"><img src="assets/bg.jpg" alt="ToDo"></div><h2>To-Do List</h2><a href="project5.html" class="btn">View Details</a></div>
+      <div class="slide"><div class="card"><img src="assets/bg.jpg" alt="Portfolio"></div><h2>Portfolio</h2><a href="project6.html" class="btn">View Details</a></div>
     </div>
-  </section>
+    <button class="nav-btn next"><i class="fa-solid fa-chevron-right"></i></button>
+  </div>
+</section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <img src="assets/bg.jpg" alt="Profile">
-    <h1>About Me</h1>
-    <p>B.Tech Graduate in CSE. Passionate about software development, web technologies, and problem-solving.</p>
-    <p><strong>Key Strengths:</strong> Problem-solving mindset, quick learner, strong analytical skills.</p>
-    <p><strong>Passion:</strong> Building scalable web applications and learning modern technologies.</p>
-    <p><strong>Career Goal:</strong> Grow as a full-stack developer and contribute to impactful tech projects.</p>
-  </section>
+<style>
+/* PROJECTS */
+.carousel{position:relative;overflow:hidden;width:100%;max-width:900px;margin:auto}
+.track{display:flex;transition:transform .4s ease}
+.slide{min-width:100%;flex-shrink:0;padding:20px;text-align:center}
+.card{border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+.card img{width:100%;height:auto;display:block;border-radius:12px}
+.nav-btn{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;background:rgba(0,0,0,.6);border:0;color:#fff;cursor:pointer;display:grid;place-items:center}
+.nav-btn.prev{left:10px}
+.nav-btn.next{right:10px}
+.slide h2{margin:10px 0}
+.slide .btn{margin:10px auto}
+</style>
 
-  <!-- SKILLS -->
-  <section id="skills">
-    <h1>Skills</h1>
-    <div class="container">
-      <div class="skill"><span>Python <b>80%</b></span><div class="bar"><div class="bar-fill" style="width:80%"></div></div></div>
-      <div class="skill"><span>Django <b>75%</b></span><div class="bar"><div class="bar-fill" style="width:75%"></div></div></div>
-      <div class="skill"><span>HTML <b>90%</b></span><div class="bar"><div class="bar-fill" style="width:90%"></div></div></div>
-      <div class="skill"><span>CSS <b>85%</b></span><div class="bar"><div class="bar-fill" style="width:85%"></div></div></div>
-      <div class="skill"><span>JavaScript <b>70%</b></span><div class="bar"><div class="bar-fill" style="width:70%"></div></div></div>
-      <div class="skill"><span>React <b>65%</b></span><div class="bar"><div class="bar-fill" style="width:65%"></div></div></div>
-      <div class="skill"><span>SQL <b>75%</b></span><div class="bar"><div class="bar-fill" style="width:75%"></div></div></div>
-      <div class="skill"><span>Machine Learning <b>60%</b></span><div class="bar"><div class="bar-fill" style="width:60%"></div></div></div>
-    </div>
-  </section>
 
-  <!-- EDUCATION -->
-  <section id="education">
-    <h1>Education</h1>
-    <div class="timeline">
-      <div class="edu-item"><h3>B.Tech CSE</h3><p>University College of Engineering, Thodupuzha (2021–2025) — GPA 6.99</p></div>
-      <div class="edu-item"><h3>Higher Secondary</h3><p>St Sebastian's HSS, Vazhithala (2019–2021) — 94%</p></div>
-      <div class="edu-item"><h3>Secondary</h3><p>Bappuji Public School, Vazhithala (2018–2019) — 80%</p></div>
-    </div>
-  </section>
+<!-- =========================
+     #resume
+     ========================= -->
+<section id="resume">
+  <h1>My Resume</h1>
+  <iframe class="resume-frame" src="assets/Resume.pdf"></iframe>
+  <a href="assets/Resume.pdf" download class="btn"><i class="fa-solid fa-download"></i> Download Resume</a>
+</section>
 
-  <!-- PROJECTS -->
-  <section id="projects">
-    <h1>Projects</h1>
-    <div class="carousel">
-      <button class="nav-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
-      <div class="track" id="projTrack">
-        <div class="slide"><div class="card"><img src="assets/bg.jpg" alt="AI Chatbot"></div><h2>AI-Chatbot</h2><a href="project1.html" class="btn">View Details</a></div>
-        <div class="slide"><div class="card"><img src="assets/bg.jpg" alt="DetexAI"></div><h2>DetexAI</h2><a href="project2.html" class="btn">View Details</a></div>
-        <div class="slide"><div class="card"><img src="assets/bg.jpg" alt="AI-AssistCart"></div><h2>AI-AssistCart</h2><a href="project3.html" class="btn">View Details</a></div>
-        <div class="slide"><div class="card"><img src="assets/bg.jpg" alt="TicTacToe"></div><h2>Tic-Tac-Toe</h2><a href="project4.html" class="btn">View Details</a></div>
-        <div class="slide"><div class="card"><img src="assets/bg.jpg" alt="ToDo"></div><h2>To-Do List</h2><a href="project5.html" class="btn">View Details</a></div>
-        <div class="slide"><div class="card"><img src="assets/bg.jpg" alt="Portfolio"></div><h2>Portfolio</h2><a href="project6.html" class="btn">View Details</a></div>
-      </div>
-      <button class="nav-btn next"><i class="fa-solid fa-chevron-right"></i></button>
-    </div>
-  </section>
+<style>
+/* RESUME */
+.resume-frame{width:90%;max-width:800px;height:70vh;border:1px solid rgba(255,255,255,.2);border-radius:12px}
+</style>
 
-  <!-- RESUME -->
-  <section id="resume">
-    <h1>My Resume</h1>
-    <iframe class="resume-frame" src="assets/Resume.pdf"></iframe>
-    <a href="assets/Resume.pdf" download class="btn"><i class="fa-solid fa-download"></i> Download Resume</a>
-  </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <h1>Contact</h1>
-    <p><i class="fa-solid fa-envelope"></i> abhinandbabu2502@gmail.com</p>
-    <p><i class="fa-brands fa-github"></i> github.com/Abhinand2502</p>
-    <p><i class="fa-brands fa-linkedin"></i> linkedin.com/in/abhinand-babu-153b66324</p>
-    <p><i class="fa-brands fa-instagram"></i> instagram.com/_abhinand_babu</p>
-  </section>
+<!-- =========================
+     #contact
+     ========================= -->
+<section id="contact">
+  <h1>Contact</h1>
+  <p><i class="fa-solid fa-envelope"></i> abhinandbabu2502@gmail.com</p>
+  <p><i class="fa-brands fa-github"></i> github.com/Abhinand2502</p>
+  <p><i class="fa-brands fa-linkedin"></i> linkedin.com/in/abhinand-babu-153b66324</p>
+  <p><i class="fa-brands fa-instagram"></i> instagram.com/_abhinand_babu</p>
+</section>
+
 </main>
 
 <footer>© <span id="yr"></span> Abhinand Babu</footer>
 
+<!-- =========================
+     #global JS
+     ========================= -->
 <script>
 const navLinks=document.querySelectorAll("nav a");
 const sections=document.querySelectorAll("main section");
@@ -211,5 +256,6 @@ track.addEventListener("touchend",e=>{if(startX===null)return;let dx=e.changedTo
 
 document.getElementById("yr").textContent=new Date().getFullYear();
 </script>
+
 </body>
 </html>

@@ -10,336 +10,206 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 <style>
 :root{
-  --header-h:56px;
-  --radius:14px;
-  --accent:#5b9dff;
-  --accent-2:#00e3ff;
-  --bg:#0a0c12; --bg-soft:#0f1320; --text:#eaf0ff; --muted:#9aa3b2;
-  --bg-light:#f6f8fc; --bg-soft-light:#ffffff; --text-light:#0b1220; --muted-light:#4b5563;
-  --shadow-1:0 10px 24px rgba(0,0,0,.35);
-  --shadow-2:0 18px 44px rgba(0,0,0,.45);
+  --header-h:60px;
+  --accent:#00d9ff;
+  --accent-2:#5b9dff;
+  --bg:#070a14;
+  --bg-light:#f7f9fd;
+  --text:#eaf0ff;
+  --text-light:#101622;
+  --muted:#8d96a7;
+  --muted-light:#555d6d;
+  --shadow:0 12px 28px rgba(0,0,0,.4);
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:var(--header-h)}
-body{margin:0;font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-body::before{content:"";position:fixed;inset:0;z-index:-1;opacity:.14;pointer-events:none;background: linear-gradient(135deg, #0a0f2c, #0f1e48, #112d60); center/cover no-repeat;transition:filter .3s ease,opacity .3s ease}
-body.light{background:var(--bg-light); color:var(--text-light)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;width:100%;overflow:hidden;font-family:"Poppins",sans-serif;background:var(--bg);color:var(--text)}
+body.light{background:var(--bg-light);color:var(--text-light)}
+section{height:100vh;width:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;scroll-snap-align:start;padding:20px}
+main{height:100%;width:100%;overflow-y:scroll;scroll-snap-type:y mandatory;scroll-behavior:smooth}
+h1{font-size:2rem;margin-bottom:.5rem}
+p{max-width:700px;font-size:1rem;line-height:1.6;color:var(--muted)}
 body.light p{color:var(--muted-light)}
-body.light::before{filter:invert(1) hue-rotate(180deg); opacity:.18}
 
-.container{width:min(1100px,92vw);margin-inline:auto}
-h1{font-size:clamp(1.4rem,3.5vw,2rem);line-height:1.15;margin:0 0 .35rem 0}
-h2{font-size:clamp(1.1rem,3vw,1.5rem);margin:.25rem 0 .25rem}
-p{color:var(--muted);font-size:clamp(.92rem,2.2vw,.98rem);line-height:1.55;margin:.25rem 0}
-
-.btn{display:inline-flex;align-items:center;gap:.5rem;padding:8px 14px;border-radius:12px;border:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;font-weight:700;text-decoration:none;box-shadow:0 8px 22px rgba(0,140,255,.25);transition:transform .2s}
-.btn:hover{transform:translateY(-2px)}
-.glass{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);box-shadow:var(--shadow-1)}
-.neon{position:relative}
-.neon::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:conic-gradient(from 180deg at 50% 50%,#5b9dff,#00e3ff,#7aa9ff,#5b9dff);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.45}
-
-header{position:sticky;top:0;z-index:100;backdrop-filter:blur(8px);height:var(--header-h);display:flex;align-items:center}
-.nav-wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.brand{display:flex;align-items:center;gap:8px}
-.brand h2{font-size:1rem;color:var(--accent);letter-spacing:.3px;margin:0}
-nav a{color:inherit;text-decoration:none;font-size:.95rem;padding:8px 10px;border-radius:10px;white-space:nowrap}
-nav a:hover{background:rgba(255,255,255,.06)}
+header{position:fixed;top:0;left:0;right:0;height:var(--header-h);display:flex;justify-content:space-between;align-items:center;padding:0 18px;background:rgba(10,12,20,.7);backdrop-filter:blur(12px);z-index:1000;box-shadow:var(--shadow)}
+header .brand{display:flex;align-items:center;gap:8px}
+header .brand h2{font-size:1.1rem;color:var(--accent)}
+nav{display:flex;gap:14px}
+nav a{color:inherit;text-decoration:none;font-size:.95rem;padding:6px 10px;border-radius:8px;transition:.2s}
+nav a:hover{background:rgba(255,255,255,.08)}
 nav a.active{color:var(--accent);font-weight:600}
-.menu-toggle{display:none;background:none;border:0;color:inherit;font-size:1.2rem;padding:6px}
-@media (max-width:768px){
-  .menu-toggle{display:inline-flex}
-  nav{position:fixed;top:var(--header-h);left:0;right:0;transform:translateY(-8px) scale(.98);opacity:0;pointer-events:none;transition:transform .2s,opacity .2s}
-  nav.show{transform:none;opacity:1;pointer-events:auto}
-  nav .sheet{margin:0 8px;padding:8px;background:rgba(15,20,35,.9);border:1px solid rgba(255,255,255,.14);border-radius:12px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
-  body.light nav .sheet{background:rgba(255,255,255,.9);border-color:rgba(0,0,0,.08)}
-}
+#themeBtn{background:none;border:0;cursor:pointer;color:inherit;font-size:1.2rem}
 
-main{display:block}
-section.page{min-height:100svh;display:grid;place-items:center;padding:44px 0;scroll-margin-top:var(--header-h)}
-.section-inner{width:min(1100px,92vw);margin-inline:auto;text-align:center;display:grid;gap:12px}
+.container{width:min(1100px,92vw);margin-inline:auto;text-align:center}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:10px 18px;border-radius:14px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;font-weight:600;text-decoration:none;box-shadow:0 8px 20px rgba(0,140,255,.3);margin-top:12px}
+.btn:hover{transform:translateY(-2px)}
 
 /* HOME */
-#home .grid{display:grid;grid-template-columns:1fr 1.1fr;align-items:center;gap:clamp(12px,3vw,24px)}
-#home .lead{font-size:clamp(.98rem,2.4vw,1.05rem)}
-.hero-media{justify-self:center}
-.hero-media img{width:min(340px,68vw);height:auto;border-radius:16px;border:1px solid rgba(255,255,255,.12);box-shadow:var(--shadow-2)}
-@media (max-width:900px){#home .grid{grid-template-columns:1fr;text-align:center}}
+#home img{width:150px;height:150px;border-radius:50%;object-fit:cover;box-shadow:var(--shadow);margin-bottom:12px}
+.socials a{margin:0 8px;font-size:1.2rem;color:var(--accent)}
 
 /* ABOUT */
-.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:6px}
-.about-card{padding:14px}
-.about-chip{display:inline-flex;align-items:center;gap:.4rem;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.14)}
-
-/* EDUCATION */
-.edu-tl{display:grid;gap:10px;margin-top:6px}
-.edu-row{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center}
-.edu-icon{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,rgba(91,157,255,.25),rgba(0,227,255,.25));border:1px solid rgba(255,255,255,.16)}
-.meter{height:12px;border-radius:10px;background:rgba(255,255,255,.08);overflow:hidden;border:1px solid rgba(255,255,255,.1);margin-top:4px}
-.meter>span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:0;transition:width .8s ease}
+#about img{width:140px;height:140px;border-radius:50%;margin-bottom:14px;object-fit:cover}
 
 /* SKILLS */
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:6px}
-.skill{padding:14px;transition:transform .2s}
-.skill:hover{transform:translateY(-4px)}
-.skill i{font-size:1.5rem;margin-bottom:4px;background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
-.skill-bar{height:10px;border-radius:10px;background:rgba(255,255,255,.08);margin-top:6px;overflow:hidden}
-.skill-bar>span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:0;transition:width .8s ease}
+.skill{margin:10px 0;text-align:left}
+.skill span{display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:4px}
+.bar{height:10px;background:#333;border-radius:8px;overflow:hidden}
+.bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+
+/* EDUCATION */
+.timeline{max-width:600px;text-align:left;margin:0 auto}
+.edu-item{margin:18px 0;padding:12px;border-left:3px solid var(--accent)}
+.edu-item h3{margin-bottom:4px;color:var(--accent)}
 
 /* PROJECTS */
-.carousel{position:relative;max-width:980px;margin-inline:auto;overflow:hidden}
-.track{display:flex;will-change:transform;transition:transform .4s ease}
-.slide{min-width:100%;flex-shrink:0;display:grid;gap:8px;justify-items:center;padding:10px}
-.card{width:min(88vw,720px)}
-.media{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.12);box-shadow:var(--shadow-1)}
-.nav-btn{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:rgba(15,22,35,.9);color:#fff;display:grid;place-items:center;cursor:pointer}
-.nav-btn.prev{left:8px}.nav-btn.next{right:8px}
-@media (max-width:640px){.nav-btn{display:none}}
-@media (max-width:420px){.slide{padding:0}}
+.carousel{position:relative;overflow:hidden;width:100%;max-width:900px;margin:auto}
+.track{display:flex;transition:transform .4s ease}
+.slide{min-width:100%;flex-shrink:0;padding:20px;text-align:center}
+.card{border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+.card img{width:100%;height:auto;display:block;border-radius:12px}
+.nav-btn{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;background:rgba(0,0,0,.6);border:0;color:#fff;cursor:pointer;display:grid;place-items:center}
+.nav-btn.prev{left:10px}
+.nav-btn.next{right:10px}
+.slide h2{margin:10px 0}
+.slide .btn{margin:10px auto}
 
-/* RESUME */
-.resume-wrap{display:grid;gap:8px;justify-items:center}
-.resume-frame{width:min(920px,94vw);height:min(70vh,700px);border:1px solid rgba(255,255,255,.12);border-radius:12px;box-shadow:var(--shadow-1)}
-.resume-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+/* Resume */
+.resume-frame{width:90%;max-width:800px;height:70vh;border:1px solid rgba(255,255,255,.2);border-radius:12px}
 
-/* CONTACT */
-.socials{display:flex;gap:12px;justify-content:center}
-.socials a{font-size:1.1rem;color:var(--muted)}
-.socials a:hover{color:var(--accent)}
-
-/* FOOTER */
-footer{display:flex;align-items:center;justify-content:center;gap:16px;height:50px;color:var(--muted);border-top:1px solid rgba(255,255,255,.06)}
-
-/* Reveal */
-.reveal{opacity:0;transform:translateY(16px)}
-.reveal.show{animation:fadeUp .8s ease forwards}
-@keyframes fadeUp{to{opacity:1;transform:none}}
+/* Footer */
+footer{padding:10px;text-align:center;font-size:.9rem;color:var(--muted)}
 </style>
 </head>
 <body>
-<a class="skip-link" href="#main" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">Skip to content</a>
-
 <header>
-  <div class="container nav-wrap">
-    <div class="brand"><i class="fa-solid fa-bolt" style="color:var(--accent)"></i><h2>Abhinand</h2></div>
-    <button class="menu-toggle" id="menuToggle" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
-    <nav id="nav" aria-label="Primary">
-      <div class="sheet">
-        <a href="#home" class="active">Home</a>
-        <a href="#about">About</a>
-        <a href="#education">Education</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#resume">Resume</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </nav>
-  </div>
+  <div class="brand"><i class="fa-solid fa-bolt" style="color:var(--accent)"></i><h2>Abhinand</h2></div>
+  <nav>
+    <a href="#home" class="active">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+    <a href="#projects">Projects</a>
+    <a href="#resume">Resume</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button id="themeBtn"><i class="fa-solid fa-moon"></i></button>
 </header>
 
-<button id="themeFab" class="btn" style="position:fixed;right:14px;bottom:14px;width:44px;height:44px;justify-content:center;border-radius:50%;padding:0;z-index:120" aria-label="Toggle theme"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
-
-<main id="main">
+<main>
   <!-- HOME -->
-  <section class="page" id="home">
-    <div class="section-inner">
-      <div class="grid">
-        <div class="hero-media glass neon reveal"><img src="assets/bg.jpg" alt="Profile art"></div>
-        <div class="home-txt reveal">
-          <h1>Hi, I'm <span style="background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent">Abhinand</span></h1>
-          <p class="lead">B.Tech CSE graduate & Web Developer focused on fast, modern apps with clean architecture.</p>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
-            <a class="btn" href="#skills"><i class="fa-solid fa-wand-magic-sparkles"></i><span>Explore</span></a>
-            <a class="btn" href="#projects"><i class="fa-solid fa-diagram-project"></i><span>Projects</span></a>
-          </div>
-        </div>
-      </div>
+  <section id="home">
+    <img src="assets/bg.jpg" alt="Profile">
+    <h1>Abhinand Babu</h1>
+    <p>🎓 B.Tech Graduate | 💻 Developer</p>
+    <div class="socials">
+      <a href="mailto:abhinandbabu2502@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+      <a href="https://github.com/Abhinand2502"><i class="fa-brands fa-github"></i></a>
+      <a href="https://linkedin.com/in/abhinand-babu-153b66324"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="https://instagram.com/_abhinand_babu"><i class="fa-brands fa-instagram"></i></a>
     </div>
   </section>
 
   <!-- ABOUT -->
-  <section class="page" id="about">
-    <div class="section-inner">
-      <h1 class="reveal">About</h1>
-      <p class="reveal">I build reliable software and delightful web experiences. I care about performance, DX, and micro‑interactions.</p>
-      <div class="about-grid">
-        <div class="about-card glass neon reveal"><div class="about-chip"><i class="fa-solid fa-graduation-cap"></i><span>B.Tech CSE</span></div><p style="margin-top:6px">Strong CS fundamentals & SWE practices.</p></div>
-        <div class="about-card glass neon reveal"><div class="about-chip"><i class="fa-solid fa-bolt"></i><span>Strengths</span></div><p style="margin-top:6px">Problem solving, clean code, systems thinking.</p></div>
-        <div class="about-card glass neon reveal"><div class="about-chip"><i class="fa-solid fa-heart"></i><span>Passion</span></div><p style="margin-top:6px">Scalable full‑stack apps & great UX.</p></div>
-        <div class="about-card glass neon reveal"><div class="about-chip"><i class="fa-solid fa-bullseye"></i><span>Goal</span></div><p style="margin-top:6px">Ship impact at scale as a full‑stack dev.</p></div>
-      </div>
+  <section id="about">
+    <img src="assets/bg.jpg" alt="Profile">
+    <h1>About Me</h1>
+    <p>B.Tech Graduate in CSE. Passionate about software development, web technologies, and problem-solving.</p>
+    <p><strong>Key Strengths:</strong> Problem-solving mindset, quick learner, strong analytical skills.</p>
+    <p><strong>Passion:</strong> Building scalable web applications and learning modern technologies.</p>
+    <p><strong>Career Goal:</strong> Grow as a full-stack developer and contribute to impactful tech projects.</p>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h1>Skills</h1>
+    <div class="container">
+      <div class="skill"><span>Python <b>80%</b></span><div class="bar"><div class="bar-fill" style="width:80%"></div></div></div>
+      <div class="skill"><span>Django <b>75%</b></span><div class="bar"><div class="bar-fill" style="width:75%"></div></div></div>
+      <div class="skill"><span>HTML <b>90%</b></span><div class="bar"><div class="bar-fill" style="width:90%"></div></div></div>
+      <div class="skill"><span>CSS <b>85%</b></span><div class="bar"><div class="bar-fill" style="width:85%"></div></div></div>
+      <div class="skill"><span>JavaScript <b>70%</b></span><div class="bar"><div class="bar-fill" style="width:70%"></div></div></div>
+      <div class="skill"><span>React <b>65%</b></span><div class="bar"><div class="bar-fill" style="width:65%"></div></div></div>
+      <div class="skill"><span>SQL <b>75%</b></span><div class="bar"><div class="bar-fill" style="width:75%"></div></div></div>
+      <div class="skill"><span>Machine Learning <b>60%</b></span><div class="bar"><div class="bar-fill" style="width:60%"></div></div></div>
     </div>
   </section>
 
   <!-- EDUCATION -->
-  <section class="page" id="education">
-    <div class="section-inner">
-      <h1 class="reveal">Education</h1>
-      <div class="glass neon reveal" style="padding:12px">
-        <div class="edu-tl">
-          <div class="edu-row">
-            <div class="edu-icon"><i class="fa-solid fa-building-columns"></i></div>
-            <div>
-              <h2>B.Tech in Computer Science & Engineering</h2>
-              <p>University College of Engineering, Thodupuzha</p>
-              <div class="meter"><span style="width:70%"></span></div>
-              <p style="margin-top:4px;font-size:.9rem">2021 – 2025 • GPA 6.99</p>
-            </div>
-          </div>
-          <div class="edu-row">
-            <div class="edu-icon"><i class="fa-solid fa-school"></i></div>
-            <div>
-              <h2>Higher Secondary Education</h2>
-              <p>St Sebastian's HSS, Vazhithala</p>
-              <div class="meter"><span style="width:94%"></span></div>
-              <p style="margin-top:4px;font-size:.9rem">2019 – 2021 • 94%</p>
-            </div>
-          </div>
-          <div class="edu-row">
-            <div class="edu-icon"><i class="fa-solid fa-book"></i></div>
-            <div>
-              <h2>Secondary Education</h2>
-              <p>Bappuji Public School, Vazhithala</p>
-              <div class="meter"><span style="width:80%"></span></div>
-              <p style="margin-top:4px;font-size:.9rem">2018 – 2019 • 80%</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section class="page" id="skills">
-    <div class="section-inner">
-      <h1 class="reveal">Skills & Tools</h1>
-      <p class="reveal">A focused stack for building fast, maintainable products.</p>
-      <div class="skills-grid">
-        <div class="skill glass neon reveal">
-          <i class="fa-brands fa-python"></i>
-          <h2>Python</h2>
-          <p>Scripting, APIs, automation</p>
-          <div class="skill-bar"><span style="width:100%"></span></div>
-        </div>
-        <div class="skill glass neon reveal">
-          <i class="fa-solid fa-server"></i>
-          <h2>Django</h2>
-          <p>Robust backends, ORM</p>
-          <div class="skill-bar"><span style="width:90%"></span></div>
-        </div>
-        <div class="skill glass neon reveal">
-          <i class="fa-brands fa-js"></i>
-          <h2>JavaScript</h2>
-          <p>Interactive UIs</p>
-          <div class="skill-bar"><span style="width:85%"></span></div>
-        </div>
-        <div class="skill glass neon reveal">
-          <i class="fa-brands fa-react"></i>
-          <h2>React</h2>
-          <p>SPA, hooks</p>
-          <div class="skill-bar"><span style="width:80%"></span></div>
-        </div>
-      </div>
+  <section id="education">
+    <h1>Education</h1>
+    <div class="timeline">
+      <div class="edu-item"><h3>B.Tech CSE</h3><p>University College of Engineering, Thodupuzha (2021–2025) — GPA 6.99</p></div>
+      <div class="edu-item"><h3>Higher Secondary</h3><p>St Sebastian's HSS, Vazhithala (2019–2021) — 94%</p></div>
+      <div class="edu-item"><h3>Secondary</h3><p>Bappuji Public School, Vazhithala (2018–2019) — 80%</p></div>
     </div>
   </section>
 
   <!-- PROJECTS -->
-  <section class="page" id="projects">
-    <div class="section-inner">
-      <h1 class="reveal">Projects</h1>
-      <div class="carousel reveal">
-        <button class="nav-btn prev" id="prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
-        <div class="track" id="projTrack">
-          <article class="slide">
-            <div class="card glass neon"><img class="media" src="assets/bg.jpg" alt="Scrapsy"></div>
-            <h2>Scrapsy</h2>
-            <a href="#" class="btn">View Details</a>
-          </article>
-          <article class="slide">
-            <div class="card glass neon"><img class="media" src="assets/WhatsApp Image 2025-02-24 at 17.59.03_40ff22d3.jpg" alt="Portfolio"></div>
-            <h2>Portfolio</h2>
-            <a href="#" class="btn">View Details</a>
-          </article>
-          <article class="slide">
-            <div class="card glass neon"><img class="media" src="images/project3.png" alt="ML Trash Detection"></div>
-            <h2>ML Trash Detection</h2>
-            <a href="#" class="btn">View Details</a>
-          </article>
-        </div>
-        <button class="nav-btn next" id="nextBtn"><i class="fa-solid fa-chevron-right"></i></button>
+  <section id="projects">
+    <h1>Projects</h1>
+    <div class="carousel">
+      <button class="nav-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
+      <div class="track" id="projTrack">
+        <div class="slide"><div class="card"><img src="assets/bg.jpg" alt="AI Chatbot"></div><h2>AI-Chatbot</h2><a href="project1.html" class="btn">View Details</a></div>
+        <div class="slide"><div class="card"><img src="assets/bg.jpg" alt="DetexAI"></div><h2>DetexAI</h2><a href="project2.html" class="btn">View Details</a></div>
+        <div class="slide"><div class="card"><img src="assets/bg.jpg" alt="AI-AssistCart"></div><h2>AI-AssistCart</h2><a href="project3.html" class="btn">View Details</a></div>
+        <div class="slide"><div class="card"><img src="assets/bg.jpg" alt="TicTacToe"></div><h2>Tic-Tac-Toe</h2><a href="project4.html" class="btn">View Details</a></div>
+        <div class="slide"><div class="card"><img src="assets/bg.jpg" alt="ToDo"></div><h2>To-Do List</h2><a href="project5.html" class="btn">View Details</a></div>
+        <div class="slide"><div class="card"><img src="assets/bg.jpg" alt="Portfolio"></div><h2>Portfolio</h2><a href="project6.html" class="btn">View Details</a></div>
       </div>
+      <button class="nav-btn next"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
   </section>
 
   <!-- RESUME -->
-  <section class="page" id="resume">
-    <div class="section-inner">
-      <h1 class="reveal">My Resume</h1>
-      <p class="reveal">Preview or download my resume below.</p>
-      <div class="resume-wrap reveal">
-        <iframe class="resume-frame" src="assets/Resume.pdf" title="Resume preview"></iframe>
-        <div class="resume-actions">
-          <a href="assets/Resume.pdf" download class="btn"><i class="fa-solid fa-download"></i><span>Download</span></a>
-          <a href="assets/Resume.pdf" target="_blank" rel="noopener" class="btn"><i class="fa-solid fa-eye"></i><span>Open in New Tab</span></a>
-        </div>
-      </div>
-    </div>
+  <section id="resume">
+    <h1>My Resume</h1>
+    <iframe class="resume-frame" src="assets/Resume.pdf"></iframe>
+    <a href="assets/Resume.pdf" download class="btn"><i class="fa-solid fa-download"></i> Download Resume</a>
   </section>
 
   <!-- CONTACT -->
-  <section class="page" id="contact">
-    <div class="section-inner">
-      <h1 class="reveal">Contact</h1>
-      <p class="reveal">Email: <a href="mailto:abhinandbabu2502@gmail.com">abhinandbabu2502@gmail.com</a></p>
-      <div class="socials reveal">
-        <a href="https://github.com/Abhinand2502" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/abhinand-babu-153b66324" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-        <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-      </div>
-    </div>
+  <section id="contact">
+    <h1>Contact</h1>
+    <p><i class="fa-solid fa-envelope"></i> abhinandbabu2502@gmail.com</p>
+    <p><i class="fa-brands fa-github"></i> github.com/Abhinand2502</p>
+    <p><i class="fa-brands fa-linkedin"></i> linkedin.com/in/abhinand-babu-153b66324</p>
+    <p><i class="fa-brands fa-instagram"></i> instagram.com/_abhinand_babu</p>
   </section>
 </main>
 
-<footer>© <span id="yr"></span> Abhinand</footer>
+<footer>© <span id="yr"></span> Abhinand Babu</footer>
 
 <script>
-const $ = (s,sc=document)=> sc.querySelector(s);
-const $$ = (s,sc=document)=> [...sc.querySelectorAll(s)];
+const navLinks=document.querySelectorAll("nav a");
+const sections=document.querySelectorAll("main section");
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      navLinks.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+entry.target.id));
+    }
+  });
+},{threshold:.6});
+sections.forEach(s=>observer.observe(s));
 
-// Mobile menu
-const nav = $('#nav'); const menuToggle = $('#menuToggle');
-menuToggle?.addEventListener('click',()=>nav.classList.toggle('show'));
-document.addEventListener('click',e=>{if(window.innerWidth<=768){if(!nav.contains(e.target)&&!menuToggle.contains(e.target)) nav.classList.remove('show')}})
-$$('#nav a[href^="#"]').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('show')));
+const themeBtn=document.getElementById("themeBtn");
+function applyTheme(mode){
+  document.body.classList.toggle("light",mode==="light");
+  localStorage.setItem("theme",mode);
+  themeBtn.innerHTML=mode==="light"?"<i class='fa-solid fa-sun'></i>":"<i class='fa-solid fa-moon'></i>";
+}
+applyTheme(localStorage.getItem("theme")||"dark");
+themeBtn.addEventListener("click",()=>applyTheme(document.body.classList.contains("light")?"dark":"light"));
 
-// Active link
-const sections = $$('#main section.page'); const navLinks = $$('#nav a');
-const ioActive = new IntersectionObserver((entries)=>{entries.forEach(({isIntersecting,target})=>{if(isIntersecting){const id='#'+target.id;navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')===id));}})}, {threshold:.55});
-sections.forEach(s=>ioActive.observe(s));
+const track=document.getElementById("projTrack");
+const slides=track.children;let idx=0;function update(){track.style.transform=`translateX(-${idx*100}%)`;}
+document.querySelector(".next").onclick=()=>{idx=(idx+1)%slides.length;update();}
+document.querySelector(".prev").onclick=()=>{idx=(idx-1+slides.length)%slides.length;update();}
+let startX=null;
+track.addEventListener("touchstart",e=>startX=e.touches[0].clientX,{passive:true});
+track.addEventListener("touchend",e=>{if(startX===null)return;let dx=e.changedTouches[0].clientX-startX;if(Math.abs(dx)>40){idx=dx<0?Math.min(idx+1,slides.length-1):Math.max(idx-1,0);update();}startX=null;},{passive:true});
 
-// Reveal
-const revealables = $$('.reveal');
-const ioReveal = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');ioReveal.unobserve(e.target);}})}, {threshold:.12});
-revealables.forEach(el=>ioReveal.observe(el));
-
-// Theme toggle
-const fab = $('#themeFab'); const ICON_MOON='fa-moon', ICON_SUN='fa-sun';
-function applyTheme(mode){document.body.classList.toggle('light',mode==='light');localStorage.setItem('theme',mode);const ic=fab.querySelector('i');ic.classList.toggle(ICON_MOON,mode!=='light');ic.classList.toggle(ICON_SUN,mode==='light');}
-applyTheme(localStorage.getItem('theme')||'dark');
-fab.addEventListener('click',()=>applyTheme(document.body.classList.contains('light')?'dark':'light'));
-
-// Projects carousel
-(function(){
-  const track = $('#projTrack'); if(!track) return;
-  const slides = $$('.slide',track); let idx=0; const max=slides.length;
-  const update=()=>track.style.transform=`translateX(-${idx*100}%)`;
-  $('#nextBtn')?.addEventListener('click',()=>{idx=(idx+1)%max;update()});
-  $('#prevBtn')?.addEventListener('click',()=>{idx=(idx-1+max)%max;update()});
-  let sx=null; track.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
-  track.addEventListener('touchend',e=>{if(sx===null)return;const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>40){idx=d<0?Math.min(idx+1,max-1):Math.max(idx-1,0);update()} sx=null},{passive:true});
-})();
-
-// Year
-$('#yr').textContent = new Date().getFullYear();
+document.getElementById("yr").textContent=new Date().getFullYear();
 </script>
 </body>
 </html>

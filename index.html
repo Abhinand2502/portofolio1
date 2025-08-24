@@ -114,22 +114,111 @@ footer{padding:10px;text-align:center;font-size:.9rem;color:var(--muted)}
      #home
      ========================= -->
 <section id="home">
-  <img src="assets/bg.jpg" alt="Profile">
-  <h1>Abhinand Babu</h1>
-  <p>🎓 B.Tech Graduate | 💻 Developer</p>
-  <div class="socials">
-    <a href="mailto:abhinandbabu2502@gmail.com"><i class="fa-solid fa-envelope"></i></a>
-    <a href="https://github.com/Abhinand2502"><i class="fa-brands fa-github"></i></a>
-    <a href="https://linkedin.com/in/abhinand-babu-153b66324"><i class="fa-brands fa-linkedin"></i></a>
-    <a href="https://instagram.com/_abhinand_babu"><i class="fa-brands fa-instagram"></i></a>
+  <div class="home-container">
+    <!-- Left: Image -->
+    <div class="home-img">
+      <img src="assets/bg.jpg" alt="Profile" class="profile-img">
+    </div>
+
+    <!-- Right: Content -->
+    <div class="home-content">
+      <h3>👋 Hi, I'm</h3>
+      <h1>Abhinand Babu</h1>
+      <p>🎓 B.Tech Graduate | 💻 Developer passionate about building modern web experiences.</p>
+
+      <div class="socials">
+        <a href="mailto:abhinandbabu2502@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://github.com/Abhinand2502"><i class="fa-brands fa-github"></i></a>
+        <a href="https://linkedin.com/in/abhinand-babu-153b66324"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://instagram.com/_abhinand_babu"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+
+      <!-- Explore Button with magic star icon -->
+      <a href="#about" class="explore-btn"><i class="fa-solid fa-wand-magic-sparkles"></i> Explore</a>
+    </div>
   </div>
 </section>
 
 <style>
 /* HOME */
-#home img{width:150px;height:150px;border-radius:50%;object-fit:cover;box-shadow:var(--shadow);margin-bottom:12px}
-#home .socials a{margin:0 8px;font-size:1.2rem;color:var(--accent)}
+#home {
+  padding: 80px 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-container {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  flex-wrap: wrap; /* mobile responsive */
+}
+
+/* Left: Image */
+#home .profile-img {
+  width: 350px;
+  height: 350px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: var(--shadow);
+}
+
+/* Right: Content */
+.home-content {
+  max-width: 500px;
+}
+.home-content h3 {
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.home-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+.home-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+/* Social Icons */
+.home-content .socials a {
+  margin: 0 8px;
+  font-size: 1.3rem;
+  color: var(--accent);
+  transition: 0.3s;
+}
+.home-content .socials a:hover {
+  color: var(--text);
+}
+
+/* Explore Button (less shine + magical icon) */
+.explore-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(90deg, #007BFF, #00D4FF);
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  letter-spacing: 1px;
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.5), 0 0 15px rgba(0, 123, 255, 0.4);
+  transition: 0.3s ease;
+}
+.explore-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.7), 0 0 20px rgba(0, 123, 255, 0.6);
+}
 </style>
+
 
 
 <!-- =========================

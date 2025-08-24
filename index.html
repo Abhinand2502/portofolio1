@@ -406,11 +406,32 @@ body.light .progress-bar { background: rgba(0,0,0,.1); }
 }
 
 /* Mobile */
-@media (max-width: 100px){
-  .about-edu-container { grid-template-columns: 1fr; }
-  .about-box, .edu-box { text-align: center; }
-  .about-item { text-align: center; }
+@media (max-width: 768px){
+  .about-edu-container { 
+    grid-template-columns: 1fr; 
+  }
+
+  .about-box, .edu-box { 
+    text-align: center; 
+    padding: 15px;   /* reduced padding */
+    margin-bottom: 15px; /* reduce gap */
+  }
+
+  .about-item { 
+    text-align: center; 
+    margin-bottom: 10px; 
+  }
+
+  .profile img {
+    width: 90px;   /* smaller profile pic */
+    height: 90px;
+  }
+
+  .progress-bar {
+    height: 14px; /* smaller progress bars */
+  }
 }
+
 </style>
 
 

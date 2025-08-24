@@ -239,7 +239,7 @@ footer{padding:10px;text-align:center;font-size:.9rem;color:var(--muted)}
 
 
 <!-- =========================
-     #about + education
+     #ABOUT + EDUCATION
      ========================= -->
 <section id="about">
   <h1>About Me</h1>
@@ -248,32 +248,47 @@ footer{padding:10px;text-align:center;font-size:.9rem;color:var(--muted)}
     <!-- LEFT: About -->
     <div class="about-box">
       <div class="profile">
-        <img src="assets/bg.jpg" alt="Profile">
-        <h2>Abhinand Babu</h2>
-        <p class="location"><i class="fa-solid fa-location-dot"></i> Thodupuzha, Idukki, Kerala, India</p>
-        <p class="dob"><i class="fa-solid fa-calendar"></i> 25 Feb 2003</p>
+        <img src="assets/WhatsApp Image 2025-02-24 at 17.59.03_40ff22d3.jpg" alt="Profile">
+        <h4>Abhinand Babu</h4>
       </div>
-      <ul class="about-points">
-        <li><i class="fa-solid fa-graduation-cap"></i> B.Tech in Computer Science & Engineering</li>
-        <li><i class="fa-solid fa-lightbulb"></i> Problem-solving mindset & quick learner</li>
-        <li><i class="fa-solid fa-code"></i> Passion for web development & modern tech</li>
-        <li><i class="fa-solid fa-bullseye"></i> Goal: Become a full-stack developer</li>
-      </ul>
+
+      <div class="about-item">
+        <h4><i class="fa-solid fa-graduation-cap"></i> Degree</h4>
+        <p>B.Tech in Computer Science & Engineering</p>
+      </div>
+
+      <div class="about-item">
+        <h4><i class="fa-solid fa-location-dot"></i> Location</h4>
+        <p>Thodupuzha, Idukki, Kerala, India</p>
+      </div>
+
+      <div class="about-item">
+        <h4><i class="fa-solid fa-calendar"></i> Date of Birth</h4>
+        <p>25 Feb 2003</p>
+      </div>
+
+      <div class="about-item">
+        <h4><i class="fa-solid fa-briefcase"></i> Current Status</h4>
+        <p>.......</p>
+      </div>
     </div>
 
     <!-- RIGHT: Education -->
     <div class="edu-box">
       <h2>Education</h2>
+
       <div class="edu-item">
         <h3>B.Tech in CSE</h3>
         <p>UCE, Thodupuzha (2021–2025)</p>
         <div class="progress-bar"><span style="width:70%">GPA: 6.99</span></div>
       </div>
+
       <div class="edu-item">
         <h3>Higher Secondary</h3>
         <p>St. Sebastian's HSS, Vazhithala (2019–2021)</p>
         <div class="progress-bar"><span style="width:94%">94%</span></div>
       </div>
+
       <div class="edu-item">
         <h3>Secondary</h3>
         <p>Bappuji Public School, Vazhithala (2018–2019)</p>
@@ -292,8 +307,18 @@ footer{padding:10px;text-align:center;font-size:.9rem;color:var(--muted)}
 }
 #about h1 {
   margin-bottom: 30px;
-  color: var(--accent);
 }
+
+/* Dark mode */
+body:not(.light) #about h1 {
+  color: #fff; /* white in dark */
+}
+
+/* Light mode */
+body.light #about h1 {
+  color: #000; /* black in light */
+}
+
 
 .about-edu-container {
   display: grid;
@@ -304,43 +329,54 @@ footer{padding:10px;text-align:center;font-size:.9rem;color:var(--muted)}
 }
 
 .about-box, .edu-box {
-  background: rgba(30, 41, 59, 0.6); /* dark transparent glass */
+  background: rgba(30, 41, 59, 0.6);
   backdrop-filter: blur(12px);
   border-radius: 16px;
   padding: 25px;
   box-shadow: 0 0 15px rgba(0,0,0,.2);
   transition: transform .3s ease;
+
+  /* 👇 Added equal fixed height */
+  height: 420px;         /* adjust as needed */
+  overflow: hidden;      /* prevents extra scroll if content is larger */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
+
 body.light .about-box, body.light .edu-box {
-  background: rgba(255,255,255,0.7); /* light glass */
+  background: rgba(255,255,255,0.7);
 }
 
 .about-box:hover, .edu-box:hover { transform: translateY(-5px); }
 
 .profile img {
-  width: 120px; height: 120px; border-radius: 50%;
-  object-fit: cover; border: 3px solid var(--accent);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--accent);
   margin-bottom: 10px;
 }
-.profile h2 { color: var(--accent); margin-bottom: 6px; }
-.location, .dob { 
-  font-size: 14px; 
-  color: var(--muted); 
+.profile h4 { color: var(--accent); margin-bottom: 12px; }
+
+.about-item {
+  text-align: left;
+  margin-bottom: 15px;
+}
+.about-item h4 {
+  font-size: 15px;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 6px;
   margin-bottom: 4px;
 }
-body.light .location, body.light .dob { color: var(--muted-light); }
-.dob i { color: var(--accent); margin-right: 6px; }
-
-.about-points {
-  list-style: none; padding: 0; margin-top: 15px;
-  text-align: left;
+.about-item p {
+  font-size: 13px;
+  color: var(--muted);
 }
-.about-points li {
-  margin: 10px 0;
-  display: flex; align-items: center; gap: 10px;
-  font-size: 15px;
-}
-.about-points i { color: var(--accent); }
+body.light .about-item p { color: var(--muted-light); }
 
 .edu-box h2 {
   color: var(--accent);
@@ -373,7 +409,7 @@ body.light .progress-bar { background: rgba(0,0,0,.1); }
 @media (max-width: 768px){
   .about-edu-container { grid-template-columns: 1fr; }
   .about-box, .edu-box { text-align: center; }
-  .about-points { text-align: center; }
+  .about-item { text-align: center; }
 }
 </style>
 

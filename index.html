@@ -443,23 +443,34 @@ body.light .progress-bar { background: rgba(0,0,0,.12); }
   color: var(--accent-2);
 }
 
-/* Desktop: keep arrows closer to center */
+/* Default Desktop (~500px card) */
 .about-swiper .swiper-button-prev {
-  left: 10%;   /* instead of calc(...) */
+  left: calc(50% - 280px); /* 250px (half card) + ~30px gap */
 }
 .about-swiper .swiper-button-next {
-  right: 10%;
+  right: calc(50% - 280px);
 }
 
-/* 📱 Mobile: pull them in even more */
-@media(max-width: 768px) {
+/* Tablet (~400px card) */
+@media (max-width: 1024px) {
   .about-swiper .swiper-button-prev {
-    left: 5%;
+    left: calc(50% - 230px);
   }
   .about-swiper .swiper-button-next {
-    right: 5%;
+    right: calc(50% - 230px);
   }
 }
+
+/* Mobile (~340px card) */
+@media (max-width: 768px) {
+  .about-swiper .swiper-button-prev {
+    left: calc(50% - 190px);
+  }
+  .about-swiper .swiper-button-next {
+    right: calc(50% - 190px);
+  }
+}
+
 
 
 </style>

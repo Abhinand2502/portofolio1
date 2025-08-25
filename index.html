@@ -613,7 +613,7 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
 
 
 <!-- =========================
-     #PROJECTS (FIFA Style Improved)
+     #PROJECTS (FIFA Style Fixed Gap)
      ========================= -->
 <section id="projects">
   <h1>Projects</h1>
@@ -672,9 +672,8 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
 }
 
 /* Section Base */
-/* Section Base */
 #projects {
-  padding: 40px 20px 60px;  /* was 100px top → reduced */
+  padding: 80px 20px 60px;  /* top padding safe for navbar */
   text-align: center;
   background: #000;
   color: var(--neon-blue);
@@ -682,10 +681,14 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
 
 /* Section Heading */
 #projects h1 {
-  margin-top: 100px;       /* pushes title down */
-  margin-bottom: 40px;    /* keeps space before cards */
+  margin: 0;              /* reset default margins */
   font-size: 2rem;
   color: #00e0ff;
+}
+
+/* ✅ Control gap ONLY here */
+#projects .carousel {
+  margin-top: 57px; /* ~1.5 cm gap between title and cards */
 }
 
 /* Light mode (system auto) */
@@ -823,22 +826,16 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
 /* Mobile */
 @media (max-width: 600px) {
   #projects {
-    padding: 30px 15px 30px;  /* tighter top padding */
+    padding: 60px 15px 30px;
   }
 
- @media (max-width: 600px) {
-  .proj-card {
-    margin-top: -15px;
-  }
-}
- 
-
-  @media (max-width: 600px) {
   #projects h1 {
-    margin-top: 100px;   /* extra push down on small screens */
+    font-size: 1.6rem;
   }
-}
 
+  #projects .carousel {
+    margin-top: 57px; /* keep same gap in mobile */
+  }
 }
 
 /* ✅ Manual Light Mode */
@@ -859,6 +856,7 @@ body.light .proj-card h2 { color: #0072ff; }
 body.light .proj-card .stats span { color: #555; }
 body.light .proj-card .stats b { color: #000; }
 </style>
+
 
 
 <!-- =========================

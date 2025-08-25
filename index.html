@@ -238,7 +238,7 @@ footer{padding:10px;text-align:center;font-size:.9rem;color:var(--muted)}
 
 
 <!-- =========================
-     #ABOUT + EDUCATION (FIFA Style Loop Slider)
+     #ABOUT + EDUCATION (FIFA Style Manual Slider)
      ========================= -->
 <section id="about">
   <h1>About Me</h1>
@@ -315,10 +315,10 @@ footer{padding:10px;text-align:center;font-size:.9rem;color:var(--muted)}
 
 <script>
 const aboutSwiper = new Swiper('.about-swiper', {
-  loop: true,               // Infinite loop
-  slidesPerView: 1,          // Show only one card at a time
+  loop: false,               // No loop
+  slidesPerView: 1,          // One card at a time
   spaceBetween: 20,          
-  centeredSlides: true,      // Center the current slide
+  centeredSlides: true,      
   pagination: {
     el: '.swiper-pagination',
     clickable: true,
@@ -352,7 +352,6 @@ const aboutSwiper = new Swiper('.about-swiper', {
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.fifa-card:hover { transform: translateY(-10px); box-shadow: 0 12px 30px rgba(0,0,0,.6); }
 
 /* Card Top */
 .card-top img {
@@ -388,9 +387,7 @@ const aboutSwiper = new Swiper('.about-swiper', {
 .swiper-pagination-bullet-active { opacity:1; }
 
 /* Dots only on mobile */
-@media(min-width: 768px){
-  .swiper-pagination { display: none; }
-}
+
 </style>
 
 

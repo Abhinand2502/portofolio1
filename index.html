@@ -239,186 +239,230 @@ footer{padding:10px;text-align:center;font-size:.9rem;color:var(--muted)}
 
 
 <!-- =========================
-     #ABOUT + EDUCATION
+     #ABOUT + EDUCATION (FIFA Swipe Style)
      ========================= -->
 <section id="about">
-  <h1>About Me</h1>
-  <div class="about-edu-container">
+  <h1 class="neo-title">About Me</h1>
 
-    <!-- LEFT: About -->
-    <div class="about-box">
-      <div class="profile">
-        <img src="assets/WhatsApp Image 2025-02-24 at 17.59.03_40ff22d3.jpg" alt="Profile">
-        <h4>Abhinand Babu</h4>
+  <div class="swiper about-swiper">
+    <div class="swiper-wrapper">
+
+      <!-- ABOUT CARD -->
+      <div class="swiper-slide">
+        <div class="about-box">
+          <div class="profile">
+            <img src="assets/WhatsApp Image 2025-02-24 at 17.59.03_40ff22d3.jpg" alt="Profile">
+            <h4>Abhinand Babu</h4>
+          </div>
+
+          <div class="about-item">
+            <h4><i class="fa-solid fa-graduation-cap"></i> Degree</h4>
+            <p>B.Tech in Computer Science & Engineering</p>
+          </div>
+
+          <div class="about-item">
+            <h4><i class="fa-solid fa-location-dot"></i> Location</h4>
+            <p>Thodupuzha, Idukki, Kerala, India</p>
+          </div>
+
+          <div class="about-item">
+            <h4><i class="fa-solid fa-calendar"></i> Date of Birth</h4>
+            <p>25 Feb 2003</p>
+          </div>
+
+          <div class="about-item">
+            <h4><i class="fa-solid fa-briefcase"></i> Current Status</h4>
+            <p>....... </p>
+          </div>
+        </div>
       </div>
 
-      <div class="about-item">
-        <h4><i class="fa-solid fa-graduation-cap"></i> Degree</h4>
-        <p>B.Tech in Computer Science & Engineering</p>
+      <!-- EDUCATION CARD -->
+      <div class="swiper-slide">
+        <div class="edu-box">
+          <h2>Education</h2>
+
+          <div class="edu-item">
+            <h3>B.Tech in CSE</h3>
+            <p>UCE, Thodupuzha (2021–2025)</p>
+            <div class="progress-bar"><span style="width:70%">GPA: 6.99</span></div>
+          </div>
+
+          <div class="edu-item">
+            <h3>Higher Secondary</h3>
+            <p>St. Sebastian's HSS, Vazhithala (2019–2021)</p>
+            <div class="progress-bar"><span style="width:94%">94%</span></div>
+          </div>
+
+          <div class="edu-item">
+            <h3>Secondary</h3>
+            <p>Bappuji Public School, Vazhithala (2018–2019)</p>
+            <div class="progress-bar"><span style="width:80%">80%</span></div>
+          </div>
+        </div>
       </div>
 
-      <div class="about-item">
-        <h4><i class="fa-solid fa-location-dot"></i> Location</h4>
-        <p>Thodupuzha, Idukki, Kerala, India</p>
-      </div>
-
-      <div class="about-item">
-        <h4><i class="fa-solid fa-calendar"></i> Date of Birth</h4>
-        <p>25 Feb 2003</p>
-      </div>
-
-      <div class="about-item">
-        <h4><i class="fa-solid fa-briefcase"></i> Current Status</h4>
-        <p>.......</p>
-      </div>
     </div>
 
-    <!-- RIGHT: Education -->
-    <div class="edu-box">
-      <h2>Education</h2>
-
-      <div class="edu-item">
-        <h3>B.Tech in CSE</h3>
-        <p>UCE, Thodupuzha (2021–2025)</p>
-        <div class="progress-bar"><span style="width:70%">GPA: 6.99</span></div>
-      </div>
-
-      <div class="edu-item">
-        <h3>Higher Secondary</h3>
-        <p>St. Sebastian's HSS, Vazhithala (2019–2021)</p>
-        <div class="progress-bar"><span style="width:94%">94%</span></div>
-      </div>
-
-      <div class="edu-item">
-        <h3>Secondary</h3>
-        <p>Bappuji Public School, Vazhithala (2018–2019)</p>
-        <div class="progress-bar"><span style="width:80%">80%</span></div>
-      </div>
-    </div>
-
+    <!-- Swiper Arrows -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
   </div>
 </section>
 
+<!-- SwiperJS CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
 <style>
-/* ABOUT + EDUCATION */
+/* Section Wrapper */
 #about {
   padding: 70px 20px;
   text-align: center;
 }
+
+/* Title */
 #about h1 {
   margin-bottom: 30px;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
+body:not(.light) #about h1 { color:#fff; }
+body.light #about h1 { color:#000; }
 
-/* Dark mode */
-body:not(.light) #about h1 {
-  color: #fff; /* white in dark */
-}
-
-/* Light mode */
-body.light #about h1 {
-  color: #000; /* black in light */
-}
-
-
-.about-edu-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
+/* Swiper */
+.about-swiper {
   max-width: 1100px;
   margin: 0 auto;
+  position: relative;
+  padding: 20px 0;
 }
-
-.about-box, .edu-box {
-  background: rgba(30, 41, 59, 0.6);
-  backdrop-filter: blur(12px);
-  border-radius: 16px;
-  padding: 25px;
-  box-shadow: 0 0 15px rgba(0,0,0,.2);
-  transition: transform .3s ease;
-
-  /* 👇 Added equal fixed height */
-  height: 420px;         /* adjust as needed */
-  overflow: hidden;      /* prevents extra scroll if content is larger */
+.swiper-slide {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
+/* Cards */
+.about-box, .edu-box {
+  width: 100%;
+  max-width: 500px;
+  background: rgba(30,41,59,0.7);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 0 20px rgba(0,0,0,.25);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
 body.light .about-box, body.light .edu-box {
-  background: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.8);
+}
+.about-box:hover, .edu-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 25px rgba(0,255,255,0.4);
 }
 
-.about-box:hover, .edu-box:hover { transform: translateY(-5px); }
-
+/* Profile */
 .profile img {
-  width: 100px;
-  height: 100px;
+  width: 110px; height: 110px;
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid var(--accent);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
-.profile h4 { color: var(--accent); margin-bottom: 12px; }
-
-.about-item {
-  text-align: left;
-  margin-bottom: 15px;
-}
-.about-item h4 {
-  font-size: 15px;
+.profile h4 {
   color: var(--accent);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 4px;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+/* About Items */
+.about-item { text-align:left; margin-bottom:15px; }
+.about-item h4 {
+  font-size:15px; color:var(--accent);
+  display:flex; align-items:center; gap:6px;
+  margin-bottom:4px;
 }
 .about-item p {
-  font-size: 13px;
-  color: var(--muted);
+  font-size:13px; color:var(--muted);
 }
-body.light .about-item p { color: var(--muted-light); }
+body.light .about-item p { color:var(--muted-light); }
 
+/* Education */
 .edu-box h2 {
-  color: var(--accent);
-  margin-bottom: 15px;
+  color:var(--accent);
+  margin-bottom:18px;
+  font-size:22px;
 }
-.edu-item { margin-bottom: 20px; text-align: left; }
-.edu-item h3 { margin-bottom: 4px; font-size: 16px; color: var(--accent); }
-.edu-item p { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
-body.light .edu-item p { color: var(--muted-light); }
+.edu-item { margin-bottom:20px; text-align:left; }
+.edu-item h3 {
+  margin-bottom:4px;
+  font-size:16px;
+  color:var(--accent);
+}
+.edu-item p {
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+body.light .edu-item p { color:var(--muted-light); }
 
+/* Progress Bar */
 .progress-bar {
-  background: rgba(255,255,255,.1);
+  background: rgba(255,255,255,.12);
   border-radius: 20px;
-  height: 18px;
-  overflow: hidden;
+  height: 18px; overflow: hidden;
 }
-body.light .progress-bar { background: rgba(0,0,0,.1); }
+body.light .progress-bar { background: rgba(0,0,0,.12); }
 .progress-bar span {
-  display: block;
-  height: 100%;
+  display:block; height:100%;
   background: linear-gradient(90deg,var(--accent),var(--accent-2));
-  font-size: 11px;
-  font-weight: 600;
-  line-height: 18px;
-  padding-left: 8px;
-  color: #0f172a;
+  font-size:11px; font-weight:600;
+  line-height:18px;
+  padding-left:8px; color:#0f172a;
+  border-radius:20px;
+}
+
+/* Swiper Navigation Arrows */
+.swiper-button-prev, .swiper-button-next {
+  color: var(--accent);
+  font-weight: bold;
+  transition: transform 0.2s ease;
+}
+.swiper-button-prev:hover, .swiper-button-next:hover {
+  transform: scale(1.2);
+  color: var(--accent-2);
 }
 
 /* Mobile */
-@media (max-width: 768px){
-  .about-edu-container { grid-template-columns: 1fr; }
-  .about-box, .edu-box { text-align: center; }
-  .about-item { text-align: center; }
+@media(max-width:768px){
+  .about-box, .edu-box { text-align:center; }
+  .about-item { text-align:center; }
 }
 </style>
+
+<script>
+  const aboutSwiper = new Swiper('.about-swiper', {
+    loop: true,   // 🔥 enables looping (goes back to first slide)
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    spaceBetween: 30,
+    effect: "slide",
+    speed: 600,
+  });
+</script>
+
+
+
 
 
 <!-- =========================
      #skills — Futuristic Blue HUD with Logos
      ========================= -->
 <section id="skills">
-  <h1 class="neo-title">Skills</h1>
+  <h1 class="neo-title">My Skills</h1>
 
   <div class="neo-grid">
     <!-- Python -->
@@ -483,6 +527,18 @@ body.light .progress-bar { background: rgba(0,0,0,.1); }
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
+  #skills .neo-title {
+  margin-bottom: 20px;
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  color: #fff; /* default dark mode */
+  text-align: center;
+}
+
+body.light #skills .neo-title {
+  color: #000; /* light mode */
+}
+
 /* ===== HUD Skills Styles (same + icons) ===== */
 #skills{padding:56px 18px;text-align:center;}
 #skills{--neo-blue:var(--accent,#00c6ff);--neo-blue2:var(--accent-2,#0072ff);

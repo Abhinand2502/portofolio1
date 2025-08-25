@@ -237,9 +237,8 @@ footer{padding:10px;text-align:center;font-size:.9rem;color:var(--muted)}
 
 
 
-
 <!-- =========================
-     #ABOUT + EDUCATION (FIFA Swipe Style with Dots)
+     #ABOUT + EDUCATION (FIFA Style)
      ========================= -->
 <section id="about">
   <h1>About Me</h1>
@@ -247,40 +246,33 @@ footer{padding:10px;text-align:center;font-size:.9rem;color:var(--muted)}
   <div class="swiper-container">
     <div class="swiper-wrapper">
 
-      <!-- ABOUT CARD -->
+      <!-- ABOUT CARD (FIFA STYLE) -->
       <div class="swiper-slide">
-        <div class="about-box">
-          <div class="profile">
+        <div class="fifa-card">
+          <div class="card-top">
             <img src="assets/WhatsApp Image 2025-02-24 at 17.59.03_40ff22d3.jpg" alt="Profile">
-            <h4>Abhinand Babu</h4>
+            <h2 class="player-name">Abhinand Babu</h2>
+            <span class="player-role">Developer</span>
           </div>
 
-          <div class="about-item">
-            <h4><i class="fa-solid fa-graduation-cap"></i> Degree</h4>
-            <p>B.Tech in Computer Science & Engineering</p>
-          </div>
-
-          <div class="about-item">
-            <h4><i class="fa-solid fa-location-dot"></i> Location</h4>
-            <p>Thodupuzha, Idukki, Kerala, India</p>
-          </div>
-
-          <div class="about-item">
-            <h4><i class="fa-solid fa-calendar"></i> Date of Birth</h4>
-            <p>25 Feb 2003</p>
-          </div>
-
-          <div class="about-item">
-            <h4><i class="fa-solid fa-briefcase"></i> Current Status</h4>
-            <p>.......</p>
+          <div class="stats-grid">
+            <div class="stat"><span>AGE</span><b>22</b></div>
+            <div class="stat"><span>DOB</span><b>25/02/03</b></div>
+            <div class="stat"><span>LOC</span><b>Kerala</b></div>
+            <div class="stat"><span>DEG</span><b>B.Tech CSE</b></div>
+            <div class="stat"><span>STATUS</span><b>Student</b></div>
+            <div class="stat"><span>EXP</span><b>Fresher</b></div>
           </div>
         </div>
       </div>
 
       <!-- EDUCATION CARD -->
       <div class="swiper-slide">
-        <div class="edu-box">
-          <h2>Education</h2>
+        <div class="fifa-card">
+          <div class="card-top alt">
+            <h2 class="player-name">Education</h2>
+            <span class="player-role">Academic Journey</span>
+          </div>
 
           <div class="edu-item">
             <h3>B.Tech in CSE</h3>
@@ -303,7 +295,6 @@ footer{padding:10px;text-align:center;font-size:.9rem;color:var(--muted)}
       </div>
 
     </div>
-
     <!-- ✅ Pagination Dots -->
     <div class="swiper-pagination"></div>
   </div>
@@ -321,58 +312,81 @@ footer{padding:10px;text-align:center;font-size:.9rem;color:var(--muted)}
 #about h1 {
   margin-bottom: 30px;
 }
-
-/* Dark / Light */
 body:not(.light) #about h1 { color:#fff; }
 body.light #about h1 { color:#000; }
 
-.swiper-container {
+/* FIFA Card Style */
+.fifa-card {
   width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
-  position: relative;
-}
-
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-}
-
-.about-box, .edu-box {
-  width: 100%;
-  max-width: 500px;
-  background: rgba(30,41,59,0.6);
+  max-width: 380px;
+  background: linear-gradient(180deg, #1e293b, #0f172a);
   backdrop-filter: blur(12px);
-  border-radius: 16px;
+  border-radius: 22px;
   padding: 25px;
-  box-shadow: 0 0 15px rgba(0,0,0,.2);
+  box-shadow: 0 8px 20px rgba(0,0,0,.5);
+  border: 2px solid gold;
+  text-align: center;
   transition: transform .3s ease;
 }
-body.light .about-box, body.light .edu-box {
-  background: rgba(255,255,255,0.7);
+body.light .fifa-card {
+  background: linear-gradient(180deg, #fff, #eaeaea);
+  border: 2px solid #ffd700;
 }
-.about-box:hover, .edu-box:hover { transform: translateY(-5px); }
+.fifa-card:hover { transform: translateY(-8px); }
 
-/* Profile */
-.profile img {
-  width: 100px;height:100px;border-radius:50%;
-  object-fit:cover;border:4px solid var(--accent);
+/* Top Section */
+.card-top {
+  margin-bottom: 20px;
+}
+.card-top img {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  object-fit: contain;  /* ✅ Fix zoom issue */
+  border: 4px solid gold;
+  background: #fff;
   margin-bottom: 10px;
 }
-.profile h4 { color: var(--accent); margin-bottom: 12px; }
+.player-name {
+  font-size: 20px;
+  color: gold;
+  margin: 5px 0;
+}
+.player-role {
+  font-size: 14px;
+  color: #ccc;
+}
+body.light .player-role { color:#444; }
 
-.about-item { text-align:left;margin-bottom:15px; }
-.about-item h4 { font-size:15px;color:var(--accent);display:flex;align-items:center;gap:6px;margin-bottom:4px;}
-.about-item p { font-size:13px;color:var(--muted); }
-body.light .about-item p { color:var(--muted-light); }
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 10px;
+}
+.stat {
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  font-size: 13px;
+  color: #ccc;
+}
+.stat span {
+  display:block;
+  font-size: 11px;
+  opacity: 0.7;
+}
+.stat b {
+  font-size: 15px;
+  color: gold;
+}
 
-.edu-box h2 { color:var(--accent); margin-bottom:15px; }
+/* Education */
 .edu-item { margin-bottom:20px;text-align:left; }
-.edu-item h3 { margin-bottom:4px;font-size:16px;color:var(--accent); }
-.edu-item p { font-size:13px;color:var(--muted);margin-bottom:6px; }
-body.light .edu-item p { color:var(--muted-light); }
+.edu-item h3 { font-size:16px;color:gold;margin-bottom:4px; }
+.edu-item p { font-size:13px;color:#ccc;margin-bottom:6px; }
+body.light .edu-item p { color:#444; }
 
 .progress-bar {
   background: rgba(255,255,255,.1);
@@ -382,38 +396,34 @@ body.light .edu-item p { color:var(--muted-light); }
 body.light .progress-bar { background: rgba(0,0,0,.1); }
 .progress-bar span {
   display:block;height:100%;
-  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  background:linear-gradient(90deg,gold,#ffb400);
   font-size:11px;font-weight:600;line-height:18px;
   padding-left:8px;color:#0f172a;
 }
 
-/* ✅ Swiper Dots (Pagination) */
-.swiper-pagination {
-  margin-top: 15px;
-  position: relative;
-}
+/* Swiper Dots */
+.swiper-container { width:100%; max-width:1100px; margin:0 auto; }
+.swiper-slide { display:flex; justify-content:center; align-items:center; padding:10px; }
+
+.swiper-pagination { margin-top: 15px; position: relative; }
 .swiper-pagination-bullet {
-  width: 10px;
-  height: 10px;
-  background: var(--muted);
+  width: 10px;height: 10px;
+  background: #999;
   opacity: 0.6;
   margin: 0 5px !important;
   border-radius: 50%;
   transition: all 0.3s ease;
 }
 .swiper-pagination-bullet-active {
-  background: var(--accent);
+  background: gold;
   opacity: 1;
-  transform: scale(1.2);
+  transform: scale(1.3);
 }
 
-/* ✅ Mobile Optimizations */
+/* Mobile */
 @media(max-width:768px){
-  .about-box,.edu-box{ 
-    text-align:center;
-    max-width: 100%;   /* full width on mobile */
-  }
-  .about-item{ text-align:center; }
+  .fifa-card { max-width: 95%; }
+  .stats-grid { grid-template-columns: repeat(2,1fr); }
 }
 </style>
 
@@ -423,12 +433,10 @@ body.light .progress-bar { background: rgba(0,0,0,.1); }
     spaceBetween: 20,
     slidesPerView: 1,
     centeredSlides: true,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
+    pagination: { el: '.swiper-pagination', clickable: true },
   });
 </script>
+
 
 
 

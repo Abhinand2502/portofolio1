@@ -303,7 +303,8 @@ footer{padding:10px;text-align:center;font-size:.9rem;color:var(--muted)}
     </div>
 
     <!-- Dots -->
-    <div class="swiper-pagination"></div>
+    <div class="swiper-container about-swiper">
+</div>
   </div>
 </section>
 
@@ -330,6 +331,10 @@ const swiper = new Swiper('.swiper-container', {
 <style>
 #about { padding: 70px 20px; text-align: center; }
 #about h1 { margin-bottom: 40px; }
+
+/* Swiper */
+.swiper-container { width: 100%; padding-bottom: 40px; }
+.swiper-slide { display: flex; justify-content: center; }
 
 /* Cards Container */
 .cards-container {
@@ -409,27 +414,31 @@ body.light .progress-bar { background: rgba(0,0,0,.1); }
   font-size:11px; font-weight:600; line-height:18px;
   padding-left:8px; color:#0f172a;
 }
-/* Swiper (only inside About) */
-#about .swiper-container { 
-  width: 100%; 
-  padding-bottom: 40px; 
-}
-#about .swiper-slide { 
-  display: flex; 
-  justify-content: center; 
-}
 
-/* Swiper Dots (only inside About) */
-#about .swiper-pagination-bullet { 
-  background:#00e0ff; 
-  opacity:.7; 
-}
-#about .swiper-pagination-bullet-active { 
-  opacity:1; 
-}
-
+/* Swiper Dots */
+.swiper-pagination-bullet { background:#00e0ff; opacity:.7; }
+.swiper-pagination-bullet-active { opacity:1; }
 </style>
 
+<script>
+const aboutSwiper = new Swiper('.about-swiper', {
+  slidesPerView: 2,
+  spaceBetween: 30,
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+  breakpoints: {
+    0: { 
+      slidesPerView: 1,   // Mobile: show 1 card with dots
+    },
+    768: { 
+      slidesPerView: 2,   // Tablet/Desktop: show 2 cards, no dots needed
+      pagination: false
+    },
+  }
+});
+</script>
 
 
 <!-- =========================

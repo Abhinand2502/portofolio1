@@ -614,15 +614,19 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
 
 
 <!-- =========================
-     #projects (FIFA Style Improved)
+     #PROJECTS (FIFA Style Improved - Standardized)
      ========================= -->
 <section id="projects">
   <h1>Projects</h1>
+
   <div class="carousel">
+    <!-- Navigation Buttons -->
     <button class="nav-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
+
+    <!-- Track -->
     <div class="track" id="projTrack">
 
-      <!-- Example FIFA Card -->
+      <!-- Slide 1 -->
       <div class="slide">
         <div class="proj-card">
           <div class="stars">★★★★★</div>
@@ -637,6 +641,7 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
         </div>
       </div>
 
+      <!-- Slide 2 -->
       <div class="slide">
         <div class="proj-card">
           <div class="stars">★★★★★</div>
@@ -652,6 +657,7 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
       </div>
 
     </div>
+
     <button class="nav-btn next"><i class="fa-solid fa-chevron-right"></i></button>
   </div>
 </section>
@@ -666,27 +672,26 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
   --card-bg-light: linear-gradient(160deg,#ffffff,#f0f4ff);
 }
 
-/* Main Section */
+/* Section Base */
 #projects {
-  padding: 100px 20px 60px;   /* ⬇️ moved title down */
+  padding: 100px 20px 60px;
   text-align: center;
-  background: #000; /* Dark mode background */
+  background: #000;
   color: var(--neon-blue);
 }
 
-/* 🌑 Dark Mode (default) */
 #projects h1 {
   margin-bottom: 10px;
-  color: #fff;  /* white */
+  color: #fff;
   letter-spacing: 2px;
-  text-shadow: 0 0 12px rgba(0,224,255,.6); /* neon glow */
+  text-shadow: 0 0 12px rgba(0,224,255,.6);
 }
 
-/* 🌞 Light Mode */
+/* Light mode (system) */
 @media (prefers-color-scheme: light) {
   #projects h1 {
-    color: #000;   /* black */
-    text-shadow: none; /* remove glow in light mode */
+    color: #000;
+    text-shadow: none;
   }
 }
 
@@ -753,9 +758,8 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
   gap: 25px;
   margin: 15px 0;
 }
-.proj-card .stats div {
-  text-align: center;
-}
+
+.proj-card .stats div { text-align: center; }
 .proj-card .stats span {
   display: block;
   font-size: 12px;
@@ -781,7 +785,7 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
   color: #000;
 }
 
-/* Nav Buttons */
+/* Navigation Buttons */
 .nav-btn {
   position: absolute;
   top: 50%;
@@ -789,7 +793,7 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(0, 224, 255, 0.15);
+  background: rgba(0,224,255,0.15);
   border: 1px solid rgba(0,255,255,.6);
   color: var(--neon-blue);
   cursor: pointer;
@@ -807,49 +811,36 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
 .nav-btn.prev { left: 10px; }
 .nav-btn.next { right: 10px; }
 
-/* 📱 Mobile spacing fix */
+/* Mobile */
 @media (max-width: 600px) {
   #projects {
-    padding: 70px 15px 40px; /* reduce top/bottom padding */
+    padding: 70px 15px 40px;
   }
-
   #projects h1 {
-    margin-bottom: 20px; /* smaller gap below title */
-    font-size: 24px;     /* slightly smaller title */
+    margin-bottom: 20px;
+    font-size: 24px;
   }
 }
 
-
-/* ✅ Light Mode (with body.light) */
+/* ✅ Light Mode (manual class) */
 body.light #projects {
-  background: #ffffff;  /* White theme */
+  background: #fff;
   color: #111;
 }
-
 body.light #projects h1 {
-  color: #000;          /* Black in light mode */
+  color: #000;
   text-shadow: none;
 }
-
-
 body.light .proj-card {
   background: var(--card-bg-light);
   color: #111;
   box-shadow: 0 0 15px rgba(0,0,0,.1);
 }
-
-body.light .proj-card h2 {
-  color: #0072ff;
-}
-
-body.light .proj-card .stats span {
-  color: #555;
-}
-
-body.light .proj-card .stats b {
-  color: #000;
-}
+body.light .proj-card h2 { color: #0072ff; }
+body.light .proj-card .stats span { color: #555; }
+body.light .proj-card .stats b { color: #000; }
 </style>
+
 
 <!-- =========================
      #resume

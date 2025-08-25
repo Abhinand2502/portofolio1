@@ -331,10 +331,6 @@ const swiper = new Swiper('.swiper-container', {
 #about { padding: 70px 20px; text-align: center; }
 #about h1 { margin-bottom: 40px; }
 
-/* Swiper */
-.swiper-container { width: 100%; padding-bottom: 40px; }
-.swiper-slide { display: flex; justify-content: center; }
-
 /* Cards Container */
 .cards-container {
   display: flex;
@@ -413,10 +409,25 @@ body.light .progress-bar { background: rgba(0,0,0,.1); }
   font-size:11px; font-weight:600; line-height:18px;
   padding-left:8px; color:#0f172a;
 }
+/* Swiper (only inside About) */
+#about .swiper-container { 
+  width: 100%; 
+  padding-bottom: 40px; 
+}
+#about .swiper-slide { 
+  display: flex; 
+  justify-content: center; 
+}
 
-/* Swiper Dots */
-.swiper-pagination-bullet { background:#00e0ff; opacity:.7; }
-.swiper-pagination-bullet-active { opacity:1; }
+/* Swiper Dots (only inside About) */
+#about .swiper-pagination-bullet { 
+  background:#00e0ff; 
+  opacity:.7; 
+}
+#about .swiper-pagination-bullet-active { 
+  opacity:1; 
+}
+
 </style>
 
 

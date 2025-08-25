@@ -443,23 +443,24 @@ body.light .progress-bar { background: rgba(0,0,0,.12); }
   color: var(--accent-2);
 }
 
-/* ✅ Align arrows close to card instead of edge */
+/* Desktop: keep arrows closer to center */
 .about-swiper .swiper-button-prev {
-  left: calc(50% - 350px);   /* 500px card / 2 + ~20px gap */
+  left: 10%;   /* instead of calc(...) */
 }
 .about-swiper .swiper-button-next {
-  right: calc(50% - 350px);
+  right: 10%;
 }
 
-/* 📱 Mobile: adjust closer (smaller cards) */
+/* 📱 Mobile: pull them in even more */
 @media(max-width: 768px) {
   .about-swiper .swiper-button-prev {
-    left: calc(50% - 170px); /* card width ~340px */
+    left: 5%;
   }
   .about-swiper .swiper-button-next {
-    right: calc(50% - 170px);
+    right: 5%;
   }
 }
+
 
 </style>
 
@@ -475,9 +476,6 @@ body.light .progress-bar { background: rgba(0,0,0,.12); }
     speed: 600,
   });
 </script>
-
-
-
 
 
 <!-- =========================

@@ -238,180 +238,191 @@ footer{padding:10px;text-align:center;font-size:.9rem;color:var(--muted)}
 
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About & Education | Portfolio</title>
+<!-- =========================
+     #ABOUT + EDUCATION (FIFA Swipe Style)
+     ========================= -->
+<section id="about">
+  <h1>About Me</h1>
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
 
-  <!-- Swiper CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+      <!-- ABOUT CARD -->
+      <div class="swiper-slide">
+        <div class="about-box">
+          <div class="profile">
+            <img src="assets/WhatsApp Image 2025-02-24 at 17.59.03_40ff22d3.jpg" alt="Profile">
+            <h4>Abhinand Babu</h4>
+          </div>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: #000;
-      color: #fff;
-    }
+          <div class="about-item">
+            <h4><i class="fa-solid fa-graduation-cap"></i> Degree</h4>
+            <p>B.Tech in Computer Science & Engineering</p>
+          </div>
 
-    section#about {
-      padding: 60px 20px;
-      background: #000;
-      text-align: center;
-    }
+          <div class="about-item">
+            <h4><i class="fa-solid fa-location-dot"></i> Location</h4>
+            <p>Thodupuzha, Idukki, Kerala, India</p>
+          </div>
 
-    .section-title {
-      font-size: 2.5rem;
-      margin-bottom: 40px;
-      color: #00d9ff;
-      font-weight: bold;
-    }
+          <div class="about-item">
+            <h4><i class="fa-solid fa-calendar"></i> Date of Birth</h4>
+            <p>25 Feb 2003</p>
+          </div>
 
-    /* Swiper container */
-    .mySwiper {
-      width: 100%;
-      max-width: 600px;
-      margin: auto;
-    }
-
-    /* Slides as cards */
-    .swiper-slide.about-card {
-      background: #0d0d1a;
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 500px; /* Equal height */
-    }
-
-    .profile-pic {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      border: 3px solid #00d9ff;
-      margin: 0 auto 20px auto;
-      display: block;
-    }
-
-    .about-card h2 {
-      color: #00d9ff;
-      margin-bottom: 20px;
-    }
-
-    .about-card p {
-      margin: 12px 0;
-      text-align: left;
-      line-height: 1.6;
-    }
-
-    .about-card i {
-      color: #00d9ff;
-      margin-right: 10px;
-    }
-
-    /* Progress Bars */
-    .progress-bar {
-      background: #1c2333;
-      border-radius: 20px;
-      height: 12px;
-      margin: 6px 0 18px;
-      overflow: hidden;
-    }
-
-    .progress-bar span {
-      display: block;
-      height: 100%;
-      background: linear-gradient(90deg, #00d9ff, #0077ff);
-    }
-
-    /* Swiper Controls */
-    .swiper-button-next,
-    .swiper-button-prev {
-      color: #00d9ff;
-    }
-
-    .swiper-pagination-bullet {
-      background: #00d9ff;
-    }
-
-    @media (max-width: 768px) {
-      .swiper-slide.about-card {
-        min-height: 420px; /* smaller on mobile */
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- =========================
-        ABOUT SECTION
-  ========================= -->
-  <section id="about">
-    <h1 class="section-title">About & Education</h1>
-
-    <!-- Swiper Container -->
-    <div class="swiper mySwiper">
-      <div class="swiper-wrapper">
-
-        <!-- About Slide -->
-        <div class="swiper-slide about-card">
-          <img src="images/profile.jpg" alt="Abhinand Babu" class="profile-pic">
-          <h2>Abhinand Babu</h2>
-          <p><i class="fa-solid fa-graduation-cap"></i> B.Tech in Computer Science & Engineering</p>
-          <p><i class="fa-solid fa-location-dot"></i> Thodupuzha, Idukki, Kerala, India</p>
-          <p><i class="fa-solid fa-calendar"></i> 25 Feb 2003</p>
-          <p><i class="fa-solid fa-circle-info"></i> Current Status: Student</p>
+          <div class="about-item">
+            <h4><i class="fa-solid fa-briefcase"></i> Current Status</h4>
+            <p>.......</p>
+          </div>
         </div>
-
-        <!-- Education Slide -->
-        <div class="swiper-slide about-card">
-          <h2>Education</h2>
-          <p><strong>B.Tech in CSE</strong><br> UCE, Thodupuzha (2021–2025)</p>
-          <div class="progress-bar"><span style="width:70%"></span></div>
-
-          <p><strong>Higher Secondary</strong><br> St. Sebastian's HSS (2019–2021)</p>
-          <div class="progress-bar"><span style="width:94%"></span></div>
-
-          <p><strong>High School</strong><br> SNVHSS, Vazhithala (2017–2019)</p>
-          <div class="progress-bar"><span style="width:95%"></span></div>
-        </div>
-
       </div>
 
-      <!-- Swiper Navigation -->
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-pagination"></div>
+      <!-- EDUCATION CARD -->
+      <div class="swiper-slide">
+        <div class="edu-box">
+          <h2>Education</h2>
+
+          <div class="edu-item">
+            <h3>B.Tech in CSE</h3>
+            <p>UCE, Thodupuzha (2021–2025)</p>
+            <div class="progress-bar"><span style="width:70%">GPA: 6.99</span></div>
+          </div>
+
+          <div class="edu-item">
+            <h3>Higher Secondary</h3>
+            <p>St. Sebastian's HSS, Vazhithala (2019–2021)</p>
+            <div class="progress-bar"><span style="width:94%">94%</span></div>
+          </div>
+
+          <div class="edu-item">
+            <h3>Secondary</h3>
+            <p>Bappuji Public School, Vazhithala (2018–2019)</p>
+            <div class="progress-bar"><span style="width:80%">80%</span></div>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </section>
 
-  <!-- Swiper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script>
-    var swiper = new Swiper(".mySwiper", {
-      slidesPerView: 1,
-      spaceBetween: 30,
-      loop: true,
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-    });
-  </script>
+    <!-- Swiper Arrows -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+</section>
 
-</body>
-</html>
+<!-- SwiperJS CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<style>
+#about {
+  padding: 50px 15px;
+  text-align: center;
+}
+#about h1 {
+  margin-bottom: 25px;
+}
+
+/* Dark / Light */
+body:not(.light) #about h1 { color:#fff; }
+body.light #about h1 { color:#000; }
+
+.swiper-container {
+  width: 100%;          /* ✅ take full screen width */
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;  /* ✅ center vertically too */
+  padding: 10px;        /* ✅ prevent clipping */
+}
+
+.about-box, .edu-box {
+  width: 100%;
+  max-width: 500px;
+  background: rgba(30,41,59,0.6);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,.2);
+  transition: transform .3s ease;
+}
+body.light .about-box, body.light .edu-box {
+  background: rgba(255,255,255,0.7);
+}
+.about-box:hover, .edu-box:hover { transform: translateY(-5px); }
+
+/* Swiper Arrows */
+.swiper-button-prev, .swiper-button-next {
+  color: var(--accent);
+  font-weight: bold;
+  top: 50%;             /* ✅ keep arrows centered */
+  transform: translateY(-50%);
+}
+
+/* Profile */
+.profile img {
+  width: 100px;height:100px;border-radius:50%;
+  object-fit:cover;border:4px solid var(--accent);
+  margin-bottom: 10px;
+}
+.profile h4 { color: var(--accent); margin-bottom: 12px; }
+
+.about-item { text-align:left;margin-bottom:15px; }
+.about-item h4 { font-size:15px;color:var(--accent);display:flex;align-items:center;gap:6px;margin-bottom:4px;}
+.about-item p { font-size:13px;color:var(--muted);}
+body.light .about-item p {color:var(--muted-light);}
+
+.edu-box h2 {color:var(--accent);margin-bottom:15px;}
+.edu-item {margin-bottom:20px;text-align:left;}
+.edu-item h3 {margin-bottom:4px;font-size:16px;color:var(--accent);}
+.edu-item p {font-size:13px;color:var(--muted);margin-bottom:6px;}
+body.light .edu-item p {color:var(--muted-light);}
+
+.progress-bar {
+  background: rgba(255,255,255,.1);
+  border-radius: 20px;
+  height: 18px;overflow:hidden;
+}
+body.light .progress-bar {background: rgba(0,0,0,.1);}
+.progress-bar span {
+  display:block;height:100%;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  font-size:11px;font-weight:600;line-height:18px;
+  padding-left:8px;color:#0f172a;
+}
+
+/* ✅ Mobile Optimizations */
+@media(max-width:768px){
+  .about-box,.edu-box{ 
+    text-align:center;
+    max-width: 100%;   /* ✅ fill screen */
+  }
+  .about-item{ text-align:center; }
+  .swiper-button-prev, .swiper-button-next {
+    top: auto; bottom: 10px;  /* ✅ move arrows below card */
+    transform: none;
+  }
+}
+</style>
+
+<script>
+  const aboutSwiper = new Swiper('.swiper-container', {
+    loop: false,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    spaceBetween: 20,
+    slidesPerView: 1,   // ✅ always show only one slide
+    centeredSlides: true,
+  });
+</script>
+
 
 
 

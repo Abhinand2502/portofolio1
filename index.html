@@ -679,6 +679,11 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
   background: #000;
   color: var(--neon-blue);
 }
+/* Section Heading */
+#projects > h1 {
+  margin-bottom: 10px; /* adjust space above first card */
+  font-size: 26px;
+}
 
 .proj-card h1 {
   font-size: 20px;
@@ -828,11 +833,17 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
     padding: 40px 15px 30px; /* reduced top padding */
   }
 
-  #projects h1 {
-    margin-bottom: 1px;   /* very close to card */
-    font-size: 25px;      /* keeps it readable */
+  @media (max-width: 600px) {
+  #projects > h1 {
+    margin-bottom: 5px; /* super close */
+    font-size: 22px;
+  }
+
+  #projects {
+    padding: 40px 15px 30px; /* reduced top padding */
   }
 }
+
 
 
 

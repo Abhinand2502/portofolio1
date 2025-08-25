@@ -502,11 +502,20 @@ body.light .progress-bar { background: rgba(0,0,0,.1); }
   color: var(--neon-blue);
 }
 
+/* 🌑 Dark Mode (default) */
 #projects h1 {
-  margin-bottom: 10px; /* ⬇️ more spacing */
-  color: var(--neon-blue);
+  margin-bottom: 10px;
+  color: #fff;  /* white */
   letter-spacing: 2px;
-  text-shadow: 0 0 12px rgba(0,224,255,.6);
+  text-shadow: 0 0 12px rgba(0,224,255,.6); /* neon glow */
+}
+
+/* 🌞 Light Mode */
+@media (prefers-color-scheme: light) {
+  #projects h1 {
+    color: #000;   /* black */
+    text-shadow: none; /* remove glow in light mode */
+  }
 }
 
 /* Carousel */
@@ -626,13 +635,18 @@ body.light .progress-bar { background: rgba(0,0,0,.1); }
 .nav-btn.prev { left: 10px; }
 .nav-btn.next { right: 10px; }
 
-@media (min-width: 768px) {
-  .nav-btn {
-    width: 60px;
-    height: 60px;
-    font-size: 20px;
+/* 📱 Mobile spacing fix */
+@media (max-width: 600px) {
+  #projects {
+    padding: 70px 15px 40px; /* reduce top/bottom padding */
+  }
+
+  #projects h1 {
+    margin-bottom: 20px; /* smaller gap below title */
+    font-size: 24px;     /* slightly smaller title */
   }
 }
+
 
 /* ✅ Light Mode (with body.light) */
 body.light #projects {
@@ -641,9 +655,10 @@ body.light #projects {
 }
 
 body.light #projects h1 {
-  color: #0072ff;       /* Futuristic blue in light */
+  color: #000;          /* Black in light mode */
   text-shadow: none;
 }
+
 
 body.light .proj-card {
   background: var(--card-bg-light);
@@ -662,23 +677,52 @@ body.light .proj-card .stats span {
 body.light .proj-card .stats b {
   color: #000;
 }
-
-
-
+</style>
 
 <!-- =========================
      #resume
      ========================= -->
 <section id="resume">
   <h1>My Resume</h1>
-  <iframe class="resume-frame" src="assets/Resume.pdf"></iframe>
-  <a href="assets/Resume.pdf" download class="btn"><i class="fa-solid fa-download"></i> Download Resume</a>
+  <iframe class="resume-frame" src="assets/Resume.pdf" title="Resume PDF"></iframe>
+  <a href="assets/Resume.pdf" download class="btn">
+    <i class="fa-solid fa-download"></i> Download Resume
+  </a>
 </section>
 
 <style>
 /* RESUME */
-.resume-frame{width:90%;max-width:800px;height:70vh;border:1px solid rgba(255,255,255,.2);border-radius:12px}
+#resume {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+#resume h1 {
+  margin-bottom: 20px;
+  color: #fff; /* default dark mode */
+}
+body.light #resume h1 {
+  color: #000; /* light mode */
+}
+
+.resume-frame {
+  width: 90%;
+  max-width: 800px;
+  height: 70vh;
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: 12px;
+  display: block;
+  margin: 20px auto;
+}
+body.light .resume-frame {
+  border: 1px solid rgba(0, 0, 0, .2);
+}
+
+@media (max-width: 600px) {
+  .resume-frame { height: 60vh; }
+}
 </style>
+
 
 
 <!-- =========================

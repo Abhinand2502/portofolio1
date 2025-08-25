@@ -612,9 +612,8 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
 
 
 
-
 <!-- =========================
-     #PROJECTS (FIFA Style Improved - Standardized)
+     #PROJECTS (FIFA Style Improved)
      ========================= -->
 <section id="projects">
   <h1>Projects</h1>
@@ -679,22 +678,16 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
   background: #000;
   color: var(--neon-blue);
 }
+
 /* Section Heading */
 #projects > h1 {
-  margin-bottom: 10px; /* adjust space above first card */
-  font-size: 26px;
-}
-
-.proj-card h1 {
-  font-size: 20px;
-  margin: 2px 0;
+  margin-bottom: 15px; /* space above cards */
+  font-size: 28px;
   font-weight: bold;
   color: var(--neon-blue);
-  letter-spacing: 1px;
 }
 
-
-/* Light mode (system) */
+/* Light mode (system auto) */
 @media (prefers-color-scheme: light) {
   #projects h1 {
     color: #000;
@@ -722,6 +715,7 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
   padding: 20px 10px;
   text-align: center;
 }
+
 /* Project Card (FIFA Theme) */
 .proj-card {
   flex: 0 0 350px;
@@ -738,12 +732,10 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Hover Effect */
 .proj-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 12px 28px rgba(0, 224, 255, 0.5);
 }
-
 
 .proj-card .stars {
   font-size: 22px;
@@ -776,7 +768,6 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
   margin: 15px 0;
 }
 
-.proj-card .stats div { text-align: center; }
 .proj-card .stats span {
   display: block;
   font-size: 12px;
@@ -827,27 +818,20 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
 }
 .nav-btn.prev { left: 10px; }
 .nav-btn.next { right: 10px; }
+
 /* Mobile */
 @media (max-width: 600px) {
   #projects {
-    padding: 40px 15px 30px; /* reduced top padding */
+    padding: 40px 15px 30px;
   }
 
-  @media (max-width: 600px) {
   #projects > h1 {
-    margin-bottom: 5px; /* super close */
+    margin-bottom: 6px; /* really close on mobile */
     font-size: 22px;
-  }
-
-  #projects {
-    padding: 40px 15px 30px; /* reduced top padding */
   }
 }
 
-
-
-
-/* ✅ Light Mode (manual class) */
+/* ✅ Manual Light Mode */
 body.light #projects {
   background: #fff;
   color: #111;

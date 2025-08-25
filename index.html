@@ -680,7 +680,7 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
   color: var(--neon-blue);
 }
 
-.proj-card h2 {
+.proj-card h1 {
   font-size: 20px;
   margin: 2px 0;
   font-weight: bold;
@@ -828,11 +828,13 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
   #projects {
     padding: 70px 15px 40px;
   }
+  @media (max-width: 600px) {
   #projects h1 {
-    margin-bottom: 20px;
-    font-size: 24px;
+    margin-bottom: 10px;  /* reduced from 20px */
+    font-size: 22px;      /* slightly smaller for tighter layout */
   }
 }
+
 
 /* ✅ Light Mode (manual class) */
 body.light #projects {

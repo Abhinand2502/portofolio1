@@ -442,64 +442,67 @@ body.light .progress-bar { background: rgba(0,0,0,.1); }
 
 
 <!-- =========================
-     #projects
+     #projects (FIFA Style)
      ========================= -->
 <section id="projects">
   <h1>Projects</h1>
   <div class="carousel">
     <button class="nav-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
     <div class="track" id="projTrack">
+
+      <!-- Example FIFA Card -->
       <div class="slide">
-        <div class="card"><img src="assets/bg.jpg" alt="AI Chatbot"></div>
-        <h2>AI-Chatbot</h2>
-        <a href="project1.html" class="btn">View Details</a>
+        <div class="proj-card">
+          <div class="stars">★★★★★</div>
+          <img src="assets/bg.jpg" alt="AI Chatbot Logo" class="proj-logo">
+          <h2>AI-Chatbot</h2>
+          <div class="stats">
+            <div><span>ATT</span><b>83</b></div>
+            <div><span>MID</span><b>85</b></div>
+            <div><span>DEF</span><b>83</b></div>
+          </div>
+          <a href="project1.html" class="btn">View Details</a>
+        </div>
       </div>
+
       <div class="slide">
-        <div class="card"><img src="assets/bg.jpg" alt="DetexAI"></div>
-        <h2>DetexAI</h2>
-        <a href="project2.html" class="btn">View Details</a>
+        <div class="proj-card">
+          <div class="stars">★★★★★</div>
+          <img src="assets/bg.jpg" alt="DetexAI Logo" class="proj-logo">
+          <h2>DetexAI</h2>
+          <div class="stats">
+            <div><span>UI</span><b>90</b></div>
+            <div><span>ML</span><b>88</b></div>
+            <div><span>API</span><b>86</b></div>
+          </div>
+          <a href="project2.html" class="btn">View Details</a>
+        </div>
       </div>
-      <div class="slide">
-        <div class="card"><img src="assets/bg.jpg" alt="AI-AssistCart"></div>
-        <h2>AI-AssistCart</h2>
-        <a href="project3.html" class="btn">View Details</a>
-      </div>
-      <div class="slide">
-        <div class="card"><img src="assets/bg.jpg" alt="TicTacToe"></div>
-        <h2>Tic-Tac-Toe</h2>
-        <a href="project4.html" class="btn">View Details</a>
-      </div>
-      <div class="slide">
-        <div class="card"><img src="assets/bg.jpg" alt="ToDo"></div>
-        <h2>To-Do List</h2>
-        <a href="project5.html" class="btn">View Details</a>
-      </div>
-      <div class="slide">
-        <div class="card"><img src="assets/bg.jpg" alt="Portfolio"></div>
-        <h2>Portfolio</h2>
-        <a href="project6.html" class="btn">View Details</a>
-      </div>
+
     </div>
     <button class="nav-btn next"><i class="fa-solid fa-chevron-right"></i></button>
   </div>
 </section>
 
 <style>
-/* PROJECTS */
+/* PROJECTS FIFA STYLE */
 #projects {
-  padding: 70px 20px;
+  padding: 60px 20px;
   text-align: center;
+  background: linear-gradient(180deg,#2e005c,#12002e);
+  color: #fff;
 }
 #projects h1 {
   margin-bottom: 30px;
-  color: var(--accent);
+  color: #00e0ff;
+  letter-spacing: 2px;
 }
 
 .carousel {
   position: relative;
   overflow: hidden;
   width: 100%;
-  max-width: 750px; /* balanced width */
+  max-width: 750px;
   margin: auto;
 }
 
@@ -515,34 +518,75 @@ body.light .progress-bar { background: rgba(0,0,0,.1); }
   text-align: center;
 }
 
-.card {
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 0 25px rgba(0,255,255,.25);
-  max-width: 600px;
+.proj-card {
+  background: linear-gradient(160deg,#1a0042,#330067);
+  border-radius: 20px;
+  padding: 25px 20px;
+  box-shadow: 0 0 25px rgba(0,255,255,.3);
+  max-width: 400px;
   margin: auto;
-  background: rgba(0,0,0,.35);
+  position: relative;
 }
 
-.card img {
-  width: 100%;
-  height: 280px;           /* fixed height */
-  object-fit: cover;       /* crops cleanly */
-  display: block;
-  border-radius: 16px;
+.proj-card .stars {
+  font-size: 22px;
+  color: gold;
+  margin-bottom: 10px;
+  letter-spacing: 3px;
 }
 
-.slide h2 {
-  margin: 12px 0 5px;
+.proj-card .proj-logo {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 0 20px rgba(255,255,255,.2);
+}
+
+.proj-card h2 {
   font-size: 20px;
-  color: var(--accent);
-}
-.slide .btn {
-  display: inline-block;
-  margin-top: 5px;
+  margin: 8px 0;
+  font-weight: bold;
+  color: cyan;
+  letter-spacing: 1px;
 }
 
-/* Futuristic Nav Buttons */
+.proj-card .stats {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin: 15px 0;
+}
+.proj-card .stats div {
+  text-align: center;
+}
+.proj-card .stats span {
+  display: block;
+  font-size: 12px;
+  color: #aaa;
+}
+.proj-card .stats b {
+  font-size: 18px;
+  color: #fff;
+}
+
+.proj-card .btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #00e0ff;
+  color: #000;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.proj-card .btn:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* Nav Buttons */
 .nav-btn {
   position: absolute;
   top: 50%;
@@ -550,8 +594,8 @@ body.light .progress-bar { background: rgba(0,0,0,.1); }
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(0, 255, 255, 0.15);
-  border: 1px solid rgba(0,255,255,.5);
+  background: rgba(0, 224, 255, 0.2);
+  border: 1px solid rgba(0,255,255,.6);
   color: cyan;
   cursor: pointer;
   display: flex;
@@ -559,31 +603,13 @@ body.light .progress-bar { background: rgba(0,0,0,.1); }
   justify-content: center;
   box-shadow: 0 0 14px rgba(0,255,255,.6);
   transition: all .3s ease;
-  backdrop-filter: blur(6px);
-  z-index: 5;
 }
 .nav-btn:hover {
-  background: rgba(0,255,255,.35);
-  box-shadow: 0 0 22px rgba(0,255,255,.85);
+  background: rgba(0,255,255,.4);
+  box-shadow: 0 0 22px rgba(0,255,255,.9);
 }
 .nav-btn.prev { left: 12px; }
 .nav-btn.next { right: 12px; }
-
-/* Responsive */
-@media (max-width: 768px){
-  #projects { padding: 50px 10px; }
-  .card { max-width: 95%; }
-  .card img { height: 220px; }
-  .slide h2 { font-size: 18px; }
-  .nav-btn { width: 36px; height: 36px; font-size: 14px; }
-  .nav-btn.prev { left: 6px; }
-  .nav-btn.next { right: 6px; }
-}
-@media (max-width: 480px){
-  .card img { height: 180px; }
-  .slide h2 { font-size: 16px; }
-  .nav-btn { width: 30px; height: 30px; font-size: 12px; }
-}
 </style>
 
 

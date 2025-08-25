@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI-Chatbot Project</title>
+
+<style>
+  :root{
+    --bg-dark:#0d0d0d;
+    --bg-light:#f9fafb;
+    --card-dark:#1a1a1a;
+    --card-light:#fff;
+    --text-dark:#f9f9f9;
+    --text-light:#111827;
+    --accent:#00bfff;
+    --shadow:0 8px 24px rgba(0,0,0,0.6);
+    --tag-dark:#111111;
+    --tag-light:#e5e7eb;
+    --tag-hover-dark:#222222;
+    --tag-hover-light:#ddd;
+    --feature-dark:#1f1f1f;
+    --feature-light:#f1f1f1;
+  }
+
+  body{
+    margin:0;
+    font-family:"Segoe UI", Tahoma, sans-serif;
+    background: var(--bg-dark) url('assets/black.webp') center/cover no-repeat;
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+  }
+
+  body.light-mode{
+    background: var(--bg-light);
+    color: var(--text-light);
+  }
+
+  /* Dark/Light toggle button */
+  .mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width:25px;
+    height:25px;
+    border-radius:50%;
+    background: var(--accent);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#000;
+    font-size:20px;
+    cursor:pointer;
+    box-shadow:0 4px 10px rgba(0,0,0,0.5);
+    z-index:1001;
+    transition: all 0.3s ease;
+  }
+  .mode-toggle:hover { transform: scale(1.1); }
+
+  .top-header{
+    background: #111;
+    color: var(--text-dark);
+    padding:14px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+  }
+  body.light-mode .top-header { background:#eee; color:var(--text-light); }
+
+  .top-header a{
+    color: inherit;
+    text-decoration:none;
+    font-weight:600;
+    font-size:1rem;
+  }
+  .top-header a:hover{ text-decoration:underline; }
+
+  .wrapper{
+    display:flex;
+    justify-content:center;
+    padding:30px 15px;
+  }
+
+  .project-card{
+    background: var(--card-dark);
+    border-radius:16px;
+    box-shadow: var(--shadow);
+    max-width:1100px;
+    width:100%;
+    overflow:hidden;
+    transition: all 0.3s ease;
+  }
+  body.light-mode .project-card { background: var(--card-light); }
+
+  .project-header{
+    position:relative;
+    overflow:hidden;
+    background:#000;
+    transition: all 0.3s ease;
+  }
+  body.light-mode .project-header{ background:#ccc; }
+
+  .project-slider{
+    position:relative;
+    width:100%;
+    height:450px;
+    background:#000;
+    transition: all 0.3s ease;
+  }
+  body.light-mode .project-slider{ background:#ddd; }
+
+  .project-slider img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    opacity:0;
+    transform:scale(1.02);
+    transition: opacity 480ms ease, transform 650ms ease;
+  }
+  .project-slider img.active{
+    opacity:1;
+    transform:scale(1);
+  }
+  .project-slider img.out{
+    opacity:0 !important;
+    transform:scale(0.92) !important;
+  }
+
+  .status-badge{
+    position:absolute;
+    top:14px; right:14px;
+    background:#16a34a; color:#fff;
+    font-weight:600; font-size:.9rem;
+    padding:6px 14px; border-radius:20px;
+    z-index:2;
+  }
+  .project-header h2{
+    position:absolute; left:20px; bottom:20px;
+    color:#fff; z-index:2;
+    font-size:1.8rem; font-weight:700;
+    text-shadow:0 3px 6px rgba(0,0,0,.8);
+    margin:0;
+    transition: all 0.3s ease;
+  }
+  body.light-mode .project-header h2{ color:#111; text-shadow:none; }
+
+  .project-content{ padding:20px; transition: all 0.3s ease; }
+  .project-meta{
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+    font-size:0.99rem;
+    font-weight:500;
+    margin-bottom:12px;
+    color:var(--text-dark);
+    transition: all 0.3s ease;
+  }
+  body.light-mode .project-meta{ color: var(--text-light); }
+
+  .project-description{
+    background: var(--card-dark);
+    color: var(--text-dark);
+    font-size:0.95rem;
+    line-height:1.6;
+    margin:16px 0;
+    padding:16px 20px;
+    border-radius:8px;
+    border:1px solid #222;
+    text-align:justify;
+    transition: all 0.3s ease;
+  }
+  body.light-mode .project-description{
+    background: var(--card-light);
+    color: var(--text-light);
+    border:1px solid #ccc;
+  }
+
+  .tech-stack{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));
+    gap:12px;
+    margin-bottom:16px;
+  }
+  .tech-tag{
+    background: var(--tag-dark);
+    color:#fff;
+    font-weight:600;
+    font-size:0.85rem;
+    padding:8px 12px;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    border:1px solid #333;
+    transition: all 0.25s ease;
+  }
+  .tech-tag img{
+    width:18px;height:18px;
+    object-fit:contain;
+    background:#222;
+    border-radius:4px;
+    padding:2px;
+  }
+  .tech-tag:hover{
+    transform: translateY(-2px) scale(1.05);
+    background: var(--tag-hover-dark);
+    box-shadow:0 4px 12px rgba(0,0,0,0.5);
+  }
+  body.light-mode .tech-tag{
+    background: var(--tag-light);
+    color: var(--text-light);
+    border:1px solid #ccc;
+  }
+  body.light-mode .tech-tag:hover{ background: var(--tag-hover-light); }
+
+  .features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+    gap:16px;
+    margin-bottom:24px;
+  }
+  .feature-item{
+    display:flex;
+    align-items:center;
+    padding:10px 14px;
+    background: var(--feature-dark);
+    border-radius:10px;
+    color: var(--text-dark);
+    font-size:0.95rem;
+    font-weight:500;
+    transition: all 0.3s ease;
+    border:1px solid #333;
+  }
+  .feature-item::before{
+    content:"★";
+    color:#facc15;
+    font-size:1rem;
+    margin-right:10px;
+  }
+  .feature-item:hover{
+    transform: translateY(-3px);
+    box-shadow:0 4px 12px rgba(0,0,0,0.6);
+    background:#222;
+  }
+  body.light-mode .feature-item{
+    background: var(--feature-light);
+    color: var(--text-light);
+    border:1px solid #ccc;
+  }
+  body.light-mode .feature-item:hover{ background:#eee; }
+
+  .action-btn{
+    display:inline-block;
+    background: var(--accent);
+    color:#000;
+    font-weight:600;
+    padding:10px 22px;
+    border-radius:8px;
+    text-decoration:none;
+    font-size:0.9rem;
+    transition: all 0.3s ease;
+    border:1px solid var(--accent);
+  }
+  .action-btn:hover{
+    transform: translateY(-2px) scale(1.05);
+    background:#00d4ff;
+    box-shadow:0 4px 12px rgba(0,0,0,0.6);
+  }
+
+  @media(max-width:768px){
+    .project-slider{ height:260px; }
+    .project-header h2{ font-size:1.3rem; }
+    .project-meta{ flex-direction:column; gap:6px; }
+    .project-description{ font-size:1.05rem; }
+  }
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Dark/Light Toggle -->
+<div class="mode-toggle" id="modeToggle"><i class="fas fa-sun"></i></div>
+
+<!-- Top Header -->
+<div class="top-header">
+  <a href="index.html" class="home-link"><i class="fas fa-home"></i> Home</a>
+  <span>AI- Chatbot Project</span>
+</div>
+
+<div class="wrapper">
+  <div class="project-card">
+    <!-- Slider header -->
+    <div class="project-header">
+      <div class="project-slider" id="slider">
+        <img src="images/chat1 (1).png" alt="AI AssistCart Screenshot 1" class="active">
+        <img src="images/chat1 (2).png" alt="AI AssistCart Screenshot 2">
+      </div>
+      <div class="status-badge">Completed</div>
+      <h2>AI-Chatbot - Smart Chatbot Platform</h2>
+    </div>
+
+    <!-- Content -->
+    <div class="project-content">
+      <div class="project-meta">
+        <span>🤖 AI-CHATBOT</span>
+      </div>
+
+      <p class="project-description">
+       An AI-powered bilingual chatbot built with Django, designed to communicate in both English and Malayalam. It uses a local dataset with fuzzy matching for quick responses, regex-based name recognition for personalization, and seamlessly integrates with Cohere’s AI model to handle complex queries with natural and intelligent replies.
+      </p>
+
+      <div class="tech-stack">
+        <span class="tech-tag"><img src="images/python.png" alt="Python Logo">Python</span>
+        <span class="tech-tag"><img src="images/django.png" alt="Django Logo">Django</span>
+        <span class="tech-tag"><img src="images/html.png" alt="HTML Logo">HTML</span>
+        <span class="tech-tag"><img src="images/css.png" alt="CSS Logo">CSS</span>
+        <span class="tech-tag"><img src="images/java.png" alt="JS Logo">JavaScript</span>
+        <span class="tech-tag"><img src="images/COHERE.png" alt="Cohere Logo">Cohere API</span>
+      </div>
+
+      <div class="features">
+        <div class="feature-item">Bilingual Chat (EN + ML)</div>
+        <div class="feature-item">Personalized Interaction</div>
+        <div class="feature-item">Smart Response System</div>
+        <div class="feature-item">Cohere API Integration</div>
+      </div>
+
+      <a href="https://github.com/Abhinand2502/AiChatbot" target="_blank" class="action-btn">💻 View Code</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Slider Script
+  const slider = document.getElementById('slider');
+  const slides = Array.from(slider.querySelectorAll('img'));
+  let current = 0;
+  const SHOW_TIME = 2600, OUT_TIME = 550, BLACK_GAP = 200, CYCLE_TIME = SHOW_TIME + OUT_TIME + BLACK_GAP;
+
+  function step(){
+    const curr = slides[current];
+    const nextIndex = (current + 1) % slides.length;
+    const next = slides[nextIndex];
+    curr.classList.add('out'); curr.classList.remove('active');
+    setTimeout(()=>{
+      slides.forEach((img,i)=>{ if(i!==nextIndex){ img.classList.remove('active'); img.classList.remove('out'); } });
+      next.classList.add('active'); current = nextIndex;
+    }, OUT_TIME + BLACK_GAP);
+  }
+  slides.forEach((img,i)=>img.classList.toggle('active', i===0));
+  setInterval(step, CYCLE_TIME);
+
+  // Dark/Light mode toggle
+  const modeToggle = document.getElementById('modeToggle');
+  modeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    const icon = modeToggle.querySelector('i');
+    icon.classList.toggle('fa-sun');
+    icon.classList.toggle('fa-moon');
+  });
+</script>
+
+</body>
+</html>

@@ -255,13 +255,19 @@ footer{padding:10px;text-align:center;font-size:.9rem;color:var(--muted)}
             <span class="player-role">Developer</span>
           </div>
 
+         
+          <div class="stat"><span>DEG</span><b>B.Tech CSE</b></div>
+
           <div class="stats-grid">
             <div class="stat"><span>AGE</span><b>22</b></div>
             <div class="stat"><span>DOB</span><b>25/02/03</b></div>
             <div class="stat"><span>LOC</span><b>Kerala</b></div>
-            <div class="stat"><span>DEG</span><b>B.Tech CSE</b></div>
             <div class="stat"><span>STATUS</span><b>Student</b></div>
             <div class="stat"><span>EXP</span><b>Fresher</b></div>
+            <div class="stat">
+              <span>COUNTRY</span>
+              <img src="https://flagcdn.com/w20/in.png" alt="India" class="flag">
+            </div>
           </div>
         </div>
       </div>
@@ -324,13 +330,13 @@ body.light #about h1 { color:#000; }
   border-radius: 22px;
   padding: 25px;
   box-shadow: 0 8px 20px rgba(0,0,0,.5);
-  border: 2px solid gold;
+  border: 2px solid #00e0ff;
   text-align: center;
   transition: transform .3s ease;
 }
 body.light .fifa-card {
   background: linear-gradient(180deg, #fff, #eaeaea);
-  border: 2px solid #ffd700;
+  border: 2px solid #00e0ff;
 }
 .fifa-card:hover { transform: translateY(-8px); }
 
@@ -342,13 +348,13 @@ body.light .fifa-card {
   width: 120px; height: 120px;
   border-radius: 50%;
   object-fit: contain;  /* ✅ Fix zoom issue */
-  border: 4px solid gold;
+  border: 4px solid #00e0ff;
   background: #fff;
   margin-bottom: 10px;
 }
 .player-name {
   font-size: 20px;
-  color: gold;
+  color: #00e0ff;
   margin: 5px 0;
 }
 .player-role {
@@ -379,12 +385,12 @@ body.light .player-role { color:#444; }
 }
 .stat b {
   font-size: 15px;
-  color: gold;
+  color: #00e0ff;
 }
 
 /* Education */
-.edu-item { margin-bottom:20px;text-align:left; }
-.edu-item h3 { font-size:16px;color:gold;margin-bottom:4px; }
+.edu-item { margin-bottom:px;text-align:left; }
+.edu-item h3 { font-size:16px;color: #00e0ff;margin-bottom:4px; }
 .edu-item p { font-size:13px;color:#ccc;margin-bottom:6px; }
 body.light .edu-item p { color:#444; }
 
@@ -396,7 +402,7 @@ body.light .edu-item p { color:#444; }
 body.light .progress-bar { background: rgba(0,0,0,.1); }
 .progress-bar span {
   display:block;height:100%;
-  background:linear-gradient(90deg,gold,#ffb400);
+  background:linear-gradient(90deg, #00e0ff, #00e0ff);
   font-size:11px;font-weight:600;line-height:18px;
   padding-left:8px;color:#0f172a;
 }
@@ -415,19 +421,22 @@ body.light .progress-bar { background: rgba(0,0,0,.1); }
   transition: all 0.3s ease;
 }
 .swiper-pagination-bullet-active {
-  background: gold;
+  background: #00e0ff;
   opacity: 1;
   transform: scale(1.3);
 }
+
 
 /* Mobile */
 @media(max-width:768px){
   .fifa-card { max-width: 95%; }
   .stats-grid { grid-template-columns: repeat(2,1fr); }
 }
+
 </style>
 
 <script>
+  
   const aboutSwiper = new Swiper('.swiper-container', {
     loop: false,
     spaceBetween: 20,
@@ -645,7 +654,7 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
             <div><span>MID</span><b>85</b></div>
             <div><span>DEF</span><b>83</b></div>
           </div>
-          <a href="project1.html" class="btn">View Details</a>
+          <a href="aichatbot.html" class="btn">View Details</a>
         </div>
       </div>
 

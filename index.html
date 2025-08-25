@@ -674,7 +674,7 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
 /* Section Base */
 /* Section Base */
 #projects {
-  padding: 40px 20px 60px;  /* was 100px top → reduced */
+  padding: 100px 20px 60px;   /* keep top padding big */
   text-align: center;
   background: #000;
   color: var(--neon-blue);
@@ -682,9 +682,18 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
 
 /* Section Heading */
 #projects > h1 {
-  margin-bottom: 15px;   /* small gap above cards */
+  margin-bottom: 10px;   /* reduce gap to cards (was bigger before) */
   font-size: 26px;
 }
+
+/* Mobile View - even closer */
+@media (max-width: 600px) {
+  #projects > h1 {
+    margin-bottom: 5px;  /* almost no gap */
+    font-size: 22px;
+  }
+}
+
 
 /* Light mode (system auto) */
 @media (prefers-color-scheme: light) {
@@ -824,10 +833,6 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
     padding: 30px 15px 30px;  /* tighter top padding */
   }
 
-  #projects > h1 {
-    margin-bottom: 8px;  /* very close to the first project card */
-    font-size: 22px;
-  }
 }
 
 /* ✅ Manual Light Mode */

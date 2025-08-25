@@ -41,7 +41,7 @@ nav{display:flex;gap:14px}
 nav a{color:inherit;text-decoration:none;font-size:.95rem;padding:6px 10px;border-radius:8px;transition:.2s}
 nav a:hover{background:rgba(255,255,255,.08)}
 nav a.active{color:var(--accent);font-weight:600}
-#themeBtn{background:none;border:0;cursor:pointer;color:inherit;font-size:1.2rem}
+#themeBtn{background:none;border:0;cursor:pointer;color:inherit;font-size:1.8rem}
 
 /* ✅ Desktop: center nav */
 @media (min-width: 769px) {
@@ -238,77 +238,69 @@ footer{padding:10px;text-align:center;font-size:.9rem;color:var(--muted)}
 
 
 <!-- =========================
-     #ABOUT + EDUCATION (FIFA Style)
+     #ABOUT + EDUCATION (FIFA Style - Centered with Dots)
      ========================= -->
 <section id="about">
   <h1>About Me</h1>
 
-  <div class="swiper-container">
-    <div class="swiper-wrapper">
+  <div class="cards-container">
 
-      <!-- ABOUT CARD (FIFA STYLE) -->
-      <div class="swiper-slide">
-        <div class="fifa-card">
-          <div class="card-top">
-            <img src="assets/WhatsApp Image 2025-02-24 at 17.59.03_40ff22d3.jpg" alt="Profile">
-            <h2 class="player-name">Abhinand Babu</h2>
-            <span class="player-role">Developer</span>
-          </div>
-
-         
-          <div class="stat"><span>DEG</span><b>B.Tech CSE</b></div>
-
-          <div class="stats-grid">
-            <div class="stat"><span>AGE</span><b>22</b></div>
-            <div class="stat"><span>DOB</span><b>25/02/03</b></div>
-            <div class="stat"><span>LOC</span><b>Kerala</b></div>
-            <div class="stat"><span>STATUS</span><b>Student</b></div>
-            <div class="stat"><span>EXP</span><b>Fresher</b></div>
-            <div class="stat">
-              <span>COUNTRY</span>
-              <img src="https://flagcdn.com/w20/in.png" alt="India" class="flag">
-            </div>
-          </div>
-        </div>
+    <!-- ABOUT CARD -->
+    <div class="fifa-card active">
+      <div class="card-top">
+        <img src="assets/WhatsApp Image 2025-02-24 at 17.59.03_40ff22d3.jpg" alt="Profile">
+        <h2 class="player-name">Abhinand Babu</h2>
+        <span class="player-role">Developer</span>
       </div>
 
-      <!-- EDUCATION CARD -->
-      <div class="swiper-slide">
-        <div class="fifa-card">
-          <div class="card-top alt">
-            <h2 class="player-name">Education</h2>
-            <span class="player-role">Academic Journey</span>
-          </div>
+      <div class="stat"><span>DEG</span><b>B.Tech CSE</b></div>
 
-          <div class="edu-item">
-            <h3>B.Tech in CSE</h3>
-            <p>UCE, Thodupuzha (2021–2025)</p>
-            <div class="progress-bar"><span style="width:70%">GPA: 6.99</span></div>
-          </div>
-
-          <div class="edu-item">
-            <h3>Higher Secondary</h3>
-            <p>St. Sebastian's HSS, Vazhithala (2019–2021)</p>
-            <div class="progress-bar"><span style="width:94%">94%</span></div>
-          </div>
-
-          <div class="edu-item">
-            <h3>Secondary</h3>
-            <p>Bappuji Public School, Vazhithala (2018–2019)</p>
-            <div class="progress-bar"><span style="width:80%">80%</span></div>
-          </div>
+      <div class="stats-grid">
+        <div class="stat"><span>AGE</span><b>22</b></div>
+        <div class="stat"><span>DOB</span><b>25/02/03</b></div>
+        <div class="stat"><span>LOC</span><b>Kerala</b></div>
+        <div class="stat"><span>STATUS</span><b>Student</b></div>
+        <div class="stat"><span>EXP</span><b>Fresher</b></div>
+        <div class="stat">
+          <span>COUNTRY</span>
+          <img src="https://flagcdn.com/w20/in.png" alt="India" class="flag">
         </div>
       </div>
-
     </div>
-    <!-- ✅ Pagination Dots -->
-    <div class="swiper-pagination"></div>
+
+    <!-- EDUCATION CARD -->
+    <div class="fifa-card">
+      <div class="card-top alt">
+        <h2 class="player-name">Education</h2>
+        <span class="player-role">Academic Journey</span>
+      </div>
+
+      <div class="edu-item">
+        <h3>B.Tech in CSE</h3>
+        <p>UCE, Thodupuzha (2021–2025)</p>
+        <div class="progress-bar"><span style="width:70%">GPA: 6.99</span></div>
+      </div>
+
+      <div class="edu-item">
+        <h3>Higher Secondary</h3>
+        <p>St. Sebastian's HSS, Vazhithala (2019–2021)</p>
+        <div class="progress-bar"><span style="width:94%">94%</span></div>
+      </div>
+
+      <div class="edu-item">
+        <h3>Secondary</h3>
+        <p>Bappuji Public School, Vazhithala (2018–2019)</p>
+        <div class="progress-bar"><span style="width:80%">80%</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dots Pagination -->
+  <div class="dots">
+    <span class="dot active" onclick="showCard(0)"></span>
+    <span class="dot" onclick="showCard(1)"></span>
   </div>
 </section>
-
-<!-- SwiperJS CDN -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <style>
 #about {
@@ -316,14 +308,23 @@ footer{padding:10px;text-align:center;font-size:.9rem;color:var(--muted)}
   text-align: center;
 }
 #about h1 {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 body:not(.light) #about h1 { color:#fff; }
 body.light #about h1 { color:#000; }
 
-/* FIFA Card Style */
+/* Cards Container - Centered */
+.cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+/* FIFA Card */
 .fifa-card {
-  width: 100%;
+  flex: 0 0 350px;
   max-width: 380px;
   background: linear-gradient(180deg, #1e293b, #0f172a);
   backdrop-filter: blur(12px);
@@ -332,122 +333,77 @@ body.light #about h1 { color:#000; }
   box-shadow: 0 8px 20px rgba(0,0,0,.5);
   border: 2px solid #00e0ff;
   text-align: center;
-  transition: transform .3s ease;
+  transition: transform 0.3s ease, opacity 0.4s ease;
+  opacity: 0.4;
 }
-body.light .fifa-card {
-  background: linear-gradient(180deg, #fff, #eaeaea);
-  border: 2px solid #00e0ff;
+.fifa-card.active {
+  transform: translateY(-5px);
+  opacity: 1;
 }
-.fifa-card:hover { transform: translateY(-8px); }
+body.light .fifa-card { background: linear-gradient(180deg, #fff, #eaeaea); }
 
-/* Top Section */
-.card-top {
-  margin-bottom: 20px;
-}
+/* Card Top */
+.card-top { margin-bottom: 20px; }
 .card-top img {
   width: 120px; height: 120px;
   border-radius: 50%;
-  object-fit: contain;  /* ✅ Fix zoom issue */
+  object-fit: contain;
   border: 4px solid #00e0ff;
   background: #fff;
   margin-bottom: 10px;
 }
-.player-name {
-  font-size: 20px;
-  color: #00e0ff;
-  margin: 5px 0;
-}
-.player-role {
-  font-size: 14px;
-  color: #ccc;
-}
+.player-name { font-size: 20px; color: #00e0ff; margin:5px 0; }
+.player-role { font-size: 14px; color: #ccc; }
 body.light .player-role { color:#444; }
 
 /* Stats Grid */
 .stats-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  margin-top: 10px;
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 14px; margin-top: 10px;
 }
-.stat {
-  background: rgba(255,255,255,0.05);
-  border-radius: 10px;
-  padding: 10px;
-  text-align: center;
-  font-size: 13px;
-  color: #ccc;
-}
-.stat span {
-  display:block;
-  font-size: 11px;
-  opacity: 0.7;
-}
-.stat b {
-  font-size: 15px;
-  color: #00e0ff;
-}
+.stat { background: rgba(255,255,255,0.05); border-radius:10px; padding:10px; font-size:13px; color:#ccc; text-align:center;}
+.stat span { display:block; font-size:11px; opacity:0.7; }
+.stat b { font-size:15px; color:#00e0ff; }
 
 /* Education */
-.edu-item { margin-bottom:px;text-align:left; }
-.edu-item h3 { font-size:16px;color: #00e0ff;margin-bottom:4px; }
+.edu-item { margin-bottom:15px; text-align:left; }
+.edu-item h3 { font-size:16px;color:#00e0ff;margin-bottom:4px; }
 .edu-item p { font-size:13px;color:#ccc;margin-bottom:6px; }
 body.light .edu-item p { color:#444; }
-
-.progress-bar {
-  background: rgba(255,255,255,.1);
-  border-radius: 20px;
-  height: 18px;overflow:hidden;
-}
+.progress-bar { background: rgba(255,255,255,.1); border-radius:20px; height:18px; overflow:hidden; }
 body.light .progress-bar { background: rgba(0,0,0,.1); }
 .progress-bar span {
   display:block;height:100%;
-  background:linear-gradient(90deg, #00e0ff, #00e0ff);
-  font-size:11px;font-weight:600;line-height:18px;
-  padding-left:8px;color:#0f172a;
+  background:linear-gradient(90deg,#00e0ff,#00e0ff);
+  font-size:11px;font-weight:600;line-height:18px;padding-left:8px;color:#0f172a;
 }
 
-/* Swiper Dots */
-.swiper-container { width:100%; max-width:1100px; margin:0 auto; }
-.swiper-slide { display:flex; justify-content:center; align-items:center; padding:10px; }
-
-.swiper-pagination { margin-top: 15px; position: relative; }
-.swiper-pagination-bullet {
-  width: 10px;height: 10px;
-  background: #999;
-  opacity: 0.6;
-  margin: 0 5px !important;
-  border-radius: 50%;
-  transition: all 0.3s ease;
+/* Dots Pagination */
+.dots { text-align:center; margin-top:25px; }
+.dot {
+  display:inline-block; width:12px; height:12px; margin:0 6px;
+  background:#999; border-radius:50%; cursor:pointer; transition: all 0.3s ease;
 }
-.swiper-pagination-bullet-active {
-  background: #00e0ff;
-  opacity: 1;
-  transform: scale(1.3);
-}
-
+.dot.active { background:#00e0ff; transform:scale(1.3); }
 
 /* Mobile */
 @media(max-width:768px){
-  .fifa-card { max-width: 95%; }
+  .cards-container { flex-direction: column; align-items:center; }
   .stats-grid { grid-template-columns: repeat(2,1fr); }
 }
-
 </style>
 
 <script>
-  
-  const aboutSwiper = new Swiper('.swiper-container', {
-    loop: false,
-    spaceBetween: 20,
-    slidesPerView: 1,
-    centeredSlides: true,
-    pagination: { el: '.swiper-pagination', clickable: true },
+const cards = document.querySelectorAll('.fifa-card');
+const dots = document.querySelectorAll('.dot');
+
+function showCard(index){
+  cards.forEach((card,i)=>{
+    card.classList.toggle('active', i===index);
+    dots[i].classList.toggle('active', i===index);
   });
+}
 </script>
-
-
-
 
 
 

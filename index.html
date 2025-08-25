@@ -521,11 +521,30 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
 #skills .neo-django{
   filter: brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(3200%) hue-rotate(180deg) brightness(102%) contrast(98%) drop-shadow(0 0 6px rgba(0,198,255,.8));
 }
+
+/* ===== RESPONSIVE TWEAKS ===== */
+
+/* Tablets */
+@media(max-width:900px){
+  #skills .neo-title{font-size:1.8rem;}
+  #skills .neo-grid{gap:16px;}
+  #skills .neo-ring{width:100px;height:100px;}
+  #skills .neo-chip h3{font-size:.9rem;}
+}
+
+/* Mobiles */
 @media(max-width:520px){
-  #skills .neo-grid{gap:14px;}
-  #skills .neo-ring{width:96px;height:96px;}
+  #skills{padding:36px 12px;}
+  #skills .neo-title{font-size:1.6rem;letter-spacing:1px;}
+  #skills .neo-grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px;}
+  #skills .neo-ring{width:90px;height:90px;}
+  #skills .neo-ring .neo-num{font-size:1.2rem;}
+  #skills .neo-icon img,#skills .neo-icon{width:26px;height:26px;font-size:1.6rem;}
+  #skills .neo-chip{padding:12px 10px;}
+  #skills .neo-chip h3{font-size:.8rem;}
 }
 </style>
+
 
 <script>
 (() => {

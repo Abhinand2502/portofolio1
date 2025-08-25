@@ -674,26 +674,19 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
 /* Section Base */
 /* Section Base */
 #projects {
-  padding: 100px 20px 60px;   /* keep top padding big */
+  padding: 40px 20px 60px;  /* was 100px top → reduced */
   text-align: center;
   background: #000;
   color: var(--neon-blue);
 }
 
 /* Section Heading */
-#projects > h1 {
-  margin-bottom: 10px;   /* reduce gap to cards (was bigger before) */
-  font-size: 26px;
+#projects h1 {
+  margin-top: 100px;       /* pushes title down */
+  margin-bottom: 40px;    /* keeps space before cards */
+  font-size: 2rem;
+  color: #00e0ff;
 }
-
-/* Mobile View - even closer */
-@media (max-width: 600px) {
-  #projects > h1 {
-    margin-bottom: 5px;  /* almost no gap */
-    font-size: 22px;
-  }
-}
-
 
 /* Light mode (system auto) */
 @media (prefers-color-scheme: light) {
@@ -727,7 +720,7 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
 /* Project Card (FIFA Theme) */
 .proj-card {
   flex: 0 0 350px;
-  max-width: 380px;
+  max-width: 400px;
   background: linear-gradient(180deg, #1e293b, #0f172a);
   backdrop-filter: blur(12px);
   border-radius: 22px;
@@ -832,6 +825,12 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
   #projects {
     padding: 30px 15px 30px;  /* tighter top padding */
   }
+
+  @media (max-width: 600px) {
+  #projects h1 {
+    margin-top: 60px;   /* extra push down on small screens */
+  }
+}
 
 }
 

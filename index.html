@@ -851,6 +851,49 @@ body.light .proj-card .stats b {
 }
 </style>
 
+<!-- =========================
+     #resume
+     ========================= -->
+<section id="resume">
+  <h1>My Resume</h1>
+  <iframe class="resume-frame" src="assets/Resume.pdf" title="Resume PDF"></iframe>
+  <a href="assets/Resume.pdf" download class="btn">
+    <i class="fa-solid fa-download"></i> Download Resume
+  </a>
+</section>
+
+<style>
+/* RESUME */
+#resume {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+#resume h1 {
+  margin-bottom: 20px;
+  color: #fff; /* default dark mode */
+}
+body.light #resume h1 {
+  color: #000; /* light mode */
+}
+
+.resume-frame {
+  width: 90%;
+  max-width: 800px;
+  height: 70vh;
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: 12px;
+  display: block;
+  margin: 20px auto;
+}
+body.light .resume-frame {
+  border: 1px solid rgba(0, 0, 0, .2);
+}
+
+@media (max-width: 600px) {
+  .resume-frame { height: 60vh; }
+}
+</style>
 
 
 
@@ -860,18 +903,13 @@ body.light .proj-card .stats b {
 <section id="resume">
   <h1>My Resume</h1>
 
-  <div class="resume-container">
-    <!-- Preview Image -->
-    <div class="resume-preview-wrapper">
-      <img class="resume-preview" src="assets/black.webp" alt="Resume Preview">
-      <div class="preview-overlay">PREVIEW</div>
-    </div>
+  <!-- PDF preview image -->
+  <a href="assets/Resume.pdf" target="_blank">
+    <img class="resume-preview" src="assets/Resume-Preview.png" alt="Resume Preview">
+    <div class="open-overlay">OPEN</div>
+  </a>
 
-    <!-- Hidden PDF iframe -->
-    <iframe class="resume-frame" src="assets/Resume.pdf" title="Resume PDF"></iframe>
-  </div>
-
-  <!-- Download Button -->
+  <!-- Optional Download Button -->
   <a href="assets/Resume.pdf" download class="btn">
     <i class="fa-solid fa-download"></i> Download Resume
   </a>
@@ -882,52 +920,44 @@ body.light .proj-card .stats b {
   text-align: center;
   padding: 60px 20px;
 }
-#resume h1 { margin-bottom: 20px; color: #fff; }
-body.light #resume h1 { color: #000; }
 
-.resume-container {
-  position: relative;
-  width: 90%;
-  max-width: 500px;
-  margin: 20px auto;
+#resume h1 {
+  margin-bottom: 20px;
+  color: #fff; /* default dark mode */
+}
+body.light #resume h1 {
+  color: #000; /* light mode */
 }
 
-/* Preview Image */
-.resume-preview-wrapper {
-  position: relative;
-  cursor: pointer;
-}
+/* Resume Image */
 .resume-preview {
-  width: 100%;
+  width: 90%;
+  max-width: 800px;
   border-radius: 12px;
   display: block;
+  margin: 20px auto;
+  position: relative;
+  cursor: pointer;
   transition: transform 0.3s ease;
 }
-.resume-preview-wrapper:hover .resume-preview {
+
+.resume-preview:hover {
   transform: scale(1.02);
 }
 
-/* Overlay */
-.preview-overlay {
+/* OPEN Overlay */
+.open-overlay {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 2rem;
-  font-weight: bold;
   color: #00e0ff;
-  pointer-events: none;
+  font-weight: bold;
+  pointer-events: none; /* click passes to image */
 }
 
-/* Hidden PDF iframe */
-.resume-frame {
-  width: 100%;
-  height: 50vh;
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 12px;
-  display: none; /* hidden initially */
-}
-body.light .resume-frame { border: 1px solid rgba(0,0,0,0.2); }
+a { position: relative; display: inline-block; }
 
 /* Button */
 .btn {
@@ -941,25 +971,16 @@ body.light .resume-frame { border: 1px solid rgba(0,0,0,0.2); }
   font-weight: bold;
   transition: background 0.3s ease;
 }
+
 .btn:hover { background: #00c0ff; }
+
 body.light .btn { color: #fff; }
 
 @media (max-width: 600px) {
-  .resume-frame { height: 60vh; }
-  .preview-overlay { font-size: 1.5rem; }
+  .resume-preview { height: auto; }
+  .open-overlay { font-size: 1.5rem; }
 }
 </style>
-
-<script>
-// Click preview to show PDF
-const previewWrapper = document.querySelector('.resume-preview-wrapper');
-const iframe = document.querySelector('.resume-frame');
-
-previewWrapper.addEventListener('click', () => {
-  previewWrapper.style.display = 'none'; // hide image
-  iframe.style.display = 'block';        // show PDF
-});
-</script>
 
 
 

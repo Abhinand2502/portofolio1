@@ -77,8 +77,13 @@ nav a.active{color:var(--accent);font-weight:600}
   nav.show{transform:translateY(0)}
   .menu-toggle{display:block}
 }
-body.light-mode nav a {
-  color: white;
+/* Force mobile nav links to white in light mode */
+body.light nav {
+  color: #fff;
+}
+
+body.light nav a {
+  color: #fff;
 }
 
 

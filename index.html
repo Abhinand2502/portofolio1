@@ -332,7 +332,7 @@ const aboutSwiper = new Swiper('.about-swiper', {
 
 <style>
 #about { padding: 70px 20px; text-align: center; }
-#about h1 { margin-bottom: 40px; font-size: 2rem; color:#00e0ff; }
+#about h1 { margin-bottom: 40px; font-size: 2rem; color:#ffffff; }
 
 /* Swiper */
 .swiper { width: 100%; padding-bottom: 50px; }
@@ -387,6 +387,10 @@ const aboutSwiper = new Swiper('.about-swiper', {
 .swiper-pagination-bullet-active { opacity:1; }
 
 /* Dots only on mobile */
+body.light #about h1 {
+  color: #000000; /* light mode */
+}
+
 body.light .fifa-card {
   background: linear-gradient(180deg, #fff, #eaeaea);
   border: 2px solid #00e0ff;
@@ -434,7 +438,7 @@ body.light .progress-bar span {
      #skills — Futuristic Blue HUD with Logos
      ========================= -->
 <section id="skills">
-  <h1 class="neo-title">My Skills</h1>
+  <h1>My Skills</h1>
 
   <div class="neo-grid">
     <!-- Python -->
@@ -753,7 +757,7 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
 #projects h1 {
   margin: 0;              /* reset default margins */
   font-size: 2rem;
-  color: #00e0ff;
+  color: #ffffff;
 }
 
 /* ✅ Control gap ONLY here */

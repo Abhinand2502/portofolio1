@@ -15,6 +15,9 @@
     --page-bg: #f9fafb;
     --text-color: #111111;
     --shadow: 0 6px 20px rgba(0,0,0,.08);
+
+    --border-color: #e5e7eb;
+    --feature-bg: #f9fafb;
   }
 
   [data-theme="dark"] {
@@ -23,6 +26,9 @@
     --page-bg: #000000;
     --text-color: #f9fafb;
     --shadow: 0 6px 20px rgba(0,0,0,.6);
+
+    --border-color: #333;
+    --feature-bg: #222;
   }
 
   /* Base */
@@ -155,38 +161,39 @@
   }
 
   /* Content */
-  .project-content { padding: 20px; }
+  .project-content { 
+    padding: 24px; 
+  }
   .project-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     font-size: 0.99rem;
     font-weight: 500;
-    margin-bottom: 12px;
-    width: 100%;
-    flex-wrap: nowrap;
+    margin-bottom: 16px;
+    text-align:center;
   }
+
+  /* Project description */
   .project-description {
     font-size: 0.95rem;
     line-height: 1.6;
-    margin: 16px 0;
-    width: 100%;
-    padding: 16px 20px;
-    background: var(--card-bg);
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
+    margin: 20px 0;
+    padding: 18px 20px;
+    background: var(--feature-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
     text-align: justify;
+    color: var(--text-color);
     transition: background 0.3s, color 0.3s;
   }
 
   /* Tech stack */
   .tech-stack {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 12px;
+    margin: 22px 0;
   }
   .tech-tag {
-    background: #000;
+    background: var(--header-bg);
     color: #fff;
     font-weight: 600;
     font-size: 0.8rem;
@@ -202,8 +209,12 @@
   }
   .tech-tag:hover {
     transform: translateY(-2px) scale(1.08);
-    background: #111;
+    background: #222;
     box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  }
+  [data-theme="dark"] .tech-tag {
+    background: #222;
+    border: 1px solid #444;
   }
 
   /* Features */
@@ -211,17 +222,18 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 16px;
-    margin-bottom: 24px;
+    margin: 22px 0;
   }
   .feature-item {
     display: flex; align-items: center;
-    padding: 10px 14px;
-    background: #f9fafb;
-    border: 1px solid #e5e7eb;
+    padding: 12px 14px;
+    background: var(--feature-bg);
+    border: 1px solid var(--border-color);
     border-radius: 10px;
     font-size: 0.95rem;
     font-weight: 500;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    color: var(--text-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
   }
   .feature-item::before {
     content: "★";
@@ -231,14 +243,14 @@
   }
   .feature-item:hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    background: var(--card-bg);
   }
 
   /* Button */
   .action-btn {
     display: inline-block;
-    background: #000;
+    background: var(--header-bg);
     color: #fff;
     font-weight: 600;
     padding: 10px 22px;
@@ -246,19 +258,22 @@
     text-decoration: none;
     font-size: 0.9rem;
     transition: transform 0.25s ease, box-shadow 0.3s ease, background 0.3s ease;
-    border: 1px solid #111;
+    border: 1px solid #222;
+    margin-top: 10px;
   }
   .action-btn:hover {
     transform: translateY(-2px) scale(1.05);
-    background: #111;
+    background: #222;
     box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  }
+  [data-theme="dark"] .action-btn {
+    border: 1px solid #444;
   }
 
   /* Mobile */
   @media (max-width: 768px){
     .project-slider{ height:260px; }
     .project-header h2{ font-size:1.3rem; }
-    .project-meta{ flex-direction:column; gap:6px; }
   }
 </style>
 </head>
@@ -354,14 +369,14 @@
   const themeToggle = document.getElementById('themeToggle');
   const savedTheme = localStorage.getItem('theme') || 'light';
   body.setAttribute('data-theme', savedTheme);
-  themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+  themeToggle.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
 
   themeToggle.addEventListener('click', () => {
     const current = body.getAttribute('data-theme');
     const newTheme = current === 'dark' ? 'light' : 'dark';
     body.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
-    themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+    themeToggle.textContent = newTheme === 'dark' ? '🌙' : '☀️';
   });
 </script>
 </body>

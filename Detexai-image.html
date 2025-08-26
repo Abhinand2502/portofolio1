@@ -3,285 +3,212 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>DetexAI</title>
+<title>DetexAI – FIFA Style</title>
 
 <style>
-  /* ==============================
-     THEME VARIABLES
-  ============================== */
-  :root {
-    --header-bg: #000000;
-    --card-bg: #ffffff;
-    --page-bg: #f9fafb;
-    --text-color: #111111;
-    --shadow: 0 6px 20px rgba(0,0,0,.08);
+/* ==============================
+   THEME VARIABLES – FUTURISTIC FIFA STYLE
+============================== */
+:root {
+  --header-bg: #000;
+  --card-bg: #ffffff;
+  --page-bg: #e9ecf2;
+  --text-color: #111;
+  --shadow: 0 10px 25px rgba(0,0,0,.15);
 
-    --border-color: #e5e7eb;
-    --feature-bg: #f9fafb;
-  }
+  --border-color: #d1d5db;
+  --feature-bg: #f8fafc;
+  --accent: #00c8ff;
+  --accent-glow: 0 0 15px rgba(0,200,255,0.8);
+}
+[data-theme="dark"] {
+  --header-bg: #000;
+  --card-bg: #1a1a1a;
+  --page-bg: #000;
+  --text-color: #f9fafb;
+  --shadow: 0 10px 30px rgba(0,200,255,.25);
 
-  [data-theme="dark"] {
-    --header-bg: #111111;
-    --card-bg: #1e1e1e;
-    --page-bg: #000000;
-    --text-color: #f9fafb;
-    --shadow: 0 6px 20px rgba(0,0,0,.6);
+  --border-color: #333;
+  --feature-bg: #111;
+  --accent: #00e0ff;
+  --accent-glow: 0 0 20px rgba(0,224,255,0.9);
+}
 
-    --border-color: #333;
-    --feature-bg: #222;
-  }
+/* Base */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: var(--page-bg);
+  color: var(--text-color);
+  transition: background .3s, color .3s;
+}
 
-  /* Base */
-  body {
-    margin: 0;
-    font-family: "Segoe UI", Tahoma, sans-serif;
-    background: var(--page-bg);
-    color: var(--text-color);
-    transition: background 0.3s, color 0.3s;
-  }
+/* Floating Home Button */
+.home-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 52px; height: 52px;
+  background: var(--accent); color: #000;
+  font-size: 26px; font-weight: 700;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all .3s;
+  box-shadow: var(--accent-glow);
+  position: fixed; bottom: 24px; right: 24px;
+  z-index: 1000;
+}
+.home-btn:hover {
+  transform: scale(1.12);
+  box-shadow: 0 0 25px var(--accent);
+}
 
-  /* Floating Home button */
-  .home-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px;
-    height: 45px;
-    background: #000;
-    color: #fff;
-    font-size: 22px;
-    border-radius: 50%;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-  }
-  .home-btn:hover {
-    background: #007bff;
-    transform: scale(1.15);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
-  }
+/* Header */
+.top-header {
+  background: var(--header-bg);
+  color: #fff;
+  padding: 16px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  font-weight: 600;
+}
+.top-header a { color: var(--accent); text-decoration: none; }
+.top-header a:hover { text-decoration: underline; }
+.theme-toggle {
+  background: none; border: 2px solid var(--accent);
+  color: var(--accent);
+  padding: 6px 12px; border-radius: 8px; cursor: pointer;
+  transition: all .3s;
+}
+.theme-toggle:hover { background: var(--accent); color: #000; }
 
-  /* Header */
-  .top-header {
-    background: var(--header-bg);
-    color: #fff;
-    padding: 14px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: background 0.3s;
-  }
-  .top-header a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-  }
-  .top-header a:hover { text-decoration: underline; }
+/* Wrapper */
+.wrapper { display: flex; justify-content: center; padding: 40px 20px; }
 
-  /* Theme toggle button */
-  .theme-toggle {
-    background: none;
-    border: 2px solid #fff;
-    color: #fff;
-    padding: 6px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-  .theme-toggle:hover {
-    background: #fff;
-    color: #000;
-  }
+/* FIFA Card */
+.project-card {
+  background: var(--card-bg);
+  border-radius: 22px;
+  border: 3px solid var(--accent);
+  box-shadow: var(--accent-glow);
+  max-width: 1100px; width: 100%;
+  overflow: hidden; position: relative;
+  transition: background .3s, box-shadow .3s;
+}
+.project-card::before {
+  content:""; position:absolute; top:-50%; left:-50%;
+  width:200%; height:200%;
+  background:linear-gradient(120deg,transparent,rgba(0,224,255,.25),transparent);
+  transform:rotate(25deg);
+  animation:shine 6s infinite;
+}
+@keyframes shine {
+  0% { transform:translateX(-100%) rotate(25deg); }
+  100% { transform:translateX(100%) rotate(25deg); }
+}
 
-  /* Card wrapper */
-  .wrapper {
-    display: flex;
-    justify-content: center;
-    padding: 30px 15px;
-  }
-  .project-card {
-    background: var(--card-bg);
-    border-radius: 16px;
-    box-shadow: var(--shadow);
-    max-width: 1100px;
-    width: 100%;
-    overflow: hidden;
-    transition: background 0.3s, box-shadow 0.3s;
-  }
+/* Slider */
+.project-header { position: relative; background:#000; border-bottom:3px solid var(--accent); }
+.project-slider { position:relative; width:100%; height:460px; background:#000; }
+.project-slider img {
+  position:absolute; inset:0; width:100%; height:100%; object-fit:contain;
+  opacity:0; transform:scale(1.04);
+  transition: opacity 480ms ease, transform 650ms ease;
+}
+.project-slider img.active { opacity:1; transform:scale(1); }
+.project-slider img.out { opacity:0 !important; transform:scale(.9) !important; }
 
-  /* Slider header */
-  .project-header {
-    position: relative;
-    overflow: hidden;
-    background: #000;
-  }
-  .project-slider {
-    position: relative;
-    width: 100%;
-    height: 450px;
-    background: #000;
-  }
-  .project-slider img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    opacity: 0;
-    transform: scale(1.02);
-    transition: opacity 480ms ease, transform 650ms ease;
-  }
-  .project-slider img.active { opacity: 1; transform: scale(1); }
-  .project-slider img.out {
-    opacity: 0 !important;
-    transform: scale(0.92) !important;
-    transition: opacity 450ms ease, transform 550ms ease;
-  }
+/* Badge + Title */
+.status-badge {
+  position:absolute; top:16px; right:16px;
+  background: var(--accent); color:#000; font-weight:700; font-size:.95rem;
+  padding:8px 16px; border-radius:20px; box-shadow: var(--accent-glow);
+  z-index:2;
+}
+.project-header h2 {
+  position:absolute; left:24px; bottom:24px;
+  color:#fff; font-size:2rem; font-weight:800; margin:0;
+  text-shadow:0 4px 8px rgba(0,0,0,.7);
+  z-index:2;
+}
 
-  /* Overlay */
-  .status-badge {
-    position: absolute;
-    top: 14px; right: 14px;
-    background: #16a34a; color: #fff;
-    font-weight: 600; font-size: .9rem;
-    padding: 6px 14px; border-radius: 20px;
-    z-index: 2;
-  }
-  .project-header h2 {
-    position: absolute; left: 20px; bottom: 20px;
-    color: #fff; z-index: 2;
-    font-size: 1.8rem; font-weight: 700;
-    text-shadow: 0 3px 6px rgba(0,0,0,.6);
-    margin: 0;
-  }
+/* Content */
+.project-content { padding:28px; }
+.project-meta {
+  font-size:1rem; font-weight:600; margin-bottom:18px;
+  text-align:center; color:var(--accent);
+}
 
-  /* Content */
-  .project-content { 
-    padding: 24px; 
-  }
-  .project-meta {
-    font-size: 0.99rem;
-    font-weight: 500;
-    margin-bottom: 16px;
-    text-align:center;
-  }
+/* Description */
+.project-description {
+  font-size:1rem; line-height:1.6; margin:20px 0;
+  padding:20px; background:var(--feature-bg);
+  border:2px solid var(--border-color); border-radius:14px;
+  text-align:justify; transition: background .3s, color .3s;
+}
 
-  /* Project description */
-  .project-description {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin: 20px 0;
-    padding: 18px 20px;
-    background: var(--feature-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    text-align: justify;
-    color: var(--text-color);
-    transition: background 0.3s, color 0.3s;
-  }
+/* Tech stack badges */
+.tech-stack {
+  display:flex; flex-wrap:wrap; gap:12px; margin:24px 0; justify-content:center;
+}
+.tech-tag {
+  background:var(--accent); color:#000; font-weight:700;
+  font-size:.85rem; padding:8px 14px; border-radius:12px;
+  display:flex; align-items:center; gap:8px;
+  transition: transform .25s, box-shadow .25s;
+  box-shadow: var(--accent-glow);
+}
+.tech-tag img { width:18px; height:18px; object-fit:contain; }
+.tech-tag:hover { transform: translateY(-2px) scale(1.08); box-shadow:0 0 15px var(--accent); }
 
-  /* Tech stack */
-  .tech-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin: 22px 0;
-  }
-  .tech-tag {
-    background: var(--header-bg);
-    color: #fff;
-    font-weight: 600;
-    font-size: 0.8rem;
-    padding: 8px 12px;
-    border-radius: 8px;
-    display: flex; align-items: center; gap: 8px;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-    border: 1px solid #222;
-  }
-  .tech-tag img {
-    width: 18px; height: 18px; object-fit: contain;
-    background: #111; border-radius: 4px; padding: 2px;
-  }
-  .tech-tag:hover {
-    transform: translateY(-2px) scale(1.08);
-    background: #222;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-  }
-  [data-theme="dark"] .tech-tag {
-    background: #222;
-    border: 1px solid #444;
-  }
+/* Features grid */
+.features {
+  display:grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+  gap:18px; margin:26px 0;
+}
+.feature-item {
+  display:flex; align-items:center; padding:14px;
+  background:var(--feature-bg); border:2px solid var(--border-color); border-radius:12px;
+  font-size:1rem; font-weight:600;
+  transition: transform .2s, box-shadow .2s;
+}
+.feature-item::before { content:"⭐"; font-size:1.1rem; margin-right:10px; color:var(--accent); }
+.feature-item:hover { transform: translateY(-3px); box-shadow: var(--accent-glow); background: var(--card-bg); }
 
-  /* Features */
-  .features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 16px;
-    margin: 22px 0;
-  }
-  .feature-item {
-    display: flex; align-items: center;
-    padding: 12px 14px;
-    background: var(--feature-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--text-color);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-  }
-  .feature-item::before {
-    content: "★";
-    color: #facc15;
-    font-size: 1rem;
-    margin-right: 10px;
-  }
-  .feature-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    background: var(--card-bg);
-  }
+/* Stats like FIFA attributes */
+.stats { margin: 28px 0; }
+.stat { margin-bottom: 14px; }
+.stat span { display:block; font-weight:600; margin-bottom:6px; color:var(--accent); }
+.bar {
+  height:8px; background:#222; border-radius:5px; overflow:hidden;
+}
+.bar-fill {
+  height:100%; background:linear-gradient(90deg,var(--accent),#0099ff);
+  width:0; animation:fill 2s forwards;
+}
+.bar-fill[data-value="92"] { width:92%; }
+.bar-fill[data-value="88"] { width:88%; }
+.bar-fill[data-value="95"] { width:95%; }
 
-  /* Button */
-  .action-btn {
-    display: inline-block;
-    background: var(--header-bg);
-    color: #fff;
-    font-weight: 600;
-    padding: 10px 22px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: transform 0.25s ease, box-shadow 0.3s ease, background 0.3s ease;
-    border: 1px solid #222;
-    margin-top: 10px;
-  }
-  .action-btn:hover {
-    transform: translateY(-2px) scale(1.05);
-    background: #222;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-  }
-  [data-theme="dark"] .action-btn {
-    border: 1px solid #444;
-  }
+/* Button */
+.action-btn {
+  display:inline-block;
+  background:var(--accent); color:#000; font-weight:700;
+  padding:12px 26px; border-radius:10px; text-decoration:none;
+  font-size:1rem; transition: transform .25s, box-shadow .3s;
+  margin-top:12px; box-shadow: var(--accent-glow);
+}
+.action-btn:hover { transform: translateY(-2px) scale(1.05); box-shadow:0 0 20px var(--accent); }
 
-  /* Mobile */
-  @media (max-width: 768px){
-    .project-slider{ height:260px; }
-    .project-header h2{ font-size:1.3rem; }
-  }
+/* Mobile */
+@media(max-width:768px){
+  .project-slider{height:260px;}
+  .project-header h2{font-size:1.4rem;}
+}
 </style>
 </head>
 <body>
 
 <!-- Header -->
 <div class="top-header">
-  <a href="index.html" class="home-link">← Back</a>
+  <a href="index.html">← Back</a>
   <span>DetexAI Project</span>
   <button class="theme-toggle" id="themeToggle">🌙</button>
 </div>
@@ -307,7 +234,7 @@
         <img src="images/AHIST.png">
         <img src="images/ACOMP.png">
       </div>
-      <div class="status-badge">Completed</div>
+      <div class="status-badge">⭐ Completed</div>
       <h2>DetexAI – AI Trash Detection System</h2>
     </div>
 
@@ -336,6 +263,13 @@
         <div class="feature-item">Multi-class Classification</div>
       </div>
 
+      <!-- FIFA style stats -->
+      <div class="stats">
+        <div class="stat"><span>Accuracy</span><div class="bar"><div class="bar-fill" data-value="92"></div></div></div>
+        <div class="stat"><span>Speed</span><div class="bar"><div class="bar-fill" data-value="88"></div></div></div>
+        <div class="stat"><span>Reliability</span><div class="bar"><div class="bar-fill" data-value="95"></div></div></div>
+      </div>
+
       <a href="https://github.com/Abhinand2502/DetexAI" target="_blank" class="action-btn">💻 View Code</a>
     </div>
   </div>
@@ -345,39 +279,37 @@
 <a href="index.html" class="home-btn">⌂</a>
 
 <script>
-  /* Slider logic */
-  const slider = document.getElementById('slider');
-  const slides = Array.from(slider.querySelectorAll('img'));
-  let current = 0;
-  const SHOW_TIME = 2600, OUT_TIME = 550, BLACK_GAP = 200, CYCLE_TIME = SHOW_TIME + OUT_TIME + BLACK_GAP;
+/* Slider logic */
+const slider = document.getElementById('slider');
+const slides = Array.from(slider.querySelectorAll('img'));
+let current = 0;
+const SHOW_TIME = 2600, OUT_TIME = 550, GAP = 200, CYCLE_TIME = SHOW_TIME + OUT_TIME + GAP;
+function step(){
+  const curr = slides[current];
+  const nextIndex = (current + 1) % slides.length;
+  const next = slides[nextIndex];
+  curr.classList.add('out'); curr.classList.remove('active');
+  setTimeout(() => {
+    slides.forEach((img,i)=>{if(i!==nextIndex){img.classList.remove('active','out');}});
+    next.classList.add('active'); current=nextIndex;
+  }, OUT_TIME + GAP);
+}
+slides.forEach((img,i)=>img.classList.toggle('active',i===0));
+(function loop(){ setTimeout(()=>{ step(); loop(); }, CYCLE_TIME); })();
 
-  function step(){
-    const curr = slides[current];
-    const nextIndex = (current + 1) % slides.length;
-    const next = slides[nextIndex];
-    curr.classList.add('out'); curr.classList.remove('active');
-    setTimeout(() => {
-      slides.forEach((img, i) => { if(i !== nextIndex){ img.classList.remove('active','out'); } });
-      next.classList.add('active'); current = nextIndex;
-    }, OUT_TIME + BLACK_GAP);
-  }
-  slides.forEach((img, i) => img.classList.toggle('active', i === 0));
-  (function loop(){ setTimeout(() => { step(); loop(); }, CYCLE_TIME); })();
-
-  /* Theme toggle */
-  const body = document.body;
-  const themeToggle = document.getElementById('themeToggle');
-  const savedTheme = localStorage.getItem('theme') || 'light';
-  body.setAttribute('data-theme', savedTheme);
-  themeToggle.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
-
-  themeToggle.addEventListener('click', () => {
-    const current = body.getAttribute('data-theme');
-    const newTheme = current === 'dark' ? 'light' : 'dark';
-    body.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    themeToggle.textContent = newTheme === 'dark' ? '🌙' : '☀️';
-  });
+/* Theme toggle */
+const body = document.body;
+const themeToggle = document.getElementById('themeToggle');
+const savedTheme = localStorage.getItem('theme') || 'light';
+body.setAttribute('data-theme', savedTheme);
+themeToggle.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+themeToggle.addEventListener('click', () => {
+  const current = body.getAttribute('data-theme');
+  const newTheme = current === 'dark' ? 'light' : 'dark';
+  body.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  themeToggle.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+});
 </script>
 </body>
 </html>

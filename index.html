@@ -60,23 +60,21 @@ nav a.active{color:var(--accent);font-weight:600}
 /* Mobile nav */
 .menu-toggle{display:none;background:none;border:0;font-size:1.5rem;color:inherit;cursor:pointer}
 @media(max-width:768px){
-  nav{
-    position:fixed;
-    top:var(--header-h);
-    left:0;
-    right:0;
-    background:rgba(10,12,20,.95);
-    backdrop-filter:blur(10px);
-    flex-direction:column;
-    align-items:center;
-    gap:20px;
-    padding:20px 0;
-    transform:translateY(-120%);
-    transition:.3s ease;
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-h);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: rgba(10,12,20,.95);
+    backdrop-filter: blur(10px);
   }
-  nav.show{transform:translateY(0)}
-  .menu-toggle{display:block}
+  .menu-toggle { display: none; } /* no need for hamburger */
 }
+
 /* Force mobile nav links to white in light mode */
 body.light nav {
   color: #fff;

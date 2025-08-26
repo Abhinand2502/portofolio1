@@ -928,51 +928,6 @@ body.light .proj-card .stats b { color: #000; }
 
 
 
-<!-- =========================
-     #resume
-     ========================= -->
-<section id="resume">
-  <h1>My Resume</h1>
-  <iframe class="resume-frame" src="assets/Resume.pdf" title="Resume PDF"></iframe>
-  <a href="assets/Resume.pdf" download class="btn">
-    <i class="fa-solid fa-download"></i> Download Resume
-  </a>
-</section>
-
-<style>
-/* RESUME */
-#resume {
-  text-align: center;
-  padding: 60px 20px;
-}
-
-#resume h1 {
-  margin-bottom: 20px;
-  color: #fff; /* default dark mode */
-}
-body.light #resume h1 {
-  color: #000; /* light mode */
-}
-
-.resume-frame {
-  width: 90%;
-  max-width: 800px;
-  height: 70vh;
-  border: 1px solid rgba(255, 255, 255, .2);
-  border-radius: 12px;
-  display: block;
-  margin: 20px auto;
-}
-body.light .resume-frame {
-  border: 1px solid rgba(0, 0, 0, .2);
-}
-
-@media (max-width: 600px) {
-  .resume-frame { height: 60vh; }
-}
-</style>
-
-
 
 <!-- =========================
      #resume
@@ -980,11 +935,13 @@ body.light .resume-frame {
 <section id="resume">
   <h1>My Resume</h1>
 
-  <!-- PDF preview image -->
-  <a href="assets/Resume.pdf" target="_blank">
-    <img class="resume-preview" src="assets/Resume-Preview.png" alt="Resume Preview">
-    <div class="open-overlay">OPEN</div>
-  </a>
+  <!-- Resume Preview -->
+  <div class="resume-container">
+    <a href="assets/Resume.pdf" target="_blank" class="resume-link">
+      <img class="resume-preview" src="assets/resume.jpg" alt="Resume Preview">
+      <button class="open-btn">Open</button>
+    </a>
+  </div>
 
   <!-- Optional Download Button -->
   <a href="assets/Resume.pdf" download class="btn">
@@ -993,6 +950,7 @@ body.light .resume-frame {
 </section>
 
 <style>
+/* Section */
 #resume {
   text-align: center;
   padding: 60px 20px;
@@ -1000,43 +958,62 @@ body.light .resume-frame {
 
 #resume h1 {
   margin-bottom: 20px;
-  color: #fff; /* default dark mode */
+  color: #fff; /* dark mode */
 }
 body.light #resume h1 {
   color: #000; /* light mode */
 }
 
-/* Resume Image */
+/* Container */
+.resume-container {
+  position: relative;
+  display: inline-block;
+  width: 28%;
+  max-width: 500px;
+}
+
+/* Resume Image with blue shining border */
 .resume-preview {
-  width: 90%;
-  max-width: 800px;
+  width: 100%;
   border-radius: 12px;
   display: block;
-  margin: 20px auto;
-  position: relative;
-  cursor: pointer;
-  transition: transform 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 174, 255, 0.8),
+              0 0 30px rgba(0, 174, 255, 0.6),
+              0 0 45px rgba(0, 174, 255, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .resume-preview:hover {
   transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(0, 174, 255, 1),
+              0 0 40px rgba(0, 174, 255, 0.8),
+              0 0 60px rgba(0, 174, 255, 0.6);
 }
 
-/* OPEN Overlay */
-.open-overlay {
+/* Open Button at bottom center */
+.open-btn {
   position: absolute;
-  top: 50%;
+  bottom: 20px;
   left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 2rem;
-  color: #00e0ff;
+  transform: translateX(-50%);
+  padding: 12px 26px;
+  font-size: 1rem;
   font-weight: bold;
-  pointer-events: none; /* click passes to image */
+  color: #fff;
+  background: #007bff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 4px 4px 8px rgba(0,0,0,0.3),
+              -4px -4px 8px rgba(255,255,255,0.1);
+}
+.open-btn:hover {
+  background: #0069d9;
+  box-shadow: inset 3px 3px 6px rgba(0,0,0,0.3),
+              inset -3px -3px 6px rgba(255,255,255,0.1);
 }
 
-a { position: relative; display: inline-block; }
-
-/* Button */
+/* Download Button */
 .btn {
   display: inline-block;
   margin-top: 20px;
@@ -1048,17 +1025,15 @@ a { position: relative; display: inline-block; }
   font-weight: bold;
   transition: background 0.3s ease;
 }
-
 .btn:hover { background: #00c0ff; }
-
 body.light .btn { color: #fff; }
 
-@media (max-width: 600px) {
-  .resume-preview { height: auto; }
-  .open-overlay { font-size: 1.5rem; }
+/* Responsive */
+@media (max-width: 768px) {
+  .resume-container { width: 100%; }
+  .open-btn { font-size: 0.9rem; padding: 10px 20px; bottom: 15px; }
 }
 </style>
-
 
 
 <!-- =========================

@@ -443,206 +443,201 @@ body.light .progress-bar span {
 
 
 <!-- =========================
-     #skills — Futuristic HUD 3D Wheel Selector
+     #skills — Futuristic Blue HUD with Logos
      ========================= -->
 <section id="skills">
-  <h1 class="neo-title">My Skills</h1>
+  <h1>My Skills</h1>
+
+  <div class="neo-grid">
+    <!-- Python -->
+    <article class="neo-chip" data-skill="Python" data-val="80">
+      <div class="neo-ring"><span class="neo-num">0</span></div>
+      <i class="fab fa-python neo-icon"></i>
+      <h3>Python</h3>
+    </article>
+
+    <!-- Django -->
+    <article class="neo-chip" data-skill="Django" data-val="75">
+      <div class="neo-ring"><span class="neo-num">0</span></div>
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" class="neo-icon neo-django" alt="Django logo">
+      <h3>Django</h3>
+    </article>
+
+    <!-- HTML -->
+    <article class="neo-chip" data-skill="HTML" data-val="90">
+      <div class="neo-ring"><span class="neo-num">0</span></div>
+      <i class="fab fa-html5 neo-icon"></i>
+      <h3>HTML</h3>
+    </article>
+
+    <!-- CSS -->
+    <article class="neo-chip" data-skill="CSS" data-val="85">
+      <div class="neo-ring"><span class="neo-num">0</span></div>
+      <i class="fab fa-css3-alt neo-icon"></i>
+      <h3>CSS</h3>
+    </article>
+
+    <!-- JavaScript -->
+    <article class="neo-chip" data-skill="JavaScript" data-val="70">
+      <div class="neo-ring"><span class="neo-num">0</span></div>
+      <i class="fab fa-js neo-icon"></i>
+      <h3>JavaScript</h3>
+    </article>
+
+    <!-- React -->
+    <article class="neo-chip" data-skill="React" data-val="65">
+      <div class="neo-ring"><span class="neo-num">0</span></div>
+      <i class="fab fa-react neo-icon"></i>
+      <h3>React</h3>
+    </article>
+
+    <!-- SQL -->
+    <article class="neo-chip" data-skill="SQL" data-val="75">
+      <div class="neo-ring"><span class="neo-num">0</span></div>
+      <i class="fas fa-database neo-icon"></i>
+      <h3>SQL</h3>
+    </article>
+
+    <!-- Machine Learning -->
+    <article class="neo-chip" data-skill="Machine Learning" data-val="60">
+      <div class="neo-ring"><span class="neo-num">0</span></div>
+      <i class="fas fa-robot neo-icon"></i>
+      <h3>ML</h3>
+    </article>
+  </div>
+</section>
+
+<!-- Add Font Awesome in your <head> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+  #skills .neo-title {
+  margin-bottom: 20px;
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  color: #fff; /* default dark mode */
+  text-align: center;
+}
+
+body.light #skills .neo-title {
+  color: #000; /* light mode */
+}
+
+/* ===== HUD Skills Styles (same + icons) ===== */
+#skills{padding:56px 18px;text-align:center;}
+#skills{--neo-blue:var(--accent,#00c6ff);--neo-blue2:var(--accent-2,#0072ff);
+  --neo-glow:0 0 18px rgba(0,198,255,.55),0 0 36px rgba(0,114,255,.35);
+  --neo-track:rgba(255,255,255,.14);--neo-chip-bg:rgba(13,18,33,.55);
+  --neo-inner:rgba(8,12,24,.9);--neo-title:#eaf0ff;--neo-text:#cfe7ff;}
+body.light #skills{--neo-track:rgba(0,0,0,.08);--neo-chip-bg:rgba(255,255,255,.7);
+  --neo-inner:#fff;--neo-title:#0a0a0a;--neo-text:#0d1b2a;}
+#skills .neo-title{font-size:2.2rem;letter-spacing:2px;margin-bottom:18px;
+  color:var(--neo-title);text-shadow:0 0 12px rgba(0,198,255,.45);}
+body.light #skills .neo-title{text-shadow:none;}
+#skills .neo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:18px;width:min(980px,92vw);margin-inline:auto;}
+#skills .neo-chip{position:relative;padding:16px 12px 14px;border-radius:18px;
+  background:var(--neo-chip-bg);backdrop-filter:blur(8px);
+  box-shadow:0 10px 28px rgba(0,0,0,.28);
+  border:1px solid rgba(0,198,255,.18);transition:.25s;}
+#skills .neo-chip:hover{transform:translateY(-6px);border-color:rgba(0,198,255,.45);
+  box-shadow:0 18px 38px rgba(0,0,0,.36);}
+#skills .neo-ring{--p:0%;width:110px;height:110px;margin:6px auto 10px;border-radius:50%;
+  background:conic-gradient(var(--neo-blue)0,var(--neo-blue2)var(--p),var(--neo-track)var(--p)100%);
+  box-shadow:var(--neo-glow),inset 0 0 24px rgba(0,0,0,.4);display:grid;place-items:center;position:relative;}
+#skills .neo-ring::before{content:"";position:absolute;inset:10px;border-radius:50%;
+  background:radial-gradient(120% 90% at 50% 0%,rgba(255,255,255,.18),transparent 60%),var(--neo-inner);
+  box-shadow:inset 0 0 10px rgba(0,0,0,.35);}
+#skills .neo-ring .neo-num{position:relative;font:800 1.6rem/1 "Poppins",system-ui,sans-serif;
+  color:#e7faff;letter-spacing:.5px;}
+body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
+#skills .neo-chip h3{margin-top:6px;font-size:.95rem;font-weight:700;letter-spacing:.4px;
+  color:var(--neo-text);text-transform:uppercase;}
+/* New: Icon styles */
+#skills .neo-icon{display:block;font-size:2rem;width:32px;height:32px;margin:0 auto 6px;
+  color:var(--neo-blue);}
+#skills .neo-icon img{width:32px;height:32px;object-fit:contain;}
+/* Django special — make it glowing blue */
+#skills .neo-django{
+  filter: brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(3200%) hue-rotate(180deg) brightness(102%) contrast(98%) drop-shadow(0 0 6px rgba(0,198,255,.8));
+}
+
+/* ===== RESPONSIVE TWEAKS ===== */
+
+/* Tablets */
+@media(max-width:900px){
+  #skills .neo-title{font-size:1.8rem;}
+  #skills .neo-grid{gap:14px;}
+  #skills .neo-ring{width:90px;height:90px;}   /* reduced */
+  #skills .neo-chip h3{font-size:.85rem;}
+  #skills .neo-ring .neo-num{font-size:1.3rem;} /* scale down number */
+}
+
+/* Mobiles */
+@media(max-width:520px){
+  #skills{padding:28px 10px;}
+  #skills .neo-title{font-size:1.5rem;letter-spacing:1px;}
+  #skills .neo-grid{grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:12px;}
+  #skills .neo-ring{width:76px;height:76px;}   /* smaller */
+  #skills .neo-ring .neo-num{font-size:1rem;}  /* smaller numbers */
+  #skills .neo-icon img,
+  #skills .neo-icon{width:22px;height:22px;font-size:1.4rem;}
+  #skills .neo-chip{padding:10px 8px;}
+  #skills .neo-chip h3{font-size:.75rem;}
+}
+
+</style>
+
+
+<script>
+(() => {
+  const chips = document.querySelectorAll('#skills .neo-chip');
+
+  const animate = (el, target) => {
+    // fill ring
+    el.style.setProperty('--p', target + '%');
+    // count up number
+    const num = el.querySelector('.neo-num');
+    let cur = 0;
+    const step = Math.max(1, Math.round(target / 30));
+    const t = setInterval(() => {
+      cur += step;
+      if (cur >= target) { cur = target; clearInterval(t); }
+      num.textContent = cur;
+    }, 20);
+  };
+
+  const seen = new WeakSet();
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(({isIntersecting, target}) => {
+      if (isIntersecting && !seen.has(target)) {
+        seen.add(target);
+        const val = +target.dataset.val || 0;
+        animate(target.querySelector('.neo-ring'), val);
+      }
+    });
+  }, { root: document.querySelector('main') || null, threshold: 0.35 });
+
+  chips.forEach(c => io.observe(c));
+})();
+</script>
+
+
+
+<!-- =========================
+     #PROJECTS — Futuristic 3D Wheel Selector
+     ========================= -->
+<section id="projects">
+  <h1>Projects</h1>
 
   <div class="wheel-container">
     <button class="wheel-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
 
     <div class="wheel">
       <div class="wheel-inner">
-        <!-- Python -->
-        <article class="neo-chip" data-skill="Python" data-val="80">
-          <div class="neo-ring"><span class="neo-num">0</span></div>
-          <i class="fab fa-python neo-icon"></i>
-          <h3>Python</h3>
-        </article>
 
-        <!-- Django -->
-        <article class="neo-chip" data-skill="Django" data-val="75">
-          <div class="neo-ring"><span class="neo-num">0</span></div>
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" class="neo-icon neo-django" alt="Django logo">
-          <h3>Django</h3>
-        </article>
-
-        <!-- HTML -->
-        <article class="neo-chip" data-skill="HTML" data-val="90">
-          <div class="neo-ring"><span class="neo-num">0</span></div>
-          <i class="fab fa-html5 neo-icon"></i>
-          <h3>HTML</h3>
-        </article>
-
-        <!-- CSS -->
-        <article class="neo-chip" data-skill="CSS" data-val="85">
-          <div class="neo-ring"><span class="neo-num">0</span></div>
-          <i class="fab fa-css3-alt neo-icon"></i>
-          <h3>CSS</h3>
-        </article>
-
-        <!-- JavaScript -->
-        <article class="neo-chip" data-skill="JavaScript" data-val="70">
-          <div class="neo-ring"><span class="neo-num">0</span></div>
-          <i class="fab fa-js neo-icon"></i>
-          <h3>JavaScript</h3>
-        </article>
-
-        <!-- React -->
-        <article class="neo-chip" data-skill="React" data-val="65">
-          <div class="neo-ring"><span class="neo-num">0</span></div>
-          <i class="fab fa-react neo-icon"></i>
-          <h3>React</h3>
-        </article>
-
-        <!-- SQL -->
-        <article class="neo-chip" data-skill="SQL" data-val="75">
-          <div class="neo-ring"><span class="neo-num">0</span></div>
-          <i class="fas fa-database neo-icon"></i>
-          <h3>SQL</h3>
-        </article>
-
-        <!-- Machine Learning -->
-        <article class="neo-chip" data-skill="Machine Learning" data-val="60">
-          <div class="neo-ring"><span class="neo-num">0</span></div>
-          <i class="fas fa-robot neo-icon"></i>
-          <h3>ML</h3>
-        </article>
-      </div>
-    </div>
-
-    <button class="wheel-btn next"><i class="fa-solid fa-chevron-right"></i></button>
-  </div>
-</section>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-<style>
-/* Layout */
-.wheel-container{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  perspective:1000px;
-  margin:auto;
-  max-width:500px;
-}
-.wheel{
-  width:260px;
-  height:220px;
-  position:relative;
-  perspective:1200px;
-}
-.wheel-inner{
-  width:100%;
-  height:100%;
-  position:absolute;
-  transform-style:preserve-3d;
-  transition:transform 1s;
-}
-.wheel-btn{
-  background:rgba(13,18,33,.7);
-  border:1px solid rgba(0,198,255,.4);
-  color:#00c6ff;
-  font-size:1.5rem;
-  padding:10px;
-  border-radius:50%;
-  cursor:pointer;
-  z-index:2;
-}
-.wheel-btn:hover{background:rgba(0,198,255,.2);}
-
-/* Cards arranged in wheel */
-.neo-chip{
-  position:absolute;
-  width:200px;
-  padding:16px;
-  text-align:center;
-  border-radius:18px;
-  background:rgba(13,18,33,.55);
-  box-shadow:0 10px 28px rgba(0,0,0,.28);
-  border:1px solid rgba(0,198,255,.18);
-  left:30px;
-  top:0;
-  transform-style:preserve-3d;
-}
-.neo-chip h3{margin-top:6px;font-size:.9rem;color:#cfe7ff;text-transform:uppercase;}
-.neo-ring{--p:0%;width:90px;height:90px;margin:6px auto;border-radius:50%;
-  background:conic-gradient(#00c6ff 0,#0072ff var(--p),rgba(255,255,255,.14) var(--p)100%);
-  display:grid;place-items:center;}
-.neo-ring .neo-num{color:#e7faff;font-weight:700;font-size:1.2rem;}
-.neo-icon{font-size:2rem;margin:6px auto;color:#00c6ff;}
-.neo-django{filter:brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(3200%) hue-rotate(180deg) brightness(102%) contrast(98%) drop-shadow(0 0 6px rgba(0,198,255,.8));}
-</style>
-
-<script>
-(() => {
-  const chips=document.querySelectorAll('.wheel-inner .neo-chip');
-  const total=chips.length;
-  const angle=360/total;
-  const radius=280; // distance from center
-  const wheel=document.querySelector('.wheel-inner');
-
-  // place cards around circle
-  chips.forEach((chip,i)=>{
-    chip.style.transform=`rotateY(${i*angle}deg) translateZ(${radius}px)`;
-  });
-
-  let index=0;
-  function update(){
-    wheel.style.transform=`rotateY(${-index*angle}deg)`;
-  }
-
-  document.querySelector('.wheel-btn.next').addEventListener('click',()=>{
-    index=(index+1)%total;
-    update();
-  });
-  document.querySelector('.wheel-btn.prev').addEventListener('click',()=>{
-    index=(index-1+total)%total;
-    update();
-  });
-
-  // animate rings once
-  const animate=(el,target)=>{
-    el.style.setProperty('--p',target+'%');
-    const num=el.querySelector('.neo-num');
-    let cur=0;
-    const step=Math.max(1,Math.round(target/30));
-    const t=setInterval(()=>{
-      cur+=step;
-      if(cur>=target){cur=target;clearInterval(t);}
-      num.textContent=cur;
-    },20);
-  };
-  chips.forEach(c=>{
-    const val=+c.dataset.val||0;
-    animate(c.querySelector('.neo-ring'),val);
-  });
-})();
-</script>
-
-
-
-
-<!-- =========================
-     #PROJECTS (FIFA Style Fixed Gap)
-     ========================= -->
-<section id="projects">
-  <p></p><br>
-  <br>
-  <h1>Projects</h1>
-
-  <div class="carousel">
-    <!-- Navigation Buttons -->
-    <button class="nav-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
-
-    <!-- Track -->
-    <div class="track" id="projTrack">
-
-      <!-- Slide 1 -->
-
-      <div class="slide">
-        <div class="proj-card">
+        <!-- Project 1 -->
+        <article class="proj-card neo-chip" data-skill="DetexAI">
           <div class="stars">★★★★★</div>
           <img src="images/imgg.jpg" alt="DetexAI Logo" class="proj-logo">
           <h2>DetexAI</h2>
@@ -652,13 +647,10 @@ body.light .progress-bar span {
             <div><span>API</span><b>86</b></div>
           </div>
           <a href="Detexai-image.html" class="btn">View Details</a>
-        </div>
-      </div>
-    
+        </article>
 
-      <!-- Slide 2 -->
-       <div class="slide">
-        <div class="proj-card">
+        <!-- Project 2 -->
+        <article class="proj-card neo-chip" data-skill="AI-Chatbot">
           <div class="stars">★★★★★</div>
           <img src="images/chat1 (2).png" alt="AI Chatbot Logo" class="proj-logo">
           <h2>AI-Chatbot</h2>
@@ -668,15 +660,12 @@ body.light .progress-bar span {
             <div><span>DEF</span><b>83</b></div>
           </div>
           <a href="aichatbot.html" class="btn">View Details</a>
-        </div>
-      </div>
+        </article>
 
-
-      <!-- Slide 3 -->
-       <div class="slide">
-        <div class="proj-card">
+        <!-- Project 3 -->
+        <article class="proj-card neo-chip" data-skill="AI-AssistCart">
           <div class="stars">★★★★★</div>
-          <img src="images/login.png" alt="AI Chatbot Logo" class="proj-logo">
+          <img src="images/login.png" alt="AI AssistCart Logo" class="proj-logo">
           <h2>AI-AssistCart</h2>
           <div class="stats">
             <div><span>ATT</span><b>83</b></div>
@@ -684,32 +673,25 @@ body.light .progress-bar span {
             <div><span>DEF</span><b>83</b></div>
           </div>
           <a href="aichatbot.html" class="btn">View Details</a>
-        </div>
-      </div>
+        </article>
 
-
-      <!-- Slide 4 -->
-       <div class="slide">
-        <div class="proj-card">
+        <!-- Project 4 -->
+        <article class="proj-card neo-chip" data-skill="TicTacToe">
           <div class="stars">★★★★★</div>
-          <img src="assets/tic (3).png" alt="AI Chatbot Logo" class="proj-logo">
-          <h2>Tic-Tac-Toe game</h2>
+          <img src="assets/tic (3).png" alt="TicTacToe Logo" class="proj-logo">
+          <h2>Tic-Tac-Toe Game</h2>
           <div class="stats">
             <div><span>ATT</span><b>83</b></div>
             <div><span>MID</span><b>85</b></div>
             <div><span>DEF</span><b>83</b></div>
           </div>
           <a href="aichatbot.html" class="btn">View Details</a>
-        </div>
-      </div>
+        </article>
 
-
-
-      <!-- Slide 5 -->
-       <div class="slide">
-        <div class="proj-card">
+        <!-- Project 5 -->
+        <article class="proj-card neo-chip" data-skill="Portfolio">
           <div class="stars">★★★★★</div>
-          <img src="images/portoooo.png" alt="AI Chatbot Logo" class="proj-logo">
+          <img src="images/portoooo.png" alt="Portfolio Logo" class="proj-logo">
           <h2>Portfolio</h2>
           <div class="stats">
             <div><span>ATT</span><b>83</b></div>
@@ -717,228 +699,172 @@ body.light .progress-bar span {
             <div><span>DEF</span><b>83</b></div>
           </div>
           <a href="aichatbot.html" class="btn">View Details</a>
-        </div>
-      </div>
+        </article>
 
-
-      <!-- Slide 6 -->
-       <div class="slide">
-        <div class="proj-card">
+        <!-- Project 6 -->
+        <article class="proj-card neo-chip" data-skill="ToDoApp">
           <div class="stars">★★★★★</div>
-          <img src="assets/todo.png" alt="AI Chatbot Logo" class="proj-logo">
-          <h2>To-Do List app</h2>
+          <img src="assets/todo.png" alt="ToDo App Logo" class="proj-logo">
+          <h2>To-Do List App</h2>
           <div class="stats">
             <div><span>ATT</span><b>83</b></div>
             <div><span>MID</span><b>85</b></div>
             <div><span>DEF</span><b>83</b></div>
           </div>
           <a href="aichatbot.html" class="btn">View Details</a>
-        </div>
+        </article>
+
       </div>
-
-
     </div>
 
-    <button class="nav-btn next"><i class="fa-solid fa-chevron-right"></i></button>
+    <button class="wheel-btn next"><i class="fa-solid fa-chevron-right"></i></button>
   </div>
 </section>
 
 <style>
-/* =========================
-   PROJECTS FIFA STYLE
-   ========================= */
-:root {
-  --neon-blue: #00e0ff;
-  --card-bg-dark: linear-gradient(160deg,#0a0a0a,#10172a);
-  --card-bg-light: linear-gradient(160deg,#ffffff,#f0f4ff);
-}
-
-/* Section Base */
+/* Base Section */
 #projects {
-  padding: 80px 20px 60px;  /* top padding safe for navbar */
+  padding: 50px 20px;
   text-align: center;
   background: #000;
-  color: var(--neon-blue);
+  color: #00e0ff;
 }
-
-/* Section Heading */
 #projects h1 {
-  margin: 0;              /* reset default margins */
+  margin: 0 0 15px 0;
   font-size: 2rem;
-  color: #ffffff;
+  color: #fff;
 }
 
-/* ✅ Control gap ONLY here */
-#projects .carousel {
-  margin-top: 57px; /* ~1.5 cm gap between title and cards */
-}
-
-/* Light mode (system auto) */
-@media (prefers-color-scheme: light) {
-  #projects h1 {
-    color: #000;
-    text-shadow: none;
-  }
-}
-
-/* Carousel */
-.carousel {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  max-width: 750px;
-  margin: auto;
-}
-
-.track {
+/* Wheel Layout */
+.wheel-container {
   display: flex;
-  transition: transform .4s ease;
+  justify-content: center;
+  align-items: center;
+  perspective: 1200px;
+  margin: auto;
+  max-width: 750px;
 }
-
-.slide {
-  min-width: 100%;
-  flex-shrink: 0;
-  padding: 20px 10px;
-  text-align: center;
+.wheel {
+  width: 360px;
+  height: 320px;
+  position: relative;
+  perspective: 1200px;
 }
+.wheel-inner {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+.wheel-btn {
+  background: rgba(13,18,33,.7);
+  border: 1px solid rgba(0,198,255,.4);
+  color: #00e0ff;
+  font-size: 1.5rem;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2;
+}
+.wheel-btn:hover { background: rgba(0,198,255,.2); }
 
-/* Project Card (FIFA Theme) */
-.proj-card {
-  flex: 0 0 350px;
-  max-width: 400px;
-  background: linear-gradient(180deg, #1e293b, #0f172a);
-  backdrop-filter: blur(12px);
-  border-radius: 22px;
-  padding: 25px;
+/* Cards */
+.proj-card.neo-chip {
+  position: absolute;
+  width: 320px;
+  padding: 18px;
+  border-radius: 20px;
+  background: linear-gradient(180deg,#1e293b,#0f172a);
   box-shadow: 0 8px 20px rgba(0,0,0,.5);
   border: 2px solid #00e0ff;
   text-align: center;
-  margin: auto;
-  position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0.3;
+  transform: scale(0.8);
+  transition: all 0.6s ease;
+}
+.proj-card.active {
+  opacity: 1;
+  transform: scale(1) translateZ(80px);
+  background: rgba(13,18,33,.95);
 }
 
-.proj-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 28px rgba(0, 224, 255, 0.5);
-}
-
+/* Card Content */
 .proj-card .stars {
-  font-size: 22px;
+  font-size: 20px;
   color: gold;
   margin-bottom: 10px;
   letter-spacing: 3px;
 }
-
 .proj-card .proj-logo {
-  width: 280px;
-  height: 130px;
+  width: 260px;
+  height: 120px;
   object-fit: cover;
   border-radius: 12px;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   box-shadow: 0 0 20px rgba(0,224,255,.4);
 }
-
 .proj-card h2 {
   font-size: 20px;
   margin: 8px 0;
   font-weight: bold;
-  color: var(--neon-blue);
+  color: #00e0ff;
   letter-spacing: 1px;
 }
-
 .proj-card .stats {
   display: flex;
   justify-content: center;
   gap: 25px;
-  margin: 15px 0;
+  margin: 12px 0;
 }
-
-.proj-card .stats span {
-  display: block;
-  font-size: 12px;
-  color: #aaa;
-}
-.proj-card .stats b {
-  font-size: 18px;
-  color: #fff;
-}
-
+.proj-card .stats span { font-size: 12px; color: #aaa; display:block; }
+.proj-card .stats b { font-size: 18px; color: #fff; }
 .proj-card .btn {
   display: inline-block;
   padding: 8px 16px;
-  background: var(--neon-blue);
+  background: #00e0ff;
   color: #000;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
   transition: 0.3s;
 }
-.proj-card .btn:hover {
-  background: #fff;
-  color: #000;
-}
-
-/* Navigation Buttons */
-.nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(0,224,255,0.15);
-  border: 1px solid rgba(0,255,255,.6);
-  color: var(--neon-blue);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 14px rgba(0,255,255,.6);
-  transition: all .3s ease;
-  z-index: 5;
-}
-.nav-btn:hover {
-  background: rgba(0,255,255,.4);
-  box-shadow: 0 0 22px rgba(0,255,255,.9);
-}
-.nav-btn.prev { left: 10px; }
-.nav-btn.next { right: 10px; }
-
-/* Mobile */
-
-  @media (max-width: 600px) {
-  .projects { height: 60vh; }
-}
-
-  #projects h1 {
-    font-size: 1.6rem;
-  }
-
-  #projects .carousel {
-    margin-top: 57px; /* keep same gap in mobile */
-  }
-
-/* ✅ Manual Light Mode */
-body.light #projects {
-  background: #fff;
-  color: #111;
-}
-body.light #projects h1 {
-  color: #000;
-  text-shadow: none;
-}
-body.light .proj-card {
-  background: var(--card-bg-light);
-  color: #111;
-  box-shadow: 0 0 15px rgba(0,0,0,.1);
-}
-body.light .proj-card h2 { color: #0072ff; }
-body.light .proj-card .stats span { color: #555; }
-body.light .proj-card .stats b { color: #000; }
+.proj-card .btn:hover { background: #fff; color: #000; }
 </style>
 
+<script>
+(() => {
+  const chips=document.querySelectorAll('#projects .wheel-inner .neo-chip');
+  const total=chips.length;
+  const angle=360/total;
+  const radius=400;
+  const wheel=document.querySelector('#projects .wheel-inner');
+  let index=0;
 
+  // Arrange cards around wheel
+  chips.forEach((chip,i)=>{
+    chip.style.transform=`rotateY(${i*angle}deg) translateZ(${radius}px)`;
+  });
+
+  function update(){
+    wheel.style.transform=`rotateY(${-index*angle}deg)`;
+    chips.forEach(c=>c.classList.remove("active"));
+    chips[index].classList.add("active");
+  }
+
+  document.querySelector('#projects .wheel-btn.next').addEventListener('click',()=>{
+    index=(index+1)%total;
+    update();
+  });
+  document.querySelector('#projects .wheel-btn.prev').addEventListener('click',()=>{
+    index=(index-1+total)%total;
+    update();
+  });
+
+  // Initialize
+  update();
+})();
+</script>
 
 
 <!-- =========================

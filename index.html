@@ -363,12 +363,15 @@ const aboutSwiper = new Swiper('.about-swiper', {
 
 /* Card Top */
 .card-top img {
-  width: 120px; height: 120px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  object-fit: cover;
   border: 4px solid #00e0ff;
   margin-bottom: 10px;
+  object-fit: cover;
+  object-position: top center;  /* Moves crop focus slightly */
 }
+
 .player-name { font-size: 1.2rem; color: #00e0ff; margin:5px 0; }
 .player-role { font-size: 0.9rem; color: #ccc; }
 
@@ -630,6 +633,8 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
 <section id="projects">
   <p></p><br>
   <br>
+  <p></p><br>
+  <p></p>
   <h1>Projects</h1>
 
   <div class="carousel">

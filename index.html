@@ -624,247 +624,268 @@ body.light #skills .neo-ring .neo-num{color:#0b1a2b;}
 
 
 
-<!-- =========================
-     #PROJECTS — Futuristic 3D Wheel Selector
-     ========================= -->
+<!-- 3D CIRCULAR WHEEL (paste/replace your existing #projects) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Projects — 3D Wheel</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+  :root{
+    --neon: #00e0ff;
+    --bg:#000;
+    --card-w:320px; /* change card width to scale wheel */
+    --card-h:200px;
+    --gap-from-title:50px;
+  }
+
+  body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;background:var(--bg);color:#fff;min-height:100vh}
+  section#projects{padding:80px 16px 80px;text-align:center;}
+  section#projects h1{font-size:2rem;margin:0;color:#fff}
+  /* wrapper that provides perspective */
+  .wheel-wrap{margin:var(--gap-from-title) auto; width:100%; max-width:900px; height:420px; position:relative; perspective:1400px; -webkit-perspective:1400px;}
+  /* wheel (3D) */
+  .wheel{
+    width:100%;
+    height:100%;
+    position:relative;
+    transform-style:preserve-3d;
+    transition: transform 700ms cubic-bezier(.2,.8,.2,1);
+    margin:0 auto;
+  }
+
+  /* panel base style */
+  .panel{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:var(--card-w);
+    height:var(--card-h);
+    transform-origin: center center;
+    transform-style:preserve-3d;
+    margin:-100px 0 0 -160px; /* half height & half width */
+    transition: transform 500ms ease, opacity 300ms ease;
+    backface-visibility: hidden;
+  }
+
+  /* card content */
+  .card{
+    width:100%;
+    height:100%;
+    border-radius:18px;
+    padding:18px;
+    box-sizing:border-box;
+    background:linear-gradient(180deg,#0f172a,#061020);
+    border:2px solid rgba(0,224,255,0.15);
+    box-shadow:0 10px 30px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,0.02);
+    color:#fff;
+    text-align:center;
+  }
+
+  .stars{font-size:18px;color:#f6c85f;margin-bottom:6px;letter-spacing:2px}
+  .proj-logo{width:100%;height:90px;object-fit:cover;border-radius:10px;box-shadow:0 8px 22px rgba(0,224,255,0.08);margin-bottom:10px}
+  .card h2{margin:6px 0;font-size:18px;color:var(--neon);letter-spacing:1px}
+  .stats{display:flex;gap:18px;justify-content:center;margin:10px 0}
+  .stats span{display:block;font-size:11px;color:#9aa;line-height:1}
+  .stats b{display:block;font-size:16px;color:#fff}
+  .btn{display:inline-block;padding:8px 14px;border-radius:8px;background:var(--neon);color:#000;text-decoration:none;font-weight:600;margin-top:6px}
+
+  /* nav buttons fixed over the wheel */
+  .nav{
+    position:absolute;
+    top:50%;
+    width:100%;
+    transform:translateY(-50%);
+    pointer-events:none;
+  }
+  .nav .nav-btn{
+    pointer-events:all;
+    position:absolute;
+    width:48px;height:48px;border-radius:50%;
+    border:1px solid rgba(0,224,255,.25);background:rgba(0,224,255,0.08);
+    display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--neon);
+    box-shadow:0 6px 18px rgba(0,224,255,0.06);
+    transition:all .25s ease;
+  }
+  .nav .nav-btn:hover{transform:scale(1.06);background:rgba(0,224,255,0.14)}
+  .nav .prev{left:6px}
+  .nav .next{right:6px}
+
+  /* highlight center panel with scale */
+  .panel.center .card{transform:translateZ(40px) scale(1.05); box-shadow:0 18px 40px rgba(0,224,255,0.14)}
+  .panel.side{opacity:0.85}
+  .panel.hidden{opacity:0.25;filter:blur(0.8px)}
+
+  /* responsive adjustments */
+  @media (max-width:900px){
+    .wheel-wrap{height:360px}
+    :root{--card-w:280px;--card-h:180px}
+  }
+  @media (max-width:600px){
+    .wheel-wrap{height:340px}
+    :root{--card-w:240px;--card-h:160px}
+    .nav .nav-btn{width:40px;height:40px}
+  }
+</style>
+</head>
+<body>
+
 <section id="projects">
   <h1>Projects</h1>
 
-  <div class="wheel-container">
-    <button class="wheel-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
-
-    <div class="wheel">
-      <div class="wheel-inner">
-
-        <!-- Project 1 -->
-        <article class="proj-card neo-chip" data-skill="DetexAI">
+  <div class="wheel-wrap" aria-hidden="false">
+    <div class="wheel" id="wheel">
+      <!-- Panels: copy your slides' inner .proj-card content into each .panel .card -->
+      <div class="panel">
+        <div class="card">
           <div class="stars">★★★★★</div>
-          <img src="images/imgg.jpg" alt="DetexAI Logo" class="proj-logo">
+          <img src="images/imgg.jpg" alt="" class="proj-logo">
           <h2>DetexAI</h2>
-          <div class="stats">
-            <div><span>UI</span><b>90</b></div>
-            <div><span>ML</span><b>88</b></div>
-            <div><span>API</span><b>86</b></div>
-          </div>
-          <a href="Detexai-image.html" class="btn">View Details</a>
-        </article>
-
-        <!-- Project 2 -->
-        <article class="proj-card neo-chip" data-skill="AI-Chatbot">
-          <div class="stars">★★★★★</div>
-          <img src="images/chat1 (2).png" alt="AI Chatbot Logo" class="proj-logo">
-          <h2>AI-Chatbot</h2>
-          <div class="stats">
-            <div><span>ATT</span><b>83</b></div>
-            <div><span>MID</span><b>85</b></div>
-            <div><span>DEF</span><b>83</b></div>
-          </div>
-          <a href="aichatbot.html" class="btn">View Details</a>
-        </article>
-
-        <!-- Project 3 -->
-        <article class="proj-card neo-chip" data-skill="AI-AssistCart">
-          <div class="stars">★★★★★</div>
-          <img src="images/login.png" alt="AI AssistCart Logo" class="proj-logo">
-          <h2>AI-AssistCart</h2>
-          <div class="stats">
-            <div><span>ATT</span><b>83</b></div>
-            <div><span>MID</span><b>85</b></div>
-            <div><span>DEF</span><b>83</b></div>
-          </div>
-          <a href="aichatbot.html" class="btn">View Details</a>
-        </article>
-
-        <!-- Project 4 -->
-        <article class="proj-card neo-chip" data-skill="TicTacToe">
-          <div class="stars">★★★★★</div>
-          <img src="assets/tic (3).png" alt="TicTacToe Logo" class="proj-logo">
-          <h2>Tic-Tac-Toe Game</h2>
-          <div class="stats">
-            <div><span>ATT</span><b>83</b></div>
-            <div><span>MID</span><b>85</b></div>
-            <div><span>DEF</span><b>83</b></div>
-          </div>
-          <a href="aichatbot.html" class="btn">View Details</a>
-        </article>
-
-        <!-- Project 5 -->
-        <article class="proj-card neo-chip" data-skill="Portfolio">
-          <div class="stars">★★★★★</div>
-          <img src="images/portoooo.png" alt="Portfolio Logo" class="proj-logo">
-          <h2>Portfolio</h2>
-          <div class="stats">
-            <div><span>ATT</span><b>83</b></div>
-            <div><span>MID</span><b>85</b></div>
-            <div><span>DEF</span><b>83</b></div>
-          </div>
-          <a href="aichatbot.html" class="btn">View Details</a>
-        </article>
-
-        <!-- Project 6 -->
-        <article class="proj-card neo-chip" data-skill="ToDoApp">
-          <div class="stars">★★★★★</div>
-          <img src="assets/todo.png" alt="ToDo App Logo" class="proj-logo">
-          <h2>To-Do List App</h2>
-          <div class="stats">
-            <div><span>ATT</span><b>83</b></div>
-            <div><span>MID</span><b>85</b></div>
-            <div><span>DEF</span><b>83</b></div>
-          </div>
-          <a href="aichatbot.html" class="btn">View Details</a>
-        </article>
-
+          <div class="stats"><div><span>UI</span><b>90</b></div><div><span>ML</span><b>88</b></div><div><span>API</span><b>86</b></div></div>
+          <a class="btn" href="Detexai-image.html">View Details</a>
+        </div>
       </div>
+
+      <div class="panel">
+        <div class="card">
+          <div class="stars">★★★★★</div>
+          <img src="images/chat1 (2).png" alt="" class="proj-logo">
+          <h2>AI-Chatbot</h2>
+          <div class="stats"><div><span>ATT</span><b>83</b></div><div><span>MID</span><b>85</b></div><div><span>DEF</span><b>83</b></div></div>
+          <a class="btn" href="aichatbot.html">View Details</a>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="card">
+          <div class="stars">★★★★★</div>
+          <img src="images/login.png" alt="" class="proj-logo">
+          <h2>AI-AssistCart</h2>
+          <div class="stats"><div><span>ATT</span><b>83</b></div><div><span>MID</span><b>85</b></div><div><span>DEF</span><b>83</b></div></div>
+          <a class="btn" href="aichatbot.html">View Details</a>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="card">
+          <div class="stars">★★★★★</div>
+          <img src="assets/tic (3).png" alt="" class="proj-logo">
+          <h2>Tic-Tac-Toe game</h2>
+          <div class="stats"><div><span>ATT</span><b>83</b></div><div><span>MID</span><b>85</b></div><div><span>DEF</span><b>83</b></div></div>
+          <a class="btn" href="aichatbot.html">View Details</a>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="card">
+          <div class="stars">★★★★★</div>
+          <img src="images/portoooo.png" alt="" class="proj-logo">
+          <h2>Portfolio</h2>
+          <div class="stats"><div><span>ATT</span><b>83</b></div><div><span>MID</span><b>85</b></div><div><span>DEF</span><b>83</b></div></div>
+          <a class="btn" href="aichatbot.html">View Details</a>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="card">
+          <div class="stars">★★★★★</div>
+          <img src="assets/todo.png" alt="" class="proj-logo">
+          <h2>To-Do List app</h2>
+          <div class="stats"><div><span>ATT</span><b>83</b></div><div><span>MID</span><b>85</b></div><div><span>DEF</span><b>83</b></div></div>
+          <a class="btn" href="aichatbot.html">View Details</a>
+        </div>
+      </div>
+
     </div>
 
-    <button class="wheel-btn next"><i class="fa-solid fa-chevron-right"></i></button>
+    <!-- nav (fixed) -->
+    <div class="nav" aria-hidden="false">
+      <button class="nav-btn prev" id="prevBtn" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+      <button class="nav-btn next" id="nextBtn" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
   </div>
 </section>
 
-<style>
-/* Base Section */
-#projects {
-  padding: 50px 20px;
-  text-align: center;
-  background: #000;
-  color: #00e0ff;
-}
-#projects h1 {
-  margin: 0 0 15px 0;
-  font-size: 2rem;
-  color: #fff;
-}
-
-/* Wheel Layout */
-.wheel-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  perspective: 1200px;
-  margin: auto;
-  max-width: 750px;
-}
-.wheel {
-  width: 360px;
-  height: 320px;
-  position: relative;
-  perspective: 1200px;
-}
-.wheel-inner {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  transform-style: preserve-3d;
-  transition: transform 1s;
-}
-.wheel-btn {
-  background: rgba(13,18,33,.7);
-  border: 1px solid rgba(0,198,255,.4);
-  color: #00e0ff;
-  font-size: 1.5rem;
-  padding: 10px;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 2;
-}
-.wheel-btn:hover { background: rgba(0,198,255,.2); }
-
-/* Cards */
-.proj-card.neo-chip {
-  position: absolute;
-  width: 320px;
-  padding: 18px;
-  border-radius: 20px;
-  background: linear-gradient(180deg,#1e293b,#0f172a);
-  box-shadow: 0 8px 20px rgba(0,0,0,.5);
-  border: 2px solid #00e0ff;
-  text-align: center;
-  opacity: 0.3;
-  transform: scale(0.8);
-  transition: all 0.6s ease;
-}
-.proj-card.active {
-  opacity: 1;
-  transform: scale(1) translateZ(80px);
-  background: rgba(13,18,33,.95);
-}
-
-/* Card Content */
-.proj-card .stars {
-  font-size: 20px;
-  color: gold;
-  margin-bottom: 10px;
-  letter-spacing: 3px;
-}
-.proj-card .proj-logo {
-  width: 260px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 12px;
-  box-shadow: 0 0 20px rgba(0,224,255,.4);
-}
-.proj-card h2 {
-  font-size: 20px;
-  margin: 8px 0;
-  font-weight: bold;
-  color: #00e0ff;
-  letter-spacing: 1px;
-}
-.proj-card .stats {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  margin: 12px 0;
-}
-.proj-card .stats span { font-size: 12px; color: #aaa; display:block; }
-.proj-card .stats b { font-size: 18px; color: #fff; }
-.proj-card .btn {
-  display: inline-block;
-  padding: 8px 16px;
-  background: #00e0ff;
-  color: #000;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.3s;
-}
-.proj-card .btn:hover { background: #fff; color: #000; }
-</style>
-
 <script>
-(() => {
-  const chips=document.querySelectorAll('#projects .wheel-inner .neo-chip');
-  const total=chips.length;
-  const angle=360/total;
-  const radius=400;
-  const wheel=document.querySelector('#projects .wheel-inner');
-  let index=0;
+  (function(){
+    const wheel = document.getElementById('wheel');
+    const panels = Array.from(wheel.querySelectorAll('.panel'));
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const count = panels.length;
+    let index = 0; // center index
 
-  // Arrange cards around wheel
-  chips.forEach((chip,i)=>{
-    chip.style.transform=`rotateY(${i*angle}deg) translateZ(${radius}px)`;
-  });
+    // compute wheel radius so cards form a circle without overlapping
+    function layoutWheel() {
+      const cardW = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--card-w')) || 320;
+      // angle between items
+      const angle = 360 / count;
+      // radius formula to arrange items with some spacing: radius = (cardWidth/2) / tan(pi/count)
+      const rad = (cardW / 2) / Math.tan(Math.PI / count);
+      panels.forEach((p, i) => {
+        const a = angle * i;
+        // rotate around Y axis and translateZ out by radius
+        p.style.transform = `rotateY(${a}deg) translateZ(${rad}px)`;
+      });
+      // apply current rotation so center item is facing front
+      updateWheel();
+    }
 
-  function update(){
-    wheel.style.transform=`rotateY(${-index*angle}deg)`;
-    chips.forEach(c=>c.classList.remove("active"));
-    chips[index].classList.add("active");
-  }
+    // set classes and wheel rotation
+    function updateWheel() {
+      const angleStep = 360 / count;
+      // rotate wheel so selected index faces front (0deg)
+      const rotY = -index * angleStep;
+      wheel.style.transform = `translateZ(-0px) rotateY(${rotY}deg)`;
+      panels.forEach((p, i) => {
+        p.classList.remove('center','side','hidden');
+        // compute circular distance
+        // shortest distance around circle
+        const dist = Math.min(
+          Math.abs(i - index),
+          count - Math.abs(i - index)
+        );
+        if(dist === 0) p.classList.add('center');
+        else if(dist === 1) p.classList.add('side');
+        else p.classList.add('hidden');
+      });
+    }
 
-  document.querySelector('#projects .wheel-btn.next').addEventListener('click',()=>{
-    index=(index+1)%total;
-    update();
-  });
-  document.querySelector('#projects .wheel-btn.prev').addEventListener('click',()=>{
-    index=(index-1+total)%total;
-    update();
-  });
+    function next(){
+      index = (index + 1) % count;
+      updateWheel();
+    }
+    function prev(){
+      index = (index - 1 + count) % count;
+      updateWheel();
+    }
 
-  // Initialize
-  update();
-})();
+    // wire buttons
+    nextBtn.addEventListener('click', next);
+    prevBtn.addEventListener('click', prev);
+
+    // keyboard arrows
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'ArrowRight') next();
+      if(e.key === 'ArrowLeft') prev();
+    });
+
+    // layout on load & on resize (recompute radius)
+    window.addEventListener('load', layoutWheel);
+    window.addEventListener('resize', () => {
+      // small debounce
+      clearTimeout(window._wheelResize);
+      window._wheelResize = setTimeout(layoutWheel, 120);
+    });
+  })();
 </script>
+
+</body>
+</html>
 
 
 <!-- =========================

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tic-Tac-Toe game</title>
+
+<style>
+/* ==============================
+   THEME VARIABLES – FUTURISTIC FIFA STYLE
+============================== */
+:root {
+  --header-bg: #000;
+  --card-bg: #ffffff;
+  --page-bg: #e9ecf2;
+  --text-color: #111;
+  --shadow: 0 10px 25px rgba(0,0,0,.15);
+
+  --border-color: #d1d5db;
+  --feature-bg: #f8fafc;
+  --accent: #00c8ff;
+  --accent-glow: 0 0 15px rgba(0,200,255,0.8);
+}
+[data-theme="dark"] {
+  --header-bg: #000;
+  --card-bg: #1a1a1a;
+  --page-bg: #000;
+  --text-color: #f9fafb;
+  --shadow: 0 10px 30px rgba(0,200,255,.25);
+
+  --border-color: #333;
+  --feature-bg: #111;
+  --accent: #00e0ff;
+  --accent-glow: 0 0 20px rgba(0,224,255,0.9);
+}
+
+/* Base */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: var(--page-bg);
+  color: var(--text-color);
+  transition: background .3s, color .3s;
+}
+
+/* Floating Home Button */
+.home-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 52px; height: 52px;
+  background: var(--accent); color: #000;
+  font-size: 26px; font-weight: 700;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all .3s;
+  box-shadow: var(--accent-glow);
+  position: fixed; bottom: 24px; right: 24px;
+  z-index: 1000;
+}
+.home-btn:hover {
+  transform: scale(1.12);
+  box-shadow: 0 0 25px var(--accent);
+}
+
+/* Header */
+.top-header {
+  background: var(--header-bg);
+  color: #fff;
+  padding: 16px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  font-weight: 600;
+}
+.top-header a { color: var(--accent); text-decoration: none; }
+.top-header a:hover { text-decoration: underline; }
+.theme-toggle {
+  background: none; border: 2px solid var(--accent);
+  color: var(--accent);
+  padding: 6px 12px; border-radius: 8px; cursor: pointer;
+  transition: all .3s;
+}
+.theme-toggle:hover { background: var(--accent); color: #000; }
+
+/* Wrapper */
+.wrapper { display: flex; justify-content: center; padding: 40px 20px; }
+
+/* FIFA Card */
+.project-card {
+  background: var(--card-bg);
+  border-radius: 22px;
+  border: 3px solid var(--accent);
+  box-shadow: var(--accent-glow);
+  max-width: 1100px; width: 100%;
+  overflow: hidden; position: relative;
+  transition: background .3s, box-shadow .3s;
+}
+.project-card::before {
+  content:""; position:absolute; top:-50%; left:-50%;
+  width:200%; height:200%;
+  background:linear-gradient(120deg,transparent,rgba(0,224,255,.25),transparent);
+  transform:rotate(25deg);
+  animation:shine 6s infinite;
+}
+@keyframes shine {
+  0% { transform:translateX(-100%) rotate(25deg); }
+  100% { transform:translateX(100%) rotate(25deg); }
+}
+
+/* Slider */
+.project-header { position: relative; background:#000; border-bottom:3px solid var(--accent); }
+.project-slider { position:relative; width:100%; height:460px; background:#000; }
+.project-slider img {
+  position:absolute; inset:0; width:100%; height:100%; object-fit:contain;
+  opacity:0; transform:scale(1.04);
+  transition: opacity 480ms ease, transform 650ms ease;
+}
+.project-slider img.active { opacity:1; transform:scale(1); }
+.project-slider img.out { opacity:0 !important; transform:scale(.9) !important; }
+
+/* Badge + Title */
+.status-badge {
+  position:absolute; top:16px; right:16px;
+  background: var(--accent); color:#000; font-weight:700; font-size:.95rem;
+  padding:8px 16px; border-radius:20px; box-shadow: var(--accent-glow);
+  z-index:2;
+}
+.project-header h2 {
+  position:absolute; left:24px; bottom:24px;
+  color:#fff; font-size:2rem; font-weight:800; margin:0;
+  text-shadow:0 4px 8px rgba(0,0,0,.7);
+  z-index:2;
+}
+
+/* Content */
+.project-content { padding:28px; }
+.project-meta {
+  font-size:1rem; font-weight:600; margin-bottom:18px;
+  text-align:center; color:var(--accent);
+}
+
+/* Description */
+.project-description {
+  font-size:1rem; line-height:1.6; margin:20px 0;
+  padding:20px; background:var(--feature-bg);
+  border:2px solid var(--border-color); border-radius:14px;
+  text-align:justify; transition: background .3s, color .3s;
+}
+
+/* Tech stack badges */
+.tech-stack {
+  display:flex; flex-wrap:wrap; gap:12px; margin:24px 0; justify-content:center;
+}
+.tech-tag {
+  background:var(--accent); color:#000; font-weight:700;
+  font-size:.85rem; padding:8px 14px; border-radius:12px;
+  display:flex; align-items:center; gap:8px;
+  transition: transform .25s, box-shadow .25s;
+  box-shadow: var(--accent-glow);
+}
+.tech-tag img { width:18px; height:18px; object-fit:contain; }
+.tech-tag:hover { transform: translateY(-2px) scale(1.08); box-shadow:0 0 15px var(--accent); }
+
+/* Features grid */
+.features {
+  display:grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+  gap:18px; margin:26px 0;
+}
+.feature-item {
+  display:flex; align-items:center; padding:14px;
+  background:var(--feature-bg); border:2px solid var(--border-color); border-radius:12px;
+  font-size:1rem; font-weight:600;
+  transition: transform .2s, box-shadow .2s;
+}
+.feature-item::before { content:"⭐"; font-size:1.1rem; margin-right:10px; color:var(--accent); }
+.feature-item:hover { transform: translateY(-3px); box-shadow: var(--accent-glow); background: var(--card-bg); }
+
+/* Stats like FIFA attributes */
+.stats { margin: 28px 0; }
+.stat { margin-bottom: 14px; }
+.stat span { display:block; font-weight:600; margin-bottom:6px; color:var(--accent); }
+.bar {
+  height:8px; background:#222; border-radius:5px; overflow:hidden;
+}
+.bar-fill {
+  height:100%; background:linear-gradient(90deg,var(--accent),#0099ff);
+  width:0; animation:fill 2s forwards;
+}
+.bar-fill[data-value="92"] { width:92%; }
+.bar-fill[data-value="88"] { width:88%; }
+.bar-fill[data-value="95"] { width:95%; }
+
+/* Button */
+.action-btn {
+  display:inline-block;
+  background:var(--accent); color:#000; font-weight:700;
+  padding:12px 26px; border-radius:10px; text-decoration:none;
+  font-size:1rem; transition: transform .25s, box-shadow .3s;
+  margin-top:12px; box-shadow: var(--accent-glow);
+}
+.action-btn:hover { transform: translateY(-2px) scale(1.05); box-shadow:0 0 20px var(--accent); }
+
+/* Mobile */
+@media(max-width:768px){
+  .project-slider{height:260px;}
+  .project-header h2{font-size:1.4rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="top-header">
+  <a href="index.html#projects">← Back</a>
+
+  <span>Tic-Tac-Toe game</span>
+  <button class="theme-toggle" id="themeToggle">🌙</button>
+</div>
+
+<!-- Wrapper -->
+<div class="wrapper">
+  <div class="project-card">
+    <!-- Slider -->
+    <div class="project-header">
+      <div class="project-slider" id="slider">
+        <img src="assets/tic (2).png" class="active">
+        <img src="assets/tic (3).png">
+        <img src="assets/tic (1).png">
+      </div>
+      <div class="status-badge">⭐ Completed</div>
+      <h2>Tic-Tac-Toe game</h2>
+    </div>
+
+    <!-- Content -->
+    <div class="project-content">
+      <div class="project-meta"><span>🎮 Tic-Tac-Toe</span></div>
+
+      <p class="project-description">
+        ✨ A futuristic neon glassmorphism Tic-Tac-Toe game with real-time multiplayer using Django Channels (WebSockets). Players compete in a best-of-3 format with glowing winning tiles, smooth animations, and responsive design for desktop & mobile.
+      </p>
+
+      <div class="tech-stack">
+        <span class="tech-tag"><img src="images/python.png">Python</span>
+        <span class="tech-tag"><img src="images/django.png">Django</span>
+        <span class="tech-tag"><img src="images/html.png">HTML</span>
+        <span class="tech-tag"><img src="images/css.png">CSS</span>
+        <span class="tech-tag"><img src="images/java.png">JavaScript</span>
+        <span class="tech-tag"><img src="images/websocket.png">WebSockets</span>
+      </div>
+
+      <div class="features">
+        <div class="feature-item">✨ Real-time multiplayer</div>
+        <div class="feature-item">🏆 Best of 3 rounds with live scoreboard 📊</div>
+        <div class="feature-item">📱Responsive design with animations</div>
+        <div class="feature-item">🎨 Futuristic neon + glassmorphism UI 💎</div>
+      </div>
+
+      <a href="https://github.com/Abhinand2502/tic_tac_toe" target="_blank" class="action-btn">💻 View Code</a>
+    </div>
+  </div>
+</div>
+
+<!-- Floating home button -->
+<a href="index.html" class="home-btn">⌂</a>
+
+<script>
+/* Slider logic */
+const slider = document.getElementById('slider');
+const slides = Array.from(slider.querySelectorAll('img'));
+let current = 0;
+const SHOW_TIME = 2600, OUT_TIME = 550, GAP = 200, CYCLE_TIME = SHOW_TIME + OUT_TIME + GAP;
+function step(){
+  const curr = slides[current];
+  const nextIndex = (current + 1) % slides.length;
+  const next = slides[nextIndex];
+  curr.classList.add('out'); curr.classList.remove('active');
+  setTimeout(() => {
+    slides.forEach((img,i)=>{if(i!==nextIndex){img.classList.remove('active','out');}});
+    next.classList.add('active'); current=nextIndex;
+  }, OUT_TIME + GAP);
+}
+slides.forEach((img,i)=>img.classList.toggle('active',i===0));
+(function loop(){ setTimeout(()=>{ step(); loop(); }, CYCLE_TIME); })();
+
+/* Theme toggle */
+const body = document.body;
+const themeToggle = document.getElementById('themeToggle');
+const savedTheme = localStorage.getItem('theme') || 'light';
+body.setAttribute('data-theme', savedTheme);
+themeToggle.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+themeToggle.addEventListener('click', () => {
+  const current = body.getAttribute('data-theme');
+  const newTheme = current === 'dark' ? 'light' : 'dark';
+  body.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  themeToggle.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+});
+</script>
+</body>
+</html>

@@ -443,127 +443,181 @@ body.light .progress-bar span {
 
 
 <!-- =========================
-     #skills — 3D Manual Rotating Wheel with Snap
-========================= -->
+     #skills — Futuristic HUD 3D Wheel Selector
+     ========================= -->
 <section id="skills">
   <h1 class="neo-title">My Skills</h1>
-  <div class="wheel">
-    <div class="wheel-inner">
-      <article class="wheel-card"><i class="fab fa-python neo-icon"></i><h3>Python</h3></article>
-      <article class="wheel-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" class="neo-icon neo-django"><h3>Django</h3></article>
-      <article class="wheel-card"><i class="fab fa-html5 neo-icon"></i><h3>HTML</h3></article>
-      <article class="wheel-card"><i class="fab fa-css3-alt neo-icon"></i><h3>CSS</h3></article>
-      <article class="wheel-card"><i class="fab fa-js neo-icon"></i><h3>JavaScript</h3></article>
-      <article class="wheel-card"><i class="fab fa-react neo-icon"></i><h3>React</h3></article>
-      <article class="wheel-card"><i class="fas fa-database neo-icon"></i><h3>SQL</h3></article>
-      <article class="wheel-card"><i class="fas fa-robot neo-icon"></i><h3>ML</h3></article>
+
+  <div class="wheel-container">
+    <button class="wheel-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
+
+    <div class="wheel">
+      <div class="wheel-inner">
+        <!-- Python -->
+        <article class="neo-chip" data-skill="Python" data-val="80">
+          <div class="neo-ring"><span class="neo-num">0</span></div>
+          <i class="fab fa-python neo-icon"></i>
+          <h3>Python</h3>
+        </article>
+
+        <!-- Django -->
+        <article class="neo-chip" data-skill="Django" data-val="75">
+          <div class="neo-ring"><span class="neo-num">0</span></div>
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" class="neo-icon neo-django" alt="Django logo">
+          <h3>Django</h3>
+        </article>
+
+        <!-- HTML -->
+        <article class="neo-chip" data-skill="HTML" data-val="90">
+          <div class="neo-ring"><span class="neo-num">0</span></div>
+          <i class="fab fa-html5 neo-icon"></i>
+          <h3>HTML</h3>
+        </article>
+
+        <!-- CSS -->
+        <article class="neo-chip" data-skill="CSS" data-val="85">
+          <div class="neo-ring"><span class="neo-num">0</span></div>
+          <i class="fab fa-css3-alt neo-icon"></i>
+          <h3>CSS</h3>
+        </article>
+
+        <!-- JavaScript -->
+        <article class="neo-chip" data-skill="JavaScript" data-val="70">
+          <div class="neo-ring"><span class="neo-num">0</span></div>
+          <i class="fab fa-js neo-icon"></i>
+          <h3>JavaScript</h3>
+        </article>
+
+        <!-- React -->
+        <article class="neo-chip" data-skill="React" data-val="65">
+          <div class="neo-ring"><span class="neo-num">0</span></div>
+          <i class="fab fa-react neo-icon"></i>
+          <h3>React</h3>
+        </article>
+
+        <!-- SQL -->
+        <article class="neo-chip" data-skill="SQL" data-val="75">
+          <div class="neo-ring"><span class="neo-num">0</span></div>
+          <i class="fas fa-database neo-icon"></i>
+          <h3>SQL</h3>
+        </article>
+
+        <!-- Machine Learning -->
+        <article class="neo-chip" data-skill="Machine Learning" data-val="60">
+          <div class="neo-ring"><span class="neo-num">0</span></div>
+          <i class="fas fa-robot neo-icon"></i>
+          <h3>ML</h3>
+        </article>
+      </div>
     </div>
+
+    <button class="wheel-btn next"><i class="fa-solid fa-chevron-right"></i></button>
   </div>
 </section>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-#skills .neo-title {
-  margin-bottom: 30px;
-  font-size: 2.2rem;
-  letter-spacing: 2px;
-  color: #eaf0ff;
-  text-align: center;
-  text-shadow: 0 0 12px rgba(0,198,255,.45);
+/* Layout */
+.wheel-container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  perspective:1000px;
+  margin:auto;
+  max-width:500px;
 }
-.wheel {
-  perspective: 1200px;
-  width: 100%;
-  height: 420px;
-  position: relative;
+.wheel{
+  width:260px;
+  height:220px;
+  position:relative;
+  perspective:1200px;
 }
-.wheel-inner {
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  position: relative;
-  transform: rotateY(0deg);
-  transition: transform 0.5s ease; /* snapping animation */
+.wheel-inner{
+  width:100%;
+  height:100%;
+  position:absolute;
+  transform-style:preserve-3d;
+  transition:transform 1s;
 }
-.wheel-card {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 120px;
-  height: 140px;
-  margin: -70px -60px;
-  background: rgba(13,18,33,.65);
-  border: 1px solid rgba(0,198,255,.25);
-  border-radius: 14px;
-  box-shadow: 0 10px 25px rgba(0,0,0,.35), 0 0 15px rgba(0,198,255,.35);
-  text-align: center;
-  color: #cfe7ff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.wheel-btn{
+  background:rgba(13,18,33,.7);
+  border:1px solid rgba(0,198,255,.4);
+  color:#00c6ff;
+  font-size:1.5rem;
+  padding:10px;
+  border-radius:50%;
+  cursor:pointer;
+  z-index:2;
 }
-.wheel-card:hover { transform: scale(1.15) translateZ(30px); }
-.wheel-card .neo-icon { font-size: 2rem; margin: 0 auto 6px; color: #00c6ff; }
-.wheel-card img.neo-django { width: 32px; height: 32px; filter: brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(3200%) hue-rotate(180deg) drop-shadow(0 0 6px rgba(0,198,255,.8)); }
-.wheel-card h3 { font-size: .9rem; font-weight: 700; margin-top: 6px; text-transform: uppercase; }
+.wheel-btn:hover{background:rgba(0,198,255,.2);}
 
-/* 8 cards positioned around circle */
-.wheel-card:nth-child(1) { transform: rotateY(0deg) translateZ(400px); }
-.wheel-card:nth-child(2) { transform: rotateY(45deg) translateZ(400px); }
-.wheel-card:nth-child(3) { transform: rotateY(90deg) translateZ(400px); }
-.wheel-card:nth-child(4) { transform: rotateY(135deg) translateZ(400px); }
-.wheel-card:nth-child(5) { transform: rotateY(180deg) translateZ(400px); }
-.wheel-card:nth-child(6) { transform: rotateY(225deg) translateZ(400px); }
-.wheel-card:nth-child(7) { transform: rotateY(270deg) translateZ(400px); }
-.wheel-card:nth-child(8) { transform: rotateY(315deg) translateZ(400px); }
-
-@media(max-width:520px){
-  .wheel { height: 300px; }
-  .wheel-card { width: 90px; height: 110px; margin: -55px -45px; }
-  .wheel-card h3 { font-size: .7rem; }
-  .wheel-card .neo-icon { font-size: 1.4rem; }
+/* Cards arranged in wheel */
+.neo-chip{
+  position:absolute;
+  width:200px;
+  padding:16px;
+  text-align:center;
+  border-radius:18px;
+  background:rgba(13,18,33,.55);
+  box-shadow:0 10px 28px rgba(0,0,0,.28);
+  border:1px solid rgba(0,198,255,.18);
+  left:30px;
+  top:0;
+  transform-style:preserve-3d;
 }
+.neo-chip h3{margin-top:6px;font-size:.9rem;color:#cfe7ff;text-transform:uppercase;}
+.neo-ring{--p:0%;width:90px;height:90px;margin:6px auto;border-radius:50%;
+  background:conic-gradient(#00c6ff 0,#0072ff var(--p),rgba(255,255,255,.14) var(--p)100%);
+  display:grid;place-items:center;}
+.neo-ring .neo-num{color:#e7faff;font-weight:700;font-size:1.2rem;}
+.neo-icon{font-size:2rem;margin:6px auto;color:#00c6ff;}
+.neo-django{filter:brightness(0) saturate(100%) invert(56%) sepia(88%) saturate(3200%) hue-rotate(180deg) brightness(102%) contrast(98%) drop-shadow(0 0 6px rgba(0,198,255,.8));}
 </style>
 
 <script>
 (() => {
-  const wheel = document.querySelector('.wheel-inner');
-  const step = 45; // degrees per card (360 / 8 cards)
-  let currentRotation = 0;
-  let startX = 0;
-  let isDragging = false;
+  const chips=document.querySelectorAll('.wheel-inner .neo-chip');
+  const total=chips.length;
+  const angle=360/total;
+  const radius=280; // distance from center
+  const wheel=document.querySelector('.wheel-inner');
 
-  const snapToNearest = () => {
-    const snapped = Math.round(currentRotation / step) * step;
-    currentRotation = snapped;
-    wheel.style.transform = `rotateY(${snapped}deg)`;
+  // place cards around circle
+  chips.forEach((chip,i)=>{
+    chip.style.transform=`rotateY(${i*angle}deg) translateZ(${radius}px)`;
+  });
+
+  let index=0;
+  function update(){
+    wheel.style.transform=`rotateY(${-index*angle}deg)`;
+  }
+
+  document.querySelector('.wheel-btn.next').addEventListener('click',()=>{
+    index=(index+1)%total;
+    update();
+  });
+  document.querySelector('.wheel-btn.prev').addEventListener('click',()=>{
+    index=(index-1+total)%total;
+    update();
+  });
+
+  // animate rings once
+  const animate=(el,target)=>{
+    el.style.setProperty('--p',target+'%');
+    const num=el.querySelector('.neo-num');
+    let cur=0;
+    const step=Math.max(1,Math.round(target/30));
+    const t=setInterval(()=>{
+      cur+=step;
+      if(cur>=target){cur=target;clearInterval(t);}
+      num.textContent=cur;
+    },20);
   };
-
-  const onMouseDown = (e) => {
-    isDragging = true;
-    startX = e.clientX;
-    wheel.style.transition = "none"; // disable animation while dragging
-  };
-
-  const onMouseMove = (e) => {
-    if (!isDragging) return;
-    const deltaX = e.clientX - startX;
-    wheel.style.transform = `rotateY(${currentRotation + deltaX * 0.5}deg)`;
-  };
-
-  const onMouseUp = (e) => {
-    if (!isDragging) return;
-    const deltaX = e.clientX - startX;
-    currentRotation += deltaX * 0.5;
-    isDragging = false;
-    wheel.style.transition = "transform 0.5s ease"; // enable snap animation
-    snapToNearest();
-  };
-
-  wheel.addEventListener('mousedown', onMouseDown);
-  window.addEventListener('mousemove', onMouseMove);
-  window.addEventListener('mouseup', onMouseUp);
+  chips.forEach(c=>{
+    const val=+c.dataset.val||0;
+    animate(c.querySelector('.neo-ring'),val);
+  });
 })();
 </script>
 
